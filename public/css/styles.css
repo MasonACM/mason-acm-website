@@ -1,0 +1,559 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400);
+@import url(http://fonts.googleapis.com/css?family=Oswald:300);
+
+body {
+	
+	/* background*/
+	background-color: rgba(27, 27, 27, 0.9);
+
+	/* font styles*/
+	font-family: Roboto Condensed;
+	font-weight: 400;
+	color: white;
+	font-size: 14px;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: Roboto Condensed;
+	font-weight: 400;
+}
+
+a {
+	color: rgb(29, 115, 65);
+}
+a:active {
+	color: rgb(29, 115, 65);
+}
+a:hover, a:focus {
+	color: rgb(29, 115, 65);
+}
+
+
+.link-btn {
+	color:white;
+}
+
+.link-btn:active {
+	color: white;
+	text-decoration: none;
+}
+.link-btn:hover, a:focus {
+	color: white;
+	text-decoration: none;
+}
+
+td {
+	/*text-align: center !important;*/
+}
+
+th {
+	font-size: 20px;
+	text-align: left; !important;
+}
+
+/***********************/
+/* Bootstrap overrides */
+/***********************/
+
+.navbar-fixed-top > .navbar-inner {
+	background-color: rgb(29, 29, 29);
+	border-radius: 0px;
+	border: none;
+}
+
+.container > .navbar-collapse {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.navbar-fixed-top > .navbar-inner > .container > .brand {
+	text-shadow: none;
+	color: white;
+}
+
+.navbar-fixed-top > .navbar-inner > .container > .brand:hover {
+	color: rgb(29, 115, 65);
+}
+
+.navbar .nav > li > a {
+	text-shadow: none;
+	font-weight: 300;
+}
+
+.navbar > .container .navbar-brand {
+	margin-left: 0px;
+}
+
+.navbar .nav > li > a:hover, .nav-collapse .nav > li:hover {
+	color: white;
+}
+
+.navbar .nav > li:hover, .nav-collapse .nav > li:hover {
+	background-color: rgb(29, 100, 65);
+}
+
+.navbar-fixed-top .nav > li:hover, .navbar .nav > li.active {
+	background-color: rgb(29, 29, 29);
+}
+.navbar-fixed-top .nav > li > a:hover {
+	/*text-decoration: underline;*/
+}
+
+.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus  {
+    background-color: rgb(29, 29, 29);
+} 
+
+/* NAVBAR END */
+
+.banner {
+	background-color: rgb(29, 115, 65);
+	margin-top: -20px;
+
+}
+
+.banner-heading {
+	font-size: 36px;
+
+	padding: 15px 15px 15px 15px;
+	background-color: #185933;
+	border: solid 1px #134929;
+	text-align: center;
+	margin: 15px;
+	transform:rotate(-0deg);
+	-ms-transform:rotate(-0deg);
+	-webkit-transform:rotate(-0deg); 
+	display: inline-block;
+}
+
+.jumbotron {
+	background-color: rgb(29, 115, 65);
+	margin-top: -10px;
+}
+
+label {
+	cursor: auto;
+}
+
+/* Input fields */
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.form-control,
+.uneditable-input {
+	background-color: #1D1D1D;
+	border-color: #1D1D1D;
+	color: white;
+	font-size: 14px;
+
+}
+
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.form-control:focus,
+.uneditable-input:focus {
+  border-color: rgba(14, 129, 65, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+}
+
+.btn-inverse {
+	background-color: #222222;
+	font-size: 16px;
+	-webkit-transition: border linear .2s, box-shadow linear .2s;
+	-moz-transition: border linear .2s, box-shadow linear .2s;
+	-o-transition: border linear .2s, box-shadow linear .2s;
+	transition: border linear .2s, box-shadow linear .2s;
+}
+
+.btn-inverse:hover, .btn-inverse:focus {
+	border-color: rgba(14, 129, 65, 0.8);
+	outline: 0;
+	color: white;
+	outline: thin dotted \9;
+	/* IE6-9 */
+
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+
+	-webkit-transition: border linear .2s, box-shadow linear .2s;
+	-moz-transition: border linear .2s, box-shadow linear .2s;
+	-o-transition: border linear .2s, box-shadow linear .2s;
+	transition: border linear .2s, box-shadow linear .2s;
+}
+
+.btn-primary {
+	background-color: rgb(29, 100, 65);
+	border-color: rgb(29, 100, 65);
+	-webkit-transition: background-color.2s;
+	-moz-transition: background-color.2s;
+	-o-transition: background-color.2s;
+	transition: background-color.2s;
+}
+
+
+.btn-primary:hover, .btn-primary:focus {
+	background-color: rgb(29, 115, 65);
+	border-color: rgb(29, 100, 65);
+	-webkit-transition: background-color.2s;
+	-moz-transition: background-color.2s;
+	-o-transition: background-color.2s;
+	transition: background-color.2s;
+}
+
+.btn-danger {
+	background-color: #962624;
+	border: none;
+}
+
+.danger {
+	background-color: #701D1D;
+}
+
+.safe {
+	background-color: #1D4B7A;
+}
+
+.breadcrumb {
+	background-color: rgb(29,29,29);
+}
+
+.btn-navbar {
+	background-color: rgb(29,29,29) !important;
+}
+
+/***************************/
+/* Bootstrap overrides end */
+/***************************/
+
+
+/* Forum Sytles */
+.forum-topic {
+	margin-bottom: 2px;
+	margin-top: 50px;
+	padding: 20px;
+	background-color: #185933;
+	font-size: 20px;
+}
+
+.forum-new-thread {
+	margin-bottom: 2px;
+	margin-top: 50px;
+	background-color: rgb(29, 115, 65);
+	padding: 23px;
+	color: white;
+	text-align: center;
+	font-size: 16px;
+}
+
+.forum-reply-large {
+	background-color: rgb(29, 29, 29);
+	margin-bottom: 2px;
+	margin-top: 2px;
+	padding: 15px;
+	color: white;
+	text-align: center;
+	
+}
+
+.forum-thread {
+	margin-bottom: 2px;
+	margin-top: 2px;
+	background-color: rgb(29, 29, 29);
+	padding: 15px;
+}
+
+.forum-post {
+	padding: 20px;
+	background-color: rgb(29,29,29);
+	margin-top: -5px;
+	margin-bottom: 10px;
+}
+
+.post-space{
+	min-height: 1px !important;
+	height: 1px !important;
+}
+
+.forum-author {
+	color: rgb(29, 115, 65);
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Roboto;
+}
+
+.forum-time {
+	color: #888888;
+	font-size: 12px;
+}
+
+div.article {
+	padding: 10px;
+	background-color: rgb(27,27,27);
+	margin-bottom: 10px;
+}
+
+.prettyprint {
+	border-radius: 0px;
+	border: none;
+	box-shadow: none;
+}
+
+.error {
+	color: rgb(194, 48, 48);
+	font-size: 16px;
+}
+
+.panel {
+	margin: 10px;
+}
+
+.header-green {
+	color: rgb(29, 115, 69);
+}
+
+.header-white {
+	color: white;
+}
+
+.header-underlined {
+	text-decoration: underline;
+}
+
+.sig-header {
+	color: rgb(29, 115, 69);
+	font-family: Roboto Condensed;
+}
+
+.medium-text {
+	font-size: 18px;
+}
+
+.edit-user-role, .delete-user {
+	cursor: pointer;
+}
+
+.modal-body, .modal-content {
+	background-color: #313131; 
+}
+
+.modal-footer {
+	background-color: #1D1D1D;
+	border: none;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.logo {
+	height: auto;
+	width: auto;
+
+	max-height: 108px;
+	max-width: 324px;
+}
+
+.checkbox {
+	margin-left: 5px;
+}
+
+.team-table td {
+	border: none;
+}
+
+.link-bright {
+	color: rgb(20, 120, 75);
+}
+
+.no-space [class*="span"] {
+    margin-left: 0;
+}
+
+div > a {
+	color:white;
+}
+
+div > a:hover {
+	color:white;
+	text-decoration: none;
+}
+
+div > a:focus {
+	color:white;
+	text-decoration: none;
+}
+
+.green-glow {
+	-webkit-transition: border linear .2s, box-shadow linear .2s;
+	-moz-transition: border linear .2s, box-shadow linear .2s;
+	-o-transition: border linear .2s, box-shadow linear .2s;
+	transition: border linear .2s, box-shadow linear .2s;
+}
+
+.green-glow:hover, .green-glow:focus {
+	border-color: rgba(14, 129, 65, 0.8);
+	outline: 0;
+	outline: thin dotted \9;
+	/* IE6-9 */
+
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+	-moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(26, 133, 80);
+
+	-webkit-transition: border linear .2s, box-shadow linear .2s;
+	-moz-transition: border linear .2s, box-shadow linear .2s;
+	-o-transition: border linear .2s, box-shadow linear .2s;
+	transition: border linear .2s, box-shadow linear .2s;
+}
+
+.user-form {
+	padding: 50px;
+	padding-top: 20px;
+	margin-top: 60px;
+	border: solid #222222 1px;
+	border-radius: 10px;
+	background-color: #222222;
+}
+
+.form-title {
+	color: rgb(187, 187, 187);
+	font-size: 14px;
+	margin-bottom: 30px;
+}
+
+.control-label {
+	font-weight: 300;
+	font-size: 14px;
+}
+.remember-label {
+	font-size: 14px;
+	font-style: italic;
+}
+
+.error-label {
+	display: block;
+	font-weight: 300;
+	font-size: 14px;
+	padding: 8px;
+	text-align: left;
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.large-link {
+	background-color: #1B1B1B;
+	text-align: center;
+	font-size: 24px;
+	font-family: Roboto Condensed;
+	padding: 35px;
+	border: 10px solid #313131;
+	border-radius: 45px;
+
+}
+
+.large-link > h2 {
+	font-family: Roboto Condensed;
+
+	-webkit-transform: rotate(0deg);  /* Chrome, Safari 3.1+ */
+	-moz-transform: rotate(0deg);  /* Firefox 3.5-15 */
+	-ms-transform: rotate(0deg);  /* IE 9 */
+	-o-transform: rotate(0deg);  /* Opera 10.50-12.00 */
+	transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera 12.50+ */
+
+	-webkit-transition: all 0.3s ease-out;  /* Chrome 1-25, Safari 3.2+ */
+	-moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
+	-o-transition: all 0.3s ease-out;  /* Opera 10.50–12.00 */
+	transition: all 0.3s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
+.large-link-left:hover > h2 {
+	  -webkit-transform: rotate(4deg);  /* Chrome, Safari 3.1+ */
+     -moz-transform: rotate(4deg);  /* Firefox 3.5-15 */
+      -ms-transform: rotate(4deg);  /* IE 9 */
+       -o-transform: rotate(4deg);  /* Opera 10.50-12.00 */
+          transform: rotate(4deg);  /* Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
+.large-link-right:hover > h2 {
+	  -webkit-transform: rotate(-4deg);  /* Chrome, Safari 3.1+ */
+     -moz-transform: rotate(-4deg);  /* Firefox 3.5-15 */
+      -ms-transform: rotate(-4deg);  /* IE 9 */
+       -o-transform: rotate(-4deg);  /* Opera 10.50-12.00 */
+          transform: rotate(-4deg);  /* Firefox 16+, IE 10+, Opera 12.50+ */
+}
+
+.large-link:hover > h2 {
+    -webkit-transition: all 0.3s ease-out;  /* Chrome 1-25, Safari 3.2+ */
+     -moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
+       -o-transition: all 0.3s ease-out;  /* Opera 10.50–12.00 */
+          transition: all 0.3s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
+}
+.sig-btn {
+	padding: 50px;
+	font-size: 24px;
+	border-radius: 30px;
+	margin: 20px 20px 20px 20px;
+}
+
+	#editor {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin-top: 250px;
+		height: 500px;
+	}
