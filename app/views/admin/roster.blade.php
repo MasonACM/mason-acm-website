@@ -1,35 +1,43 @@
-<?php $counter = 0; ?>
+@extends('layouts.masterWithTitle')
 
-<table class="table" id="roster">
+@section('title')
+	LAN Party Roster
+@stop
 
-	<thead>
-		<tr class="header-white">
-			<th> # </td>
-			<th> First Name </td>
-			<th> Last Name  </td>
-		</tr>
-	</thead>
-	
-	<tbody>
-		@foreach($attendees as $attendee) 
-			<tr>
-				<td> {{ ++$counter }}
-				<td> {{ $attendee->firstname }} </td>
-				<td> {{ $attendee->lastname  }} </td>
+@section('content')
+	<?php $counter = 0; ?>
+	<table class="table" id="roster">
+		<thead>
+			<tr class="header-white">
+				<th> # </td>
+				<th> First Name </td>
+				<th> Last Name  </td>
 			</tr>
-		@endforeach
-	</tbody>
+		</thead>	
+		<tbody>
+			@foreach($attendees as $attendee) 
+				<tr>
+					<td> {{ ++$counter }}
+					<td> {{ $attendee->firstname }} </td>
+					<td> {{ $attendee->lastname  }} </td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
+@stop
 
-</table>
-
-<script type="text/javascript">
-	$('#roster').dataTable( {
-	    "bPaginate": false,
-	    "bLengthChange": false,
-	    "bFilter": true,
-	    "bSort": false,
-	    "bInfo": false,
-	    "bAutoWidth": false,
-	    "oLanguage": { "sSearch": "" }
-	});
-</script>
+@section('javascript')
+	{{ HTML::script('js/jquery.dataTables.js') }}
+	
+	<script type="text/javascript">
+		$('#roster').dataTable( {
+		    "bPaginate": false,
+		    "bLengthChange": false,
+		    "bFilter": true,
+		    "bSort": false,
+		    "bInfo": false,
+		    "bAutoWidth": false,
+		    "oLanguage": { "sSearch": "" }
+		});
+	</script>
+@stop

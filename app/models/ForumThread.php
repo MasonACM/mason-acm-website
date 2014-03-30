@@ -5,9 +5,9 @@ class ForumThread extends Eloquent
 	protected $table = 'forum_threads';
 	protected $guarded = ['id'];
 
-	public function getPosts()
+	public function posts()
 	{
-		return $this->hasMany('ForumPost', 'thread_id')->get();
+		return $this->hasMany('ForumPost', 'thread_id')->orderBy('created_at')->get();
 	}
 	
 	public function getTopic()

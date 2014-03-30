@@ -1,7 +1,6 @@
 <?php
 
-class ForumController extends \BaseController {
-	protected $layout = 'layouts.master';
+class ForumController extends BaseController {
 
 	public function getIndex() 
 	{
@@ -9,12 +8,12 @@ class ForumController extends \BaseController {
 	}
 
 	/* Topics */
-	public function getNewtopic()
+	public function getCreateTopic()
 	{
 		return View::make('forum.createTopic');
 	}
 
-	public function postCreatetopic()
+	public function postCreateTopic()
 	{
 		$topic = new ForumTopic;
 		$topic->fill(Input::all());
@@ -24,7 +23,7 @@ class ForumController extends \BaseController {
 
 	public function getTopic($id)
 	{
-		$topic = ForumTopic::find($id);
+		$topic = ForumTopic::findOrFail($id);
 
 		return View::make('forum.topic')->with('topic', $topic);
 	}
@@ -32,17 +31,18 @@ class ForumController extends \BaseController {
 	/* Threads */
 	public function getThread($id)
 	{
-		$thread = ForumThread::find($id);
+		$thread = ForumThread::findOrFail($id);
+		$posts = $thread->posts();
 
-		return View::make('forum.thread')->with('thread', $thread);
+		return View::make('forum.thread', compact('thread', 'posts'));
 	}
 
-	public function getNewthread($topic_id)
+	public function getCreateThread($topic_id)
 	{
 		return View::make('forum.createThread')->with('topic_id', $topic_id);
 	}
 
-	public function postCreatethread()
+	public function postCreateThread()
 	{
 		$thread = new ForumThread;
 		$thread->title = Input::get('title');
@@ -56,16 +56,13 @@ class ForumController extends \BaseController {
 		$post->body = Input::get('body');
 		$post->thread_id = $thread->id;
 		$post->author_id = Auth::user()->id;
-		$post->updated_at = time();
-        $post->created_at = time();
 		$post->save();
 
-		//return Redirect::to('forum/thread/' . $thread->id);
-		return Redirect::to('forum');
+		return Redirect::to('forum/thread/' . $thread->id);
 	}
 
 	/* Posts */
-	public function postCreatepost()
+	public function postCreatePost()
 	{
 		$post = new ForumPost;
 		$post->body = Input::get('body');

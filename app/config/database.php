@@ -11,9 +11,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'masonacm',
+			'database'  => 'acm_laravel',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'legoskater999',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

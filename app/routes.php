@@ -1,7 +1,17 @@
 <?php
 
-# Homepage
-Route::get('/', function() { return View::make('index'); });
+# Basic Pages
+Route::get('/', 'PagesController@getHome');
+
+# Users Controller
+Route::get('users/login', 'UsersController@getLogin');
+Route::get('users/register', 'UsersController@getRegister');
+Route::get('users/logout', 'UsersController@getLogout');
+Route::post('users/create', 'UsersController@postCreate');
+Route::post('users/login', 'UsersController@postLogin');
+
+# LAN Party
+
 
 # Files
 Route::get('files/download/{file_name}', 'FileController@getDownload');
@@ -9,41 +19,36 @@ Route::get('files/upload',  array('before' => 'admin', 'uses' => 'FileController
 Route::post('files/upload', array('before' => 'admin', 'uses' => 'FileController@postUpload'));
 
 # Forum
-Route::get('forum/newtopic', array('before' => 'admin', 'uses' => 'ForumController@getNewtopic'));
-Route::get('forum/newthread/{id}', array('before' => 'auth' 'uses' => 'ForumController@getNewthread'));
+Route::get('forum/new/topic', array('before' => 'admin', 'uses' => 'ForumController@getCreateTopic'));
+Route::post('forum/new/topic', array('before' => 'admin', 'uses' => 'ForumController@postCreateTopic'));
+Route::get('forum/new/thread/{id}', array('before' => 'auth', 'uses' => 'ForumController@getCreateThread'));
+Route::post('forum/new/thread/{id}', array('before' => 'auth', 'uses' => 'ForumController@postCreateThread'));
+Route::post('forum/post/create', array('before' => 'auth', 'uses' => 'ForumController@postCreatePost'));
 Route::get('forum/thread/{id}', 'ForumController@getThread');
+Route::get('forum/topic/{id}', 'ForumController@getTopic');
+Route::get('forum', 'ForumController@getIndex');
+
+# Tutorials
+Route::get('tutorials/create', array('before' => 'auth', 'uses' =>  'TutorialController@getCreate'));
+Route::post('tutorials/create', array('before' => 'auth', 'uses' => 'TutorialController@postCreate'));
+Route::get('tutorials/edit/{id}', array('before' => 'auth', 'uses' => 'TutorialController@getEdit'));
+Route::post('tutorials/edit/{id}', array('before' => 'auth', 'uses' => 'TutorialController@postEdit'));
+Route::post('tutorials/delete/{id}', array('before' => 'auth', 'uses' => 'TutorialController@postDelete'));
+Route::get('tutorials/view/{id}', 'TutorialController@getTutorial');
+Route::get('tutorials/{name}', 'TutorialController@getTopic');
+Route::get('tutorials', 'TutorialController@getIndex');
 
 # API
 Route::controller('api', 'APIController');
 
 # Special Intrest Groups
-Route::get('sig/new',  'SIGController@getNew');
-Route::get('sig/edit', 'SIGController@getEdit');
-Route::post('sig/delete', 'SIGController@postDelete');
+Route::get('sig/new', 'SIGController@getNew');
+Route::get('sig/edit', array('before' => 'admin', 'uses' => 'SIGController@getEdit'));
+Route::post('sig/delete', array('before' => 'admin', 'uses' => 'SIGController@postDelete'));
+Route::get('sig/', 'SIGController@getIndex');
 
-# Auth Filtered Routes
-Route::group(['before' => 'auth'], function()
+# Admin
+Route::group(array('before' => 'admin'), function() 
 {
-	# Forum
-
+	Route::controller('admin', 'AdminController');
 });
-
-# Special Interest Groups
-Route::get('sig/{url}','SIGController@display');
-
-Route::controller('sig',      'SIGController');
-Route::controller('users',    'UsersController');
-//Route::controller('lanparty', 'LanPartyController');
-//Route::controller('lanteam',  'LanTeamController');
-Route::controller('forum',    'ForumController');
-
-
-# Tutorials
-Route::get('tutorials/create', 'TutorialController@getCreate');
-Route::post('tutorials/create', 'TutorialController@postCreate');
-Route::get('tutorials/view/{id}', 'TutorialController@getTutorial');
-Route::get('tutorials/{name}', 'TutorialController@getTopic');
-Route::get('tutorials/edit/{id}', 'TutorialController@getEdit');
-Route::post('tutorials/edit/{id}', 'TutorialController@postEdit');
-Route::post('tutorials/delete/{id}', 'TutorialController@postDelete');
-Route::get('tutorials', 'TutorialController@getIndex');

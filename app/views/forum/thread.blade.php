@@ -30,8 +30,8 @@
 		</div>
 	</div>
 
-	<!-- posts -->
-	@foreach($thread->getPosts() as $post)			
+	<!-- Posts -->
+	@foreach($posts as $post)			
 		
 		<div class="row">
 			<div class="forum-post col-md-12">			
@@ -49,24 +49,22 @@
 				</span>
 			</div>
 		</div>
-
 	@endforeach
-		
-	<br><br>
-
+	
 	<div class="row">
-		<div class="col-md-8">
-			{{ Form::open(['action'=>'ForumController@postCreatepost']) }}
-				<input type="hidden" name="thread_id" value="{{ $thread->id }}">
-				
+		@if(Auth::check())
+			{{ Form::open(['url' => 'forum/post/create', 'class' => 'col-md-8 forum-reply-form']) }}
+				<input type="hidden" name="thread_id" value="{{ $thread->id }}">	
 				<div class="form-group">
-					{{ Form::textarea('body', null, ['class' => 'form-control', 'style' => 'resize: none;']) }}  
+					{{ Form::textarea('body', null, ['rows' => '5', 'class' => 'form-control', 'style' => 'resize: none;']) }}  
 				</div>
-
 				<div>
 					{{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
 				</div>
 			{{ Form::close() }}
-		</div>
+		@else
+			<br><br>
+			{{ HTML::link('/users/login', 'Login to reply!', array('class' => 'btn btn-primary')) }}				
+		@endif
 	</div>
 @stop

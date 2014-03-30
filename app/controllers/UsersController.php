@@ -3,22 +3,20 @@
 class UsersController extends BaseController {
     protected $layout = "layouts.master";
     
-    public function getLogin() {
+    public function getLogin() 
+    {
         return View::make('users.login');
     }
 
-    public function getRegister() {
+    public function getRegister() 
+    {
         return View::make('users.register');
     }
 
-    public function getLogout() {
+    public function getLogout() 
+    {
         Auth::logout();
         return Redirect::to('users/login');
-    }
-
-    public function __construct() {
-       $this->beforeFilter('csrf', array('on'=>'post'));
-       $this->beforeFilter('auth', array('only'=>array('getDashboard')));       
     }
 
     public function postRemove()

@@ -1,11 +1,19 @@
 <?php
 
 class LANPartyController extends BaseController {
+
 	protected $layout = 'layouts.master';
 
 	public function getIndex()
 	{
 		return Redirect::to('lanparty/signup');
+	}
+
+	public function getManage()
+	{
+		$lans = LanParty::all();
+
+		return View::make('lanparty.manage');
 	}
 
 	/**

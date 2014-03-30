@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.masterWithTitle')
 
 @section('title')
 	Admin Dashboard
@@ -6,14 +6,11 @@
 
 @section('content')
 
-	<h1>Admin Dashboard</h1>
-
-	<h3>Lan Party</h3>
-	<a href='admin/roster'><div class="btn btn-large btn-inverse panel">LAN Party Roster</div>
-	<a href='admin/competitions'><div class="btn btn-large btn-inverse panel">LAN Party Competitions</div>
-	<a href='langames'><div class="btn btn-large btn-inverse panel">LAN Party Games</div>
-	<a href='langames'><div class="btn btn-large btn-inverse panel">LAN Party Games</div>
+	<h3>LAN Party</h3>
+	<a href='{{ URL::to('lanparty/roster') }}'><div class="panel-button btn btn-large btn-inverse panel">LAN Party Roster</div>
+	<a href='{{ URL::to('lanparty/manage') }}'><div class="panel-button btn btn-large btn-inverse panel">LAN Party Roster</div>
+	<br><br><br>
 
 	<h3>Files</h3>
-	{{ HTML::link('files/upload', 'Upload Files', array('class' => 'btn btn-large btn-inverse panel')) }}
+	{{ HTML::link('files/upload', 'Upload Files', array('class' => 'panel-button btn btn-large btn-inverse panel')) }}
 @stop
