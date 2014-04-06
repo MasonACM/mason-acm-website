@@ -5,8 +5,6 @@
 @stop
 
 @section('content')
-	<?php $topic = $thread->getTopic(); ?>
-
 	<ul class="breadcrumb">
 		<li> {{ HTML::link('forum', 'Forum') }} 
 			<span class="divider"></span>
@@ -17,31 +15,31 @@
 	    </li>
 	    <li class="active">Thread</li>
 	</ul>
+	@if(Auth::check() && Auth::user()->isAdmin())
+		{{ Form::delete('forum/thread/' . $thread->id . '/delete', 'Delete Thread') }}	
+	@endif
 
-	<!-- Green thread title header -->	
 	<div class="row">
 		<div class="forum-topic col-md-12">	
-			<span>
-				{{ $thread->title }}
-				<div class="pull-right">
-					{{ $thread->getReplies() }}
-				</div>
-			</span>	
+			{{ $thread->title }}		
+			<div class="pull-right">
+				<i class="fa fa-comment"></i>
+				&nbsp;{{ $thread->getReplies() }}
+			</div>
 		</div>
 	</div>
 
-	<!-- Posts -->
-	@foreach($posts as $post)			
-		
+	@foreach($posts as $post)					
 		<div class="row">
 			<div class="forum-post col-md-12">			
 				<span class="col-md-2">			
 					<div class="forum-author">
 						{{ $post->getUser()->fullname() }}
-					</div>							
-					<div>
-					  	<div class='forum-time'>{{ $post->getDate() }}</div> 
-					</div>
+					</div>						
+					  	<div class='forum-time'>{{ $post->getDate() }}</div> <br>
+						@if($user->id == $post->author_id || $user->isAdmin())
+							<div>{{ Form::delete('forum/post/' . $post->id . '/delete', 'Delete Post', 'btn-sm') }}</div>
+						@endif
 					<br>
 				</span>													
 				<span class="forum-body col-md-10">  
@@ -50,6 +48,8 @@
 			</div>
 		</div>
 	@endforeach
+
+	{{ $posts->links() }}
 	
 	<div class="row">
 		@if(Auth::check())

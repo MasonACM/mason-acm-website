@@ -52,4 +52,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->hasOne('LAN_Attendee', 'user_id');
     }
+
+    public function isAdmin()
+    {
+        return $this->role >= 1;
+    }
 }

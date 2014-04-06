@@ -13,7 +13,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'acm_laravel',
 			'username'  => 'root',
-			'password'  => 'legoskater999',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

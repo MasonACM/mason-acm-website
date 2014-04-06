@@ -12,6 +12,11 @@ class ForumPost extends Eloquent
 		return User::find($this->author_id);
 	}
 
+	public function thread()
+	{
+		return $this->belongsTo('ForumThread', 'thread_id');
+	}
+
 	public function getDate() {
         if ($this->created_at->diffInDays() > 30) {
             return 'Posted at ' . $this->created_at->toFormattedDateString();

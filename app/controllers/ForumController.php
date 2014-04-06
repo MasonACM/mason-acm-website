@@ -24,17 +24,20 @@ class ForumController extends BaseController {
 	public function getTopic($id)
 	{
 		$topic = ForumTopic::findOrFail($id);
+		$threads = $topic->threads()->paginate(10);
 
-		return View::make('forum.topic')->with('topic', $topic);
+		return View::make('forum.topic', compact('topic', 'threads'));
 	}
 
 	/* Threads */
 	public function getThread($id)
 	{
 		$thread = ForumThread::findOrFail($id);
-		$posts = $thread->posts();
+		$topic = $thread->topic();
+		$posts = $thread->posts()->paginate(8);
+		$user = Auth::user();
 
-		return View::make('forum.thread', compact('thread', 'posts'));
+		return View::make('forum.thread', compact('thread', 'posts', 'topic', 'user'));
 	}
 
 	public function getCreateThread($topic_id)
@@ -45,15 +48,13 @@ class ForumController extends BaseController {
 	public function postCreateThread()
 	{
 		$thread = new ForumThread;
-		$thread->title = Input::get('title');
-		$thread->updated_at = time();
-        $thread->created_at = time();
+		$thread->title = basic_html(Input::get('title'));
 		$thread->author_id = Auth::user()->id;
 		$thread->topic_id = Input::get('topic_id');
 		$thread->save();
 
 		$post = new ForumPost;
-		$post->body = Input::get('body');
+		$post->body = basic_html(Input::get('body'));
 		$post->thread_id = $thread->id;
 		$post->author_id = Auth::user()->id;
 		$post->save();
@@ -68,11 +69,37 @@ class ForumController extends BaseController {
 		$post->body = Input::get('body');
 		$post->thread_id = Input::get('thread_id');
 		$post->author_id = Auth::user()->id;
-		$post->updated_at = time();
-        $post->created_at = time();
 		$post->save();
 
 		return Redirect::to('forum/thread/' . $post->thread_id);
 	}
 
+	public function postDeletePost($id)
+	{	
+		$user = Auth::user();
+		$post = ForumPost::findOrFail($id);
+		$thread = $post->thread()->first();
+
+		if(!$user->isAdmin() || $post->author_id != $user->id)
+			App::abort(404);
+		$post->delete();
+
+		// Delete the thread if there are no more posts
+		if($thread->posts()->get()->count() == 0) {
+			$thread->delete();
+			return Redirect::to('forum');
+		}
+		return Redirect::to('forum/thread/' . $thread->id);
+	}
+
+	public function postDeleteThread($id)
+	{
+		$thread = ForumThread::findOrFail($id);
+
+		if(!Auth::user()->isAdmin())
+			App::abort(404);
+		$thread->delete();
+
+		return Redirect::to('forum');
+	}
 }

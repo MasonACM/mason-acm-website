@@ -1,36 +1,30 @@
-@extends('layouts.master')
+@extends('layouts.masterWithTitle')
 
 @section('title')
-	Forum
+	Create Thread	
 @stop
 
 @section('content')
-	{{ HTML::script('ckeditor-user/ckeditor.js') }}
-	{{ HTML::script('ckeditor-user/adapters/jquery.js') }}
-
-	{{ Form::open(['action'=>'ForumController@postCreatethread']) }}
-		
+	{{ Form::open() }}	
 		<input type="hidden" name="topic_id" value="{{ $topic_id }}">
-
 		<div>
-			{{ Form::text('title', null, ['placeholder' => 'Title']) }}
+			{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) }}
 		</div><br>
-
 		<div>
 			{{ Form::textarea('body', null, ['class' => 'editor']) }}
-		</div><br>
-		
+		</div><br>	
 		<div>
 			{{ Form::submit('Create Thread', ['class' => 'btn btn-primary']) }}
 		</div>
+	{{ Form::close() }}	
+@stop
 
-	{{ Form::close() }}
-
-	<script>
-		
-		$(document).ready(function() {
+@section('javascript')
+	{{ HTML::script('ckeditor-user/ckeditor.js') }}
+	{{ HTML::script('ckeditor-user/adapters/jquery.js') }}
+	<script type="application/javascript">
+		$(function() {	
 			$('.editor').ckeditor();
 		});
-
 	</script>
 @stop

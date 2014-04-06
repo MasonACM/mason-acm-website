@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Mason ACM @yield('title')
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>
+        Mason ACM @yield('title')
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        {{ HTML::style('css/bootstrap3.css') }}
-        {{ HTML::style('css/body.css') }}
-        {{ HTML::style('css/styles.css') }}
-        @yield('css')
-    </head>
+    {{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
+    {{ HTML::style('css/styles.css') }}
+    {{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') }}
+    {{ HTML::style('//code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css') }} 
+    @yield('css')
 
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    {{ HTML::link('/', 'Mason ACM', ['class' => 'navbar-brand']) }}
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>{{ HTML::link('forum', 'Forum') }}</li> 
-                        <li>{{ HTML::link('tutorials', 'Tutorials') }}</li> 
-                        <li>{{ HTML::link('sig', 'Special Interest Groups') }}</li> 
-                        <li>{{ HTML::link('lanparty', 'LAN Party', ['class' => 'lanparty-button']) }}</li> 
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        @if(!Auth::check())
-                            <li>{{ HTML::link('users/login', 'Login', array('id' => 'login-link')) }}</li>
-                            <li>{{ HTML::link('users/register', 'Register') }}</li>   
-                        @else
-                            <li>{{ HTML::link('users/logout', 'Logout') }}</li> 
-                            @if(Auth::user()->role >= 1)
-                                <li>{{ HTML::link('admin', 'Admin') }}</li> 
-                            @endif
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                 <a class="navbar-brand" href='{{ URL::to('/') }}'>
+                    <object type="image/svg+xml" data="{{ URL::to('img/MasonACM_icon.svg') }}" width=26 height=18></object> &nbsp; Mason ACM
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>{{ HTML::linkWithIcon('forum', 'Forum', 'comments-o') }}</li>
+                    <li>{{ HTML::linkWithIcon('tutorials', 'Tutorials', 'file-text') }}</li>
+                    <li>{{ HTML::linkWithIcon('sig', 'Special Interest Groups', 'group') }}</li>
+                    <li>{{ HTML::linkWithIcon('about', 'About', 'eye') }}</li>
+                    <!--<li>{{ HTML::linkWithIcon('lanparty', 'LAN Party', 'gamepad', ['class' => 'lanparty-button']) }}</li>-->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if(!Auth::check())
+                        <li>{{ HTML::linkWithIcon('users/login', 'Login', 'sign-in', ['id' => 'login-link']) }}</li>
+                        <li>{{ HTML::linkWithIcon('users/register', 'Register', 'plus') }}</li>   
+                    @else
+                        <li>{{ HTML::linkWithIcon('users/logout', 'Logout', 'sign-out') }}</li> 
+                        @if(Auth::user()->role >= 1)
+                            <li>{{ HTML::linkWithIcon('admin', 'Admin', 'user') }}</li> 
                         @endif
-                    </ul>  
-                </div> <!-- /nav-collapse -->
-            </div> <!-- /container -->
-        </div> <!-- /navbar -->
+                    @endif
+                </ul>  
+            </div>
+        </div> 
+    </div> <!-- /navbar -->
 
-        @yield('pageTitle')
+    @yield('pageTitle')
 
-        <!-- The Jumbotron must be outside a container div -->
-        @yield('jumbotron')
+    @yield('jumbotron')
 
-        <div class="container" style="padding: 20px;">                 
-            @if(Session::has('message'))
-                <div class="alert alert-danger" id="alert">{{ Session::get('message') }}</div> 
-            @endif
-            <!-- Main Content output -->
-            @yield('content')                                                
-        </div>
+    <div class="container" style="padding: 20px;">                 
+        @if(Session::has('message'))
+            <div class="alert alert-danger" id="alert">{{ Session::get('message') }}</div> 
+        @endif
+
+        @yield('content')                                                
+    </div>
 
     {{ HTML::script('js/jquery.min.js') }}
-    {{ HTML::script('js/bootstrap3.js') }}
+    {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
     {{ HTML::script('js/bootbox.js') }}
     {{ HTML::script('js/comfirm_delete.js') }}
     @yield('javascript')
@@ -95,9 +99,9 @@
                     <div class="modal-body">
                         @include('users.login-form')
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
        
         <script>
             $('#login-link').on('click', function(e) {
@@ -105,12 +109,27 @@
                 $('#login-modal').modal(function() {
                     $('.email').select();
                 });    
-
             });
         </script>
     @endif
-
-    </body>
+            <script>
+            var d = new Date();
+            if(d.getMonth()==3 && d.getDate()==1){
+                var rand = Math.floor((Math.random()*180)+1);
+                document.writeln("<style>");
+                document.writeln("html{");
+                document.writeln("  -ms-transform: rotate("+rand+"deg);");
+                document.writeln("  -webkit-transform: rotate("+rand+"deg);");
+                document.writeln("  transform: rotate("+rand+"deg);");
+                /*document.writeln("  -webkit-filter: invert(100%);");
+                document.writeln("  -moz-filter: invert(100%);");
+                document.writeln("  -o-filter: invert(100%);");
+                document.writeln("  -ms-filter: invert(100%);");*/
+                document.writeln("}");
+                document.writeln("</style>");
+            }
+        </script>
+</body>
 </html>
 
 

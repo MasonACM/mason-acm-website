@@ -50,6 +50,23 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 App::error(function(Exception $exception, $code)
 {
+	switch ($code)
+    {
+        case 403:
+            return Response::view('errors.403', array(), 403)->with('code', $code);
+
+        case 404:
+            return Response::view('errors.404', array(), 404)->with('code', $code);
+
+        case 500:
+            return Response::view('errors.500', array(), 500)->with('code', $code);
+
+        case 500:
+            return Response::view('errors.418', array(), 418)->with('code', $code);
+
+        default:
+            return Response::view('errors.default', array(), $code);
+    }
 	Log::error($exception);
 });
 
@@ -81,3 +98,5 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+require app_path().'/macros.php';
+require app_path().'/helpers.php';

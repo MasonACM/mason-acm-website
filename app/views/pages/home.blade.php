@@ -22,7 +22,7 @@
 			<div class="col-md-6 large-link large-link-left">				
 				<h2>
 					Forum &nbsp;
-					<span class="glyphicon glyphicon-comment"></span>
+					<span class="fa fa-comments-o"></span>
 				</h2>
 			</div>
 		</a>
@@ -31,7 +31,7 @@
 			<div class="col-md-6 large-link  large-link-right">				
 				<h2>
 					Special Interest Groups &nbsp;
-					<span class="glyphicon glyphicon-user"></span>
+					<span class="fa fa-group"></span>
 				</h2>
 			</div>
 		</a>
@@ -43,19 +43,32 @@
 			<div class="col-md-6 large-link  large-link-left">				
 				<h2>
 					Tutorials &nbsp;
-					<span class="glyphicon glyphicon-book"></span>
+					<span class="fa fa-file-text"></span>
 				</h2>
 			</div>
 		</a>
 
-		<a href='' class='lanparty-button'>
-			<div class="col-md-6 large-link  large-link-right">				
+		<a href='about'>
+			<div class="col-md-6 large-link  large-link-left">				
 				<h2>
-					Lan Party &nbsp;
-					<span class="glyphicon glyphicon-tower"></span>
+					About &nbsp;
+					<span class="fa fa-eye"></span>
 				</h2>
 			</div>
-		</div>
-	</a> <!-- End Row -->
+		</a>
+		
+
+
+
+		<!-- 		<a href='' class='lanparty-button'>
+	<div class="col-md-6 large-link  large-link-right">				
+		<h2>
+			Lan Party &nbsp;
+			<span class="fa fa-gamepad"></span>
+		</h2>
+	</div>
+</a> -->
+
+	</div> 
 @stop
 

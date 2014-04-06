@@ -7,10 +7,10 @@ class ForumThread extends Eloquent
 
 	public function posts()
 	{
-		return $this->hasMany('ForumPost', 'thread_id')->orderBy('created_at')->get();
+		return $this->hasMany('ForumPost', 'thread_id')->orderBy('created_at');
 	}
 	
-	public function getTopic()
+	public function topic()
 	{
 		return ForumTopic::find($this->topic_id);
 	}

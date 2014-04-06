@@ -5,20 +5,20 @@ class ForumTopic extends Eloquent
 	protected $table = 'forum_topics';
 	protected $guarded = ['id'];
 
-	public function getFirstFiveThreads($id)
+	public function getFirstFiveThreads()
 	{
-		return ForumThread::where('topic_id', $id)
+		return ForumThread::where('topic_id', $this->id)
 						  ->take(5)
 						  ->get();
 	}
 
-	public function getThreads($id)
+	public function threads()
 	{
-		return ForumThread::where('topic_id', $id)->get();
+		return $this->hasMany('ForumThread', 'topic_id');
 	}
 
 	public function getNumThreads()
 	{
-		return ForumThread::where('topic_id', $this->id)->count();
+		return $this->threads()->count(); 
 	}
 }

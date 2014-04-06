@@ -2,6 +2,7 @@
 
 # Basic Pages
 Route::get('/', 'PagesController@getHome');
+Route::get('about', 'PagesController@getAbout');
 
 # Users Controller
 Route::get('users/login', 'UsersController@getLogin');
@@ -9,9 +10,6 @@ Route::get('users/register', 'UsersController@getRegister');
 Route::get('users/logout', 'UsersController@getLogout');
 Route::post('users/create', 'UsersController@postCreate');
 Route::post('users/login', 'UsersController@postLogin');
-
-# LAN Party
-
 
 # Files
 Route::get('files/download/{file_name}', 'FileController@getDownload');
@@ -24,6 +22,8 @@ Route::post('forum/new/topic', array('before' => 'admin', 'uses' => 'ForumContro
 Route::get('forum/new/thread/{id}', array('before' => 'auth', 'uses' => 'ForumController@getCreateThread'));
 Route::post('forum/new/thread/{id}', array('before' => 'auth', 'uses' => 'ForumController@postCreateThread'));
 Route::post('forum/post/create', array('before' => 'auth', 'uses' => 'ForumController@postCreatePost'));
+Route::post('forum/post/{id}/delete', array('before' => 'auth', 'uses' => 'ForumController@postDeletePost'));
+Route::post('forum/thread/{id}/delete', array('before' => 'auth', 'uses' => 'ForumController@postDeleteThread'));
 Route::get('forum/thread/{id}', 'ForumController@getThread');
 Route::get('forum/topic/{id}', 'ForumController@getTopic');
 Route::get('forum', 'ForumController@getIndex');
@@ -42,10 +42,13 @@ Route::get('tutorials', 'TutorialController@getIndex');
 Route::controller('api', 'APIController');
 
 # Special Intrest Groups
-Route::get('sig/new', 'SIGController@getNew');
-Route::get('sig/edit', array('before' => 'admin', 'uses' => 'SIGController@getEdit'));
-Route::post('sig/delete', array('before' => 'admin', 'uses' => 'SIGController@postDelete'));
-Route::get('sig/', 'SIGController@getIndex');
+Route::get('sig/create', array('before' => 'admin', 'uses' => 'SIGController@getCreate'));
+Route::post('sig/create', array('before' => 'admin', 'uses' => 'SIGController@postCreate'));
+Route::get('sig/{id}/edit', array('before' => 'admin', 'uses' => 'SIGController@getEdit'));
+Route::post('sig/{id}/edit', array('before' => 'admin', 'uses' => 'SIGController@postEdit'));
+Route::post('sig/{id}/delete', array('before' => 'admin', 'uses' => 'SIGController@postDelete'));
+Route::get('sig/{url}', 'SIGController@getView');
+Route::get('sig', 'SIGController@getIndex');
 
 # Admin
 Route::group(array('before' => 'admin'), function() 
