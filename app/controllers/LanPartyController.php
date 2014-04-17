@@ -2,13 +2,9 @@
 
 class LANPartyController extends BaseController {
 
-	protected $layout = 'layouts.master';
-
-	public function getIndex()
-	{
-		return Redirect::to('lanparty/signup');
-	}
-
+	/**
+	 * Displays the LAN Party management page
+	 */ 
 	public function getManage()
 	{
 		$lans = LanParty::all();
@@ -21,31 +17,33 @@ class LANPartyController extends BaseController {
 	 */
 	public function getRoster() 
 	{
-		$attendees = LAN_Attendee::all(); 
+		$attendees = LAN_Attendee::where('lanparty_id', LAN_Party::getActiveParty()->id);
 		return View::make('lanparty.roster', compact('attendees'));	
 	}
 
 	/**
-	 * Gets the LAN Party competition view 
-	 */ 
-	public function getCompetitions()
+	 * Adds a user to the roster
+	 */
+	public function postAddToRoster()
 	{
-		return View::make('lanparty.competitions');
+
 	}
 
 	/**
 	 * Returns the LAN Party Sign-up view 
 	 */ 
-	public function getSignup()
+	public function getSignUp()
 	{
 		$party = LAN_Party::getActiveParty();
-		return View::make('lanparty.signup', compact('party'));
+		$isAttendingLan = LAN_Attendee::isAttendingLan();
+
+		return View::make('lanparty.signup', compact('party', 'isAttendingLan'));
 	}
 
 	/**
 	 * Adds or removes a user form the roster
 	 */ 
-	public function postSignup() 
+	public function postSignUp() 
 	{
 		if (!LAN_Attendee::isAttendingLan()) {
 			$attendee = new LAN_Attendee();
@@ -58,21 +56,5 @@ class LANPartyController extends BaseController {
 			LAN_Attendee::where('user_id', Auth::user()->id)->delete();
 			return Redirect::to('lanparty/signup');
 		}
-	}
-
-	/**
-	 * Returns the Game Signup view 
-	 */ 
-	public function getGames()
-	{
-		return View::make('lanparty.game_signup');
-	}
-
-	/**
-	 * Handles POST request for game sign-up
-	 */ 
-	public function postGames()
-	{
-		
-	}
+	} 
 }

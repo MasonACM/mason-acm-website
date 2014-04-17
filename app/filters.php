@@ -32,6 +32,11 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+Route::filter('lanparty', function()
+{
+	if(!LAN_Party::hasActiveParty()) return Redirect::to('/')->with('message', 'Sorry, but no LAN Party is currently planned!');
+});
+
 Route::filter('csrf', function()
 {
 	if (Session::token() != Input::get('_token'))
@@ -39,3 +44,5 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+

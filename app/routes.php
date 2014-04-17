@@ -41,6 +41,15 @@ Route::get('tutorials', 'TutorialController@getIndex');
 # API
 Route::controller('api', 'APIController');
 
+# LAN Party
+Route::group(array('prefix' => 'lanparty', 'before' => 'lanparty|auth'), function() 
+{
+	Route::get('/', 'LanPartyController@getSignup');
+	Route::post('/', 'LanPartyController@getSignUp');
+	Route::get('roster', array('before' => 'admin', 'uses' => 'LanPartyController@getRoster'));
+	Route::post('roster', array('before' => 'admin', 'uses' => 'LanPartyController@postAddtoRoster'));
+});
+
 # Special Intrest Groups
 Route::get('sig/create', array('before' => 'admin', 'uses' => 'SIGController@getCreate'));
 Route::post('sig/create', array('before' => 'admin', 'uses' => 'SIGController@postCreate'));

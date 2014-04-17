@@ -2,8 +2,7 @@
 
 class LAN_Party extends Eloquent
 {
-	protected $table = 'lan_partys';
-	protected $guarded = ['id'];
+	protected $table = 'lan_partys';	
 
 	public function attendees()
 	{
@@ -19,5 +18,10 @@ class LAN_Party extends Eloquent
     public static function getActiveParty()
     {
     	return LAN_Party::where('active', 'true')->first();
+    }
+
+    public static function hasActiveParty()
+    {
+        return LAN_Party::where('active', 'true')->count() > 0;
     }
 }

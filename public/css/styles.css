@@ -616,3 +616,20 @@ div > a:focus {
 .cke_source {
 	color: black;
 }
+
+.vs-md {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.fa-red {
+	color: #CA4444;
+}
+
+.fa-green {
+	color: #1E7E3E;
+}
+
+.fa-blue {
+	color: #13708C;
+}

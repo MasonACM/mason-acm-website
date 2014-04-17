@@ -1,7 +1,7 @@
 @extends('layouts.masterWithTitle')
 
 @section('title')
-	@yield('error') {{ $code }}
+	@yield('error') {{ Session::get('code') }}
 @stop
 
 @section('content')
