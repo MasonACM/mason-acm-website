@@ -1,15 +1,24 @@
 <?php
 
+use MasonACM\Repositories\LanParty\LanPartyRepositoryInterface;
+
 class LANPartyController extends BaseController {
+
+	private $lanParty;
+
+	public function __construct(LanPartyRepositoryInterface $lanParty)
+	{
+		$this->lanParty = $lanParty;
+	}
 
 	/**
 	 * Displays the LAN Party management page
 	 */ 
 	public function getManage()
 	{
-		$lans = LanParty::all();
+		$lans = $this->lanParty->getAll();
 
-		return View::make('lanparty.manage');
+		return View::make('lanparty.manage', compact('lans'));
 	}
 
 	/**
@@ -17,16 +26,17 @@ class LANPartyController extends BaseController {
 	 */
 	public function getRoster() 
 	{
-		$attendees = LAN_Attendee::where('lanparty_id', LAN_Party::getActiveParty()->id);
+		$attendees = LAN_Party::getActiveParty()->attendees;
+
 		return View::make('lanparty.roster', compact('attendees'));	
 	}
 
 	/**
-	 * Adds a user to the roster
+	 * Adds or removes a user to the roster
 	 */
-	public function postAddToRoster()
+	public function postSignUp()
 	{
-
+		
 	}
 
 	/**
@@ -39,22 +49,4 @@ class LANPartyController extends BaseController {
 
 		return View::make('lanparty.signup', compact('party', 'isAttendingLan'));
 	}
-
-	/**
-	 * Adds or removes a user form the roster
-	 */ 
-	public function postSignUp() 
-	{
-		if (!LAN_Attendee::isAttendingLan()) {
-			$attendee = new LAN_Attendee();
-			$attendee->user_id = Auth::user()->id;
-			$attendee->fillname();
-			$attendee->lanparty_id = LAN_Party::getActiveParty()->id;
-			$attendee->save();
-			return Redirect::to('lanparty/signup');
-		} else {
-			LAN_Attendee::where('user_id', Auth::user()->id)->delete();
-			return Redirect::to('lanparty/signup');
-		}
-	} 
 }

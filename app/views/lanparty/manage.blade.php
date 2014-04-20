@@ -1,11 +1,11 @@
-@extends('layouts.masterWithTile')
+@extends('layouts.masterWithTitle')
 
 @section('title')
 	Manage LAN Parties
 @stop
 
 @section('content')
-	@foreach($lan as $lans)	
-		
+	@foreach($lans as $lan)	
+		{{ $lan->getDate() }}		
 	@endforeach
 @stop

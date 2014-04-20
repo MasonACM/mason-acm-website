@@ -14,7 +14,7 @@
 
 			{{ Form::open() }}
 				<div class="vs-md">
-					@if($isAttendingLan)
+					@if(!$isAttendingLan)
 						{{ Form::submit('I want to go the the LAN Party!', array('class' => 'btn btn-lg btn-primary')) }}
 					@else
 						{{ Form::submit("I don't want to go anymore!", array('class' => 'btn btn-lg btn-danger')) }}	

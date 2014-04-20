@@ -44,10 +44,11 @@ Route::controller('api', 'APIController');
 # LAN Party
 Route::group(array('prefix' => 'lanparty', 'before' => 'lanparty|auth'), function() 
 {
-	Route::get('/', 'LanPartyController@getSignup');
-	Route::post('/', 'LanPartyController@getSignUp');
+	Route::get('/', 'LanPartyController@getSignUp');
+	Route::post('/', 'LanPartyController@postSignUp');
 	Route::get('roster', array('before' => 'admin', 'uses' => 'LanPartyController@getRoster'));
 	Route::post('roster', array('before' => 'admin', 'uses' => 'LanPartyController@postAddtoRoster'));
+	Route::get('manage', 'LanPartyController@getManage');
 });
 
 # Special Intrest Groups
@@ -64,3 +65,6 @@ Route::group(array('before' => 'admin'), function()
 {
 	Route::controller('admin', 'AdminController');
 });
+
+# Repository Binding
+App::bind('MasonACM\Repositories\LanParty\LanPartyRepositoryInterface', 'MasonACM\Repositories\LanParty\LanPartyRepository');
