@@ -1,8 +1,6 @@
 @extends('layouts.master')
 
-@section('title')
-	Forum
-@stop
+@section('title', 'Forum')
 
 @section('content')
 	<ul class="breadcrumb">
@@ -15,12 +13,12 @@
 	    </li>
 	    <li class="active">Thread</li>
 	</ul>
-	@if(Auth::check() && Auth::user()->isAdmin())
+	@if($user && $user->isAdmin)
 		{{ Form::delete('forum/thread/' . $thread->id . '/delete', 'Delete Thread') }}	
 	@endif
 
 	<div class="row">
-		<div class="forum-topic col-md-12">	
+		<div class="forum-topic col-md-12">
 			{{ $thread->title }}		
 			<div class="pull-right">
 				<i class="fa fa-comment"></i>
@@ -31,15 +29,15 @@
 
 	@foreach($posts as $post)					
 		<div class="row">
-			<div class="forum-post col-md-12">			
+			<div class="forum-post col-md-12">
 				<span class="col-md-2">			
 					<div class="forum-author">
 						{{ $post->user->present()->fullname() }}
 					</div>						
-					  	<div class='forum-time'>{{ $post->getDate() }}</div> <br>
-						@if($user->id == $post->author_id || $user->isAdmin())
-							<div>{{ Form::delete('forum/post/' . $post->id . '/delete', 'Delete Post', 'btn-sm') }}</div>
-						@endif
+				  	<div class='forum-time'>{{ $post->present()->date() }}</div> <br>
+					@if($user && ($user->id == $post->author_id || $user->isAdmin()))
+						<div>{{ Form::delete('forum/post/' . $post->id . '/delete', 'Delete Post', 'btn-sm') }}</div>
+					@endif
 					<br>
 				</span>													
 				<span class="forum-body col-md-10">  

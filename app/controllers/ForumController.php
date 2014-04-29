@@ -35,7 +35,7 @@ class ForumController extends BaseController {
 		$thread = ForumThread::findOrFail($id);
 		$topic = $thread->topic();
 		$posts = $thread->posts()->paginate(8);
-		$user = Auth::user();
+		$user = Auth::check() ? Auth::user() : false;
 
 		return View::make('forum.thread', compact('thread', 'posts', 'topic', 'user'));
 	}

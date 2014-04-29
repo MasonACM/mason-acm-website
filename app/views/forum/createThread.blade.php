@@ -11,20 +11,10 @@
 			{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) }}
 		</div><br>
 		<div>
-			{{ Form::textarea('body', null, ['class' => 'editor']) }}
+			{{ Form::textarea('body', null, ['class' => 'editor form-control']) }}
 		</div><br>	
 		<div>
 			{{ Form::submit('Create Thread', ['class' => 'btn btn-primary']) }}
 		</div>
 	{{ Form::close() }}	
-@stop
-
-@section('javascript')
-	{{ HTML::script('ckeditor-user/ckeditor.js') }}
-	{{ HTML::script('ckeditor-user/adapters/jquery.js') }}
-	<script type="application/javascript">
-		$(function() {	
-			$('.editor').ckeditor();
-		});
-	</script>
 @stop

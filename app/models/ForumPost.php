@@ -1,28 +1,23 @@
 <?php
 
-use Carbon\Carbon;
+use MasonACM\Presenters\PresentableTrait;
 
-class ForumPost extends Eloquent
-{
+
+class ForumPost extends Eloquent {
+
+	use PresentableTrait; 
+
+	protected $presenter = 'MasonACM\Presenters\ForumPostPresenter';
 	protected $table = 'forum_posts';
 	protected $guarded = ['id'];
 
 	public function user()
 	{
-		return $this->hasOne('user', 'id', 'user_id');
+		return $this->belongsTo('User', 'author_id');
 	}
 
 	public function thread()
 	{
 		return $this->belongsTo('ForumThread', 'thread_id');
 	}
-
-	public function getDate() {
-        if ($this->created_at->diffInDays() > 30) {
-            return 'Posted at ' . $this->created_at->toFormattedDateString();
-        } 
-        else {
-            return $this->created_at->diffForHumans();
-        }
-    }
-}
+}	

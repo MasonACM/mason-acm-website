@@ -5,8 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.0.*",
-		"intervention/image": "dev-master",
-		"laracasts/presenter": "0.1.*"
+		"intervention/image": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
