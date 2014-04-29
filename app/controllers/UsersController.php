@@ -1,72 +1,90 @@
 <?php
 
-class UsersController extends BaseController {
-    protected $layout = "layouts.master";
+use MasonACM\Repositories\User\UserRepositoryInterface;
+use MasonACM\Services\Validation\UserValidator;
+
+class UsersController extends \BaseController {
     
+    /**
+     * @var MasonACM\Repositores\User\UserRepository
+     */ 
+    private $user;
+
+    public function __construct(UserRepositoryInterface $user)
+    {
+        $this->user = $user;
+    } 
+
+    /*
+     * Displays the login page
+     * 
+     * @return Response
+     */
     public function getLogin() 
     {
         return View::make('users.login');
     }
 
+    /**
+     * Displays the register page
+     * 
+     * @return Response
+     */ 
     public function getRegister() 
     {
         return View::make('users.register');
     }
 
+    /**
+     * Logs a user out
+     * 
+     * @return Response
+     */ 
     public function getLogout() 
     {
         Auth::logout();
+
         return Redirect::to('users/login');
     }
 
-    public function postRemove()
+    /**
+     * Creates a new account
+     * 
+     * @return Response
+     */
+    public function postCreate() 
     {
-        $user = User::where('id', Input::get('id'))->first();
-        $user->removeUser();
+        $input = Input::all();
+        $validator = new UserValidator;
 
-        return Redirect::to('superadmin/accounts'); 
-    } 
-
-    public function postEditrole()
-    {
-        $user = User::where('id', Input::get('id'))
-                    ->update(array('role' => Input::get('role')));
-
-        return Redirect::to('superadmin/accounts'); 
-    }
-
-    public function postCreate() {
-        $validator = Validator::make(Input::all(), User::$rules);
-
-        if ($validator->passes()) {
-            $user = new User;
-            $user->firstname =  Input::get('firstname');
-            $user->lastname =   Input::get('lastname');
-            $user->email =      Input::get('email');
-            $user->password =   Hash::make(Input::get('password'));
-            $user->grad_year =  Input::get('grad-year');
-            $user->role = 0;
-            $user->updated_at = time();
-            $user->created_at = time();
-            $user->save();
-
-            Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')));
-            return Redirect::to('/');
-        } else {
-            return Redirect::to('users/register')->with('message', 'Errors occurred during registration')->withErrors($validator)->withInput();   
+        if (!$validator->validate($input)) 
+        {
+            return Redirect::to('users/register')
+                ->with('message', 'Errors occurred during registration')
+                ->withErrors($validator->errors())
+                ->withInput();   
         }
+
+        $user = $this->user->register($input); 
+        Auth::login($user); 
+
+        return Redirect::to('/')->with('message', 'Account created successfully!');
     }
 
-    public function postLogin() {
-        if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')))) {
-            return Redirect::to('/');
+    /**
+     * Logs the user in
+     *
+     * @return Resonse
+     */  
+    public function postLogin() 
+    { 
+        if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])) 
+        {
+            return Redirect::intended('/');
         } 
-        else {
-            return Redirect::to('users/login')
-                ->with('message', 'Your username/password combination was incorrect')
-                ->withInput();
-        }
+
+        return Redirect::to('users/login')
+            ->with('message', 'Your username/password combination was incorrect')
+            ->withInput(); 
     }
 }
-
-?>

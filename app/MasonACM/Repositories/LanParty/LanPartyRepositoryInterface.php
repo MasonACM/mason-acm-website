@@ -4,5 +4,7 @@ interface LanPartyRepositoryInterface {
 
 	public function getAll();	
 
-	public function addOrRemoveFromRoster();
+	public function addOrRemoveFromRoster($userId);
+
+	public function addToRoster($input);
 }

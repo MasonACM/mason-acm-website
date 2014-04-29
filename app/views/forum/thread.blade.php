@@ -34,7 +34,7 @@
 			<div class="forum-post col-md-12">			
 				<span class="col-md-2">			
 					<div class="forum-author">
-						{{ $post->getUser()->fullname() }}
+						{{ $post->user->present()->fullname() }}
 					</div>						
 					  	<div class='forum-time'>{{ $post->getDate() }}</div> <br>
 						@if($user->id == $post->author_id || $user->isAdmin())

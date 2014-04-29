@@ -4,7 +4,9 @@ class PagesController extends BaseController {
 
 	public function getHome()
 	{
-		return View::make('pages.home');
+		$lanPartyIsActive = LAN_Party::hasActiveParty();
+
+		return View::make('pages.home', compact('lanPartyIsActive'));
 	}
 
 	public function getAbout()

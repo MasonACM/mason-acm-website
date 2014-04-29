@@ -2,6 +2,7 @@
 
 use LAN_Party;
 use LAN_Attendee;
+use Auth;
 
 class LanPartyRepository implements LanPartyRepositoryInterface {
 
@@ -18,7 +19,7 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
 	 */
 	public function addOrRemoveFromRoster($userId)
 	{
-		$attendee = LAN_Attendee::find($lanAttendeeId);
+		$attendee = LAN_Attendee::getByUserId($userId);
 
 		if ($attendee == null)
 		{
@@ -27,11 +28,20 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
 			$attendee->firstname = Auth::user()->firstname;
 			$attendee->lastname = Auth::user()->lastname;
 			$attendee->lanparty_id = LAN_Party::getActiveParty()->id;
-			$attendee->save();	
+			$attendee->save();
 		} 
 		else 
 		{
 			$attendee->delete();	
 		}
+	}
+
+	public function addToRoster($input)
+	{
+		$lanAttendee = new LAN_Attendee;
+		$lanAttendee->fill($input);
+		$lanAttendee->save();
+
+		return $lanAttendee;
 	}
 }

@@ -3,7 +3,7 @@
 	<p class='form-title'>LOGIN</p>
 	<div class="form-group">
 		{{ Form::label('Email', null, ['class' => 'control-label']) }}
-		{{ Form::email('email', null, ['class' => 'form-control email', 'autofocus']) }}  
+		{{ Form::email('email', null, ['class' => 'form-control email']) }}  
 	</div>
 
 	<div class="form-group">

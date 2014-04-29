@@ -1,6 +1,5 @@
 <?php
 
-
 class AdminController extends \BaseController  {
 	
     public function getIndex()
@@ -10,7 +9,9 @@ class AdminController extends \BaseController  {
 
     public function getUsers()
     {
-        return View::make('');
+    	$users = User::paginate(30);
+
+        return View::make('admin.users', compact('users'));
     }
 
 }

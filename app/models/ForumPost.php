@@ -7,9 +7,9 @@ class ForumPost extends Eloquent
 	protected $table = 'forum_posts';
 	protected $guarded = ['id'];
 
-	public function getUser()
+	public function user()
 	{
-		return User::find($this->author_id);
+		return $this->hasOne('user', 'id', 'user_id');
 	}
 
 	public function thread()

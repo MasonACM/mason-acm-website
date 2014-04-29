@@ -1,7 +1,13 @@
 <?php
 
-class LAN_Party extends Eloquent
-{
+use MasonACM\Presenters\PresentableTrait;
+
+class LAN_Party extends Eloquent {
+
+    use PresentableTrait;
+
+    protected $presenter = 'MasonACM\Presenters\LanPartyPresenter';
+
 	protected $table = 'lan_partys';	
 
 	public function attendees()
@@ -9,10 +15,9 @@ class LAN_Party extends Eloquent
 		return $this->hasMany('LAN_Attendee', 'lanparty_id');
 	}
 
-    public function getDate()
+    public function date()
     {
-    	$date = new DateTime($this->date);
-    	return date_format($date, 'F jS Y');
+        return $this->date;
     }
 
     public static function getActiveParty()

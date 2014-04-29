@@ -1,16 +1,18 @@
 <?php
 
+use Carbon\Carbon;
+
 class LanPartySeeder extends Seeder 
 {
 	public function run()
 	{
 		$partys = array(
 			array(
-				'date' => new DateTime(),
+				'date' => Carbon::today(),
 				'active' => true
 			),
 			array (
-				'date' => new DateTime(),
+				'date' => Carbon::today(),
 				'active' => false
 			)
 		);

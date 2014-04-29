@@ -18,6 +18,20 @@ body {
 	padding-top: 60px;
 }
 
+/* LAN Party website style */
+.lan-party {
+	background: url('../img/lan-wp.png');
+}
+
+.lan-party-content {
+	height: 700px;
+	margin-top: -20px;
+	opacity: 0.9;
+	display: block;
+	padding: 10px;
+	background-color: rgb(27,27,27);
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: Roboto Condensed;
 	font-weight: 400;
@@ -355,6 +369,14 @@ div.article {
 	margin-bottom: 10px;
 }
 
+.block {
+	display: block;
+	padding: 10px;
+	background-color: rgb(27,27,27);
+	margin-bottom: 10px;
+	opacity: .9;
+}
+
 .prettyprint {
 	border-radius: 0px;
 	border: none;
@@ -364,6 +386,11 @@ div.article {
 .error {
 	color: rgb(194, 48, 48);
 	font-size: 16px;
+}
+
+.text-error {
+	color: red;
+	font-style: italic;
 }
 
 .panel {
@@ -402,7 +429,7 @@ div.article {
 .modal-footer {
 	background-color: #1D1D1D;
 	border: none;
-}
+}	
 
 .select-style {
     border: 1px solid #ccc;
@@ -568,7 +595,9 @@ div > a:focus {
 }
 
 #login-modal > .modal-dialog > .modal-content, 
-#login-modal > .modal-dialog >.modal-content > .modal-body {
+#login-modal > .modal-dialog >.modal-content > .modal-body,
+.form-modal > .modal-dialog > .modal-content, 
+.form-modal > .modal-dialog >.modal-content > .modal-body {
 	background: #222222;
 	border-radius: 20px;
 }
@@ -632,4 +661,8 @@ div > a:focus {
 
 .fa-blue {
 	color: #13708C;
+}
+
+.fa-yellow {
+	color: #F1BB3C;
 }

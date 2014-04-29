@@ -2,20 +2,24 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use MasonACM\Presenters\PresentableTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-    public static $rules = array(
-        'firstname'=>'required|alpha|min:2',
-        'lastname'=>'required|alpha|min:2',
-        'email'=>'required|email|unique:users',
-        'grad-year' => 'required|integer',
-        'password'=>'required|alpha_num|between:6,20|confirmed',
-        'password_confirmation'=>'required|alpha_num|between:6,20'
-    );
+    use PresentableTrait;
+
+    protected $presenter = 'MasonACM\Presenters\UserPresenter';
 
     protected $table = 'users';
+
     protected $hidden = array('password');
+
+    protected $fillable = [
+        'firstname',
+        'lastname',
+        'email',
+        'grad_year'
+    ];
 
     public function getAuthIdentifier()
     {
@@ -30,11 +34,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function getReminderEmail()
     {
         return $this->email;
-    }
-
-    public function fullname()
-    {
-        return $this->firstname . " " . $this->lastname;
     }
 
     public function removeUser() 

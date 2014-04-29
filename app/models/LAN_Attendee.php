@@ -4,8 +4,15 @@ class LAN_Attendee extends Eloquent {
 
 	protected $table = 'lan_attendees';
 	public $timestamps = false; 
+
+	protected $fillable = [
+		'user_id',
+		'firstname',
+		'lastname',
+		'lanparty_id'
+	];
 	
-	public function create()
+	public function add()
 	{
 		
 	}
@@ -25,8 +32,13 @@ class LAN_Attendee extends Eloquent {
 		return $this->belongsTo('User');
 	}
 
-	public static function getByUserID()
+	/**
+	 * Gets a LAN Attendee for the active LAN Party by a user id
+	 */
+	public static function getByUserID($userId)
 	{
-		return LAN_Attendee::where('user_id', Auth::user()->id)->first();
+		return LAN_Attendee::where('lanparty_id', LAN_Party::getActiveParty()->id)
+						   ->where('user_id', $userId) 
+						   ->first();
 	}
 }

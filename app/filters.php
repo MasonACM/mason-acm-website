@@ -21,7 +21,6 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::to('users/login')->with('message', 'You must be logged in to view this page');
 });
 
-
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();

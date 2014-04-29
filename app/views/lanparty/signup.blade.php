@@ -1,4 +1,4 @@
-@extends('layouts.masterWithTitle')
+@extends('layouts.lanparty')
 
 @section('title')
 	LAN Party Sign up
@@ -6,12 +6,12 @@
 
 @section('content')	
 	<div class="row">
-		<div class="col-md-10">
-			<h1><i class="fa fa-calendar fa-blue"></i>&nbsp;&nbsp;<span>{{ $party->getDate() }}</span></h1>
-			<h1><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<span>4:00PM - 11:00PM</span></h1>
-			<h1><i class="fa fa-map-marker fa-red"></i>&nbsp;&nbsp;&nbsp;<span>Mason High School, Small Commons</span></h1>
+		<div class="lan-party-content col-md-12">	
+			<h1><i class="fa fa-calendar fa-blue"></i>&nbsp;&nbsp;<span>{{ $party->present()->formattedDate() }}</span></h1>
+			<h1><i class="fa fa-clock-o fa-yellow"></i>&nbsp;&nbsp;<span>4pm - 11pm</span></h1>
+			<h1><i class="fa fa-map-marker fa-red"></i>&nbsp;&nbsp;&nbsp;<span>Small Commons</span></h1>
 			<h1><i class="fa fa-usd fa-green"></i>&nbsp;&nbsp;&nbsp;10</h1>
-
+		
 			{{ Form::open() }}
 				<div class="vs-md">
 					@if(!$isAttendingLan)

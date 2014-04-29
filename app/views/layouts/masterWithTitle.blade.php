@@ -3,14 +3,10 @@
 @section('pageTitle')
 	<div class="banner">
 	    <div class="container" style="padding: 20px;">                   
-	        <div class="row">
-	            
-	                <div class="banner-heading">
-	                                                  
-	                    	@yield('title')                                  
-	                    
-	                </div>    
-	            
+	        <div class="row">	            
+                <div class="banner-heading">
+                    @yield('title')                                  
+                </div>    
 	        </div>                  
 	    </div>
 	</div>

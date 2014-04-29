@@ -28,7 +28,7 @@ class LANPartyController extends BaseController {
 	{
 		$attendees = LAN_Party::getActiveParty()->attendees;
 
-		return View::make('lanparty.roster', compact('attendees'));	
+		return View::make('lanparty.roster.index', compact('attendees'));	
 	}
 
 	/**
@@ -36,11 +36,15 @@ class LANPartyController extends BaseController {
 	 */
 	public function postSignUp()
 	{
-		
+		$this->lanParty->addOrRemoveFromRoster(Auth::user()->id);
+
+		return Redirect::back();	
 	}
 
 	/**
 	 * Returns the LAN Party Sign-up view 
+	 *
+	 * @return Response
 	 */ 
 	public function getSignUp()
 	{
@@ -48,5 +52,17 @@ class LANPartyController extends BaseController {
 		$isAttendingLan = LAN_Attendee::isAttendingLan();
 
 		return View::make('lanparty.signup', compact('party', 'isAttendingLan'));
+	}
+
+	/**
+	 * Adds someone to the roster
+	 * 
+	 * @return Response
+	 */ 
+	public function postAddToRoster() 
+	{
+		$this->lanParty->addToRoster(Input::all());
+
+		return Redirect::back();
 	}
 }
