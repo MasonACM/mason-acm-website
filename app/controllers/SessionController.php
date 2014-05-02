@@ -5,21 +5,6 @@ use MasonACM\Forms\LoginForm;
 class SessionController extends BaseController {
 
     /**
-     * @var LoginForm
-     */
-    private $loginForm;
-
-    /**
-     * Constructs the SessionController
-     *
-     * @param LoginForm $loginForm
-     */
-    function __construct(LoginForm $loginForm)
-    {
-        $this->loginForm = $loginForm;
-    }
-
-    /**
 	 * Displays the login page
 	 * 
 	 * @return Response
@@ -41,7 +26,7 @@ class SessionController extends BaseController {
             return Redirect::intended('/');
         } 
 
-        return Redirect::to('users/login')
+        return Redirect::to('login')
             ->with('auth_message', 'Incorrect email or password')
             ->withInput();
     }
