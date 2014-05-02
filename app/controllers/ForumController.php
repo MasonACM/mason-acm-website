@@ -2,6 +2,11 @@
 
 class ForumController extends BaseController {
 
+	public function __construct()
+	{
+		$this->beforeFilter('auth', ['only' => ['']])
+	}
+
 	public function getIndex() 
 	{
 		return View::make('forum.index');

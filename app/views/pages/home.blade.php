@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-		<div class="row">
+		<div class="row main-content">
 	
 		<a href='forum'>	
 			<div class="col-md-6 large-link large-link-left">				
@@ -30,7 +30,7 @@
 		</a>
 	</div> <!-- End Row -->
 	
-	<div class='row'>
+	<div class='row main-content'>
 
 		<a href='tutorials'>
 			<div class="col-md-6 large-link  large-link-left">				
@@ -64,3 +64,10 @@
 	</div> 
 @stop
 
+@section('javascript')
+	<script type="application/javascript">
+		$(function() {
+			$('.large-link').hide().fadeIn(600);
+		});
+	</script>
+@stop

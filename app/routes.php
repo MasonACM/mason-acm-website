@@ -1,15 +1,17 @@
 <?php
 
 # Basic Pages
-Route::get('/', 'PagesController@getHome');
-Route::get('about', 'PagesController@getAbout');
+Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getHome']);
+Route::get('about', ['as' => 'about', 'uses' => 'PagesController@getAbout']);
 
-# Users Controller
-Route::get('users/login', 'UsersController@getLogin');
-Route::get('users/register', 'UsersController@getRegister');
-Route::get('users/logout', 'UsersController@getLogout');
-Route::post('users/create', 'UsersController@postCreate');
-Route::post('users/login', 'UsersController@postLogin');
+# Sessions
+Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
+Route::get('login', ['as' => 'login.get', 'uses' => 'SessionController@create']);
+Route::post('login', ['as' => 'login.post', 'uses' => 'SessionController@store']);
+
+# Registration
+Route::post('register', ['as' => 'register.store', 'uses' => 'RegistrationController@store']);
+Route::get('register', ['as' => 'register.create', 'uses' => 'RegistrationController@create']);
 
 # Files
 Route::get('files/download/{file_name}', 'FileController@getDownload');
@@ -17,16 +19,19 @@ Route::get('files/upload',  array('before' => 'admin', 'uses' => 'FileController
 Route::post('files/upload', array('before' => 'admin', 'uses' => 'FileController@postUpload'));
 
 # Forum
-Route::get('forum/new/topic', array('before' => 'admin', 'uses' => 'ForumController@getCreateTopic'));
-Route::post('forum/new/topic', array('before' => 'admin', 'uses' => 'ForumController@postCreateTopic'));
-Route::get('forum/new/thread/{id}', array('before' => 'auth', 'uses' => 'ForumController@getCreateThread'));
-Route::post('forum/new/thread/{id}', array('before' => 'auth', 'uses' => 'ForumController@postCreateThread'));
-Route::post('forum/post/create', array('before' => 'auth', 'uses' => 'ForumController@postCreatePost'));
-Route::post('forum/post/{id}/delete', array('before' => 'auth', 'uses' => 'ForumController@postDeletePost'));
-Route::post('forum/thread/{id}/delete', array('before' => 'auth', 'uses' => 'ForumController@postDeleteThread'));
-Route::get('forum/thread/{id}', 'ForumController@getThread');
-Route::get('forum/topic/{id}', 'ForumController@getTopic');
-Route::get('forum', 'ForumController@getIndex');
+Route::group(['prefix' => 'forum'], function() 
+{
+	Route::get('/', 'ForumController@getIndex');
+	Route::get('new/topic', 'ForumController@getCreateTopic');
+	Route::post('new/topic', 'ForumController@postCreateTopic');
+	Route::get('topic/{id}', 'ForumController@getTopic');
+	Route::get('thread/{id}', 'ForumController@getThread');
+	Route::post('post/create', 'ForumController@postCreatePost');
+	Route::get('new/thread/{id}', 'ForumController@getCreateThread');
+	Route::post('new/thread/{id}', 'ForumController@postCreateThread');
+	Route::post('post/{id}/delete', 'ForumController@postDeletePost');
+	Route::post('thread/{id}/delete', 'ForumController@postDeleteThread');
+});
 
 # Tutorials
 Route::get('tutorials/create', array('before' => 'auth', 'uses' =>  'TutorialController@getCreate'));
@@ -42,7 +47,7 @@ Route::get('tutorials', 'TutorialController@getIndex');
 Route::controller('api', 'APIController');
 
 # LAN Party
-Route::group(array('prefix' => 'lanparty', 'before' => 'lanparty|auth'), function() 
+Route::group(array('prefix' => 'lanparty', 'before' => 'lanparty'), function() 
 {
 	Route::get('/', 'LanPartyController@getSignUp');
 	Route::post('/', 'LanPartyController@postSignUp');

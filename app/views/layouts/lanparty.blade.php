@@ -1,8 +1,10 @@
 @extends('layouts.masterWithTitle')
 
 @section('javascript')
-	@yield('javascript')
+	@yield('lp-javascript')
 	<script type="application/javascript">
-		$('body').addClass('lan-party');
+		$(function() {
+			$('body').addClass('lan-party');
+		});
 	</script>
 @stop

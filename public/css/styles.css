@@ -3,6 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400);
 @import url(http://fonts.googleapis.com/css?family=Oswald:300);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,100italic,100,900,700,500);
+@import url(http://fonts.googleapis.com/css?family=Racing+Sans+One);
 
 body {
 	
@@ -23,13 +24,20 @@ body {
 	background: url('../img/lan-wp.png');
 }
 
-.lan-party-content {
-	height: 700px;
+.lan-party-container {
+	height: 500px;
 	margin-top: -20px;
-	opacity: 0.9;
 	display: block;
+	padding: 40px;
+	background-color: rgba(27,27,27, .9);
+	border-bottom-left-radius: 30px; 
+	border-bottom-right-radius: 30px;
+}
+
+.lan-party-info {
+	font-family: Racing Sans One;
 	padding: 10px;
-	background-color: rgb(27,27,27);
+	display: block;
 }
 
 h1, h2, h3, h4, h5 {
@@ -52,6 +60,16 @@ h1, h2, h3, h4, h5 {
 
 .panel-button {
 	padding: 40px;
+}
+
+.btn-link {
+	color: white;	
+	font-style: italic;
+}
+
+.btn-link:hover {
+	color: #DEDEDE;
+	text-decoration: underline;
 }
 
 a {
@@ -153,14 +171,14 @@ th {
 .banner-heading {
 	font-size: 36px;
 
+	font-family: Roboto;
+	font-weight: 600;
+	font-style: italic;
 	padding: 15px 15px 15px 15px;
 	background-color: #185933;
 	border: solid 1px #134929;
 	text-align: center;
 	margin: 15px;
-	transform:rotate(-0deg);
-	-ms-transform:rotate(-0deg);
-	-webkit-transform:rotate(-0deg); 
 	display: inline-block;
 }
 
@@ -252,7 +270,15 @@ input[type="color"]:focus,
 	transition: border linear .2s, box-shadow linear .2s;
 }
 
-.btn-primary {
+.btn-primary-disabled {
+	cursor: default;
+}
+
+.btn-primary-disabled:hover {
+	color: white;
+}
+
+.btn-primary, .btn-primary-disabled {
 	background-color: rgb(29, 100, 65);
 	border-color: rgb(29, 100, 65);
 	-webkit-transition: background-color.2s;
@@ -260,7 +286,6 @@ input[type="color"]:focus,
 	-o-transition: background-color.2s;
 	transition: background-color.2s;
 }
-
 
 .btn-primary:hover, .btn-primary:focus {
 	background-color: rgb(29, 115, 65);
@@ -274,6 +299,17 @@ input[type="color"]:focus,
 .btn-danger {
 	background-color: #962624;
 	border: none;
+}
+
+.btn-info {
+	background: #13708C;
+	border-color: #13708C;
+	opacity: 1;
+}
+
+.btn-info:hover {
+	background: #0C6DD5;
+	border-color: #0C6DD5;
 }
 
 .danger {
@@ -665,4 +701,8 @@ div > a:focus {
 
 .fa-yellow {
 	color: #F1BB3C;
+}
+
+.spacing-top {
+	margin-top: 10px;
 }

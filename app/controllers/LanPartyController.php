@@ -38,7 +38,7 @@ class LANPartyController extends BaseController {
 	{
 		$this->lanParty->addOrRemoveFromRoster(Auth::user()->id);
 
-		return Redirect::back();	
+		return Redirect::back();
 	}
 
 	/**

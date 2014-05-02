@@ -9,6 +9,6 @@ class ForumPostPresenter extends Presenter {
 	 */ 
     public function date()
     {
-    	return $this->created_at->diffForHumans();	
+    	return $this->created_at->diffForHumans();
     }
 }

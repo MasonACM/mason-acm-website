@@ -22,9 +22,13 @@ class LAN_Attendee extends Eloquent {
 	 */ 
 	public static function isAttendingLan() 
 	{
-		return LAN_Attendee::where('lanparty_id', LAN_Party::getActiveParty()->id)
-						   ->where('user_id', Auth::user()->id)
-						   ->count() > 0;
+		if (Auth::check())
+		{	
+			return LAN_Attendee::where('lanparty_id', LAN_Party::getActiveParty()->id)
+				->where('user_id', Auth::user()->id)
+				->count() > 0;
+	    }
+	    return false;
 	}
 	
 	public function user()

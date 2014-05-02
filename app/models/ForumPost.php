@@ -2,13 +2,14 @@
 
 use MasonACM\Presenters\PresentableTrait;
 
-
 class ForumPost extends Eloquent {
 
 	use PresentableTrait; 
 
 	protected $presenter = 'MasonACM\Presenters\ForumPostPresenter';
+	
 	protected $table = 'forum_posts';
+
 	protected $guarded = ['id'];
 
 	public function user()

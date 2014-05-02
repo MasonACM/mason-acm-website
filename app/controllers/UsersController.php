@@ -3,7 +3,7 @@
 use MasonACM\Repositories\User\UserRepositoryInterface;
 use MasonACM\Services\Validation\UserValidator;
 
-class UsersController extends \BaseController {
+class UsersController extends BaseController {
     
     /**
      * @var MasonACM\Repositores\User\UserRepository
@@ -30,7 +30,7 @@ class UsersController extends \BaseController {
      * 
      * @return Response
      */ 
-    public function getRegister() 
+    public function getCreate() 
     {
         return View::make('users.register');
     }
@@ -60,7 +60,6 @@ class UsersController extends \BaseController {
         if (!$validator->validate($input)) 
         {
             return Redirect::to('users/register')
-                ->with('message', 'Errors occurred during registration')
                 ->withErrors($validator->errors())
                 ->withInput();   
         }
@@ -68,7 +67,8 @@ class UsersController extends \BaseController {
         $user = $this->user->register($input); 
         Auth::login($user); 
 
-        return Redirect::to('/')->with('message', 'Account created successfully!');
+        return Redirect::home()
+            ->with('message', 'Account created successfully!');
     }
 
     /**
@@ -77,14 +77,14 @@ class UsersController extends \BaseController {
      * @return Resonse
      */  
     public function postLogin() 
-    { 
+    {
         if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')])) 
         {
             return Redirect::intended('/');
         } 
 
         return Redirect::to('users/login')
-            ->with('message', 'Your username/password combination was incorrect')
+            ->with('auth_message', 'Incorrect email or password')
             ->withInput(); 
     }
 }

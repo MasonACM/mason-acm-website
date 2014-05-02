@@ -15,6 +15,11 @@ class LAN_Party extends Eloquent {
 		return $this->hasMany('LAN_Attendee', 'lanparty_id');
 	}
 
+    public function attendeeCount() 
+    {
+        return $this->attendees()->count();
+    }
+
     public function date()
     {
         return $this->date;

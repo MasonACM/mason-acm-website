@@ -7,11 +7,11 @@
 @section('content')
 
 	<div class="row">
-		{{ Form::open(['url'=>'users/create', 'class'=>'col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2  col-xs-10 col-xs-offset-1 user-form']) }}
+		{{ Form::open(['route' => 'register.store', 'class' => 'col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2  col-xs-10 col-xs-offset-1 user-form']) }}
 			<p class='form-title'>REGISTER</p>
 
 			<div class="form-group">
-				{{ Form::label('First Name', 'firstname', ['class' => 'control-label']) }}
+				{{ Form::label('firstname', 'First Name', ['class' => 'control-label']) }}
 				{{ Form::text('firstname', null, ['class' => 'form-control']) }} 
 				{{ $errors->first('firstname', '<span class="help-block text-error">:message</span>') }}
 			</div>

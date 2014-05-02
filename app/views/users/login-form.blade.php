@@ -1,4 +1,4 @@
-{{ Form::open(array('url' => 'users/login')) }}
+{{ Form::open(array('route' => 'login.post')) }}
 	
 	<p class='form-title'>LOGIN</p>
 	<div class="form-group">
@@ -18,5 +18,8 @@
 	</div> <br>
 		
 	{{ Form::input('submit', '', 'Login', ['class' => 'btn btn-primary']) }} &nbsp;&nbsp;&nbsp;
-		
+	
+	@if(Session::has('auth_message'))
+		<div class="help-block text-error">{{ Session::get('auth_message') }}</div>
+	@endif
 {{ Form::close() }}

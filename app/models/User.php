@@ -21,6 +21,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         'grad_year'
     ];
 
+    public function attendee()
+    {
+        return $this->hasOne('LAN_Attendee', 'user_id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role >= 1;
+    }
+
     public function getAuthIdentifier()
     {
         return $this->getKey();
@@ -36,24 +46,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->email;
     }
 
-    public function removeUser() 
+    public function getRemeberToken()
     {
-        $lan_Player = LanPlayer::where('user_id', $this->id);
-        $lan_Roster = LanRoster::where('user_id', $this->id);
-
-        if ($lan_Player->count() >= 1) $lan_Player->delete();
-        if ($lan_Roster->count() >= 1) $lan_Roster->delete();
-
-        $this->delete();    
+        return $this->remember_token;
     }
 
-    public function attendee()
+    public function setRememberToken($value)
     {
-        return $this->hasOne('LAN_Attendee', 'user_id');
+        $this->remember_token = $value;
     }
 
-    public function isAdmin()
+    public function getRemeberTokenName()
     {
-        return $this->role >= 1;
+        return 'remember_token';
     }
+
 }
