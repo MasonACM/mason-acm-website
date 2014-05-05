@@ -9,10 +9,17 @@ class LanPartyPresenter extends Presenter {
 	 * 
 	 * @return String
 	 */ 
-    public function formattedDate()
+    public function shortDate()
     {
     	$carbon = new Carbon($this->date);
 
     	return $carbon->format('M jS');
+    }
+
+    public function longDate()
+    {
+        $carbon = new Carbon($this->date);
+
+    	return $carbon->toFormattedDateString();
     }
 }

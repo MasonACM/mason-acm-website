@@ -21,4 +21,11 @@ class ForumPost extends Eloquent {
 	{
 		return $this->belongsTo('ForumThread', 'thread_id');
 	}
+
+    public function canBeDeletedByLoggedInUser()
+    {
+        $user = Auth::user();
+
+        return ($user->isAdmin() || $this->author_id == $user->id);
+    }
 }	

@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	{{ Form::open() }}	
+	{{ Form::open(['route' => 'forum.thread.store']) }}
 		<input type="hidden" name="topic_id" value="{{ $topic_id }}">
 		<div>
 			{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) }}

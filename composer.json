@@ -7,7 +7,8 @@
 		"laravel/framework": "4.1.*",
 		"intervention/image": "dev-master",
 		"laracasts/validation": "~1.0",
-		"barryvdh/laravel-ide-helper": "1.*"
+		"barryvdh/laravel-ide-helper": "1.*",
+		"way/generators": "*"
 	},
 	"autoload": {
 		"classmap": [

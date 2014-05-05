@@ -5,13 +5,16 @@ Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getHome']);
 Route::get('about', ['as' => 'about', 'uses' => 'PagesController@getAbout']);
 
 # Sessions
-Route::get('logout', ['as' => 'logout', 'uses' => 'SessionController@destroy']);
-Route::get('login', ['as' => 'login.get', 'uses' => 'SessionController@create']);
-Route::post('login', ['as' => 'login.post', 'uses' => 'SessionController@store']);
+Route::get('logout', ['as' => 'logout', 'before' => 'auth', 'uses' => 'SessionController@destroy']);
+Route::get('login', ['as' => 'login', 'before' => 'guest', 'uses' => 'SessionController@create']);
+Route::post('login', ['as' => 'login.post', 'before' => 'guest|csrf', 'uses' => 'SessionController@store']);
 
 # Registration
-Route::post('register', ['as' => 'register.store', 'uses' => 'RegistrationController@store']);
-Route::get('register', ['as' => 'register.create', 'uses' => 'RegistrationController@create']);
+Route::group(['prefix' => 'register', 'before' => 'guest'], function()
+{
+    Route::post('/', ['as' => 'register.store', 'before' => 'csrf', 'uses' => 'RegistrationController@store']);
+    Route::get('/', ['as' => 'register.create', 'uses' => 'RegistrationController@create']);
+});
 
 # Files
 Route::get('files/download/{file_name}', 'FileController@getDownload');
@@ -21,16 +24,40 @@ Route::post('files/upload', array('before' => 'admin', 'uses' => 'FileController
 # Forum
 Route::group(['prefix' => 'forum'], function() 
 {
-	Route::get('/', 'ForumController@getIndex');
-	Route::get('new/topic', 'ForumController@getCreateTopic');
-	Route::post('new/topic', 'ForumController@postCreateTopic');
-	Route::get('topic/{id}', 'ForumController@getTopic');
-	Route::get('thread/{id}', 'ForumController@getThread');
-	Route::post('post/create', 'ForumController@postCreatePost');
-	Route::get('new/thread/{id}', 'ForumController@getCreateThread');
-	Route::post('new/thread/{id}', 'ForumController@postCreateThread');
-	Route::post('post/{id}/delete', 'ForumController@postDeletePost');
-	Route::post('thread/{id}/delete', 'ForumController@postDeleteThread');
+    # Index
+    Route::get('/', 'ForumTopicController@index');
+
+    # Topics
+    Route::group(['prefix' => 'topic'], function()
+    {
+        Route::group(['before' => 'admin'], function()
+        {
+            Route::get('create', ['as' => 'forum.topic.create', 'uses' => 'ForumTopicController@create']);
+            Route::post('create', ['as' => 'forum.topic.store', 'before' => 'csrf', 'uses' => 'ForumTopicController@store']);
+            Route::post('{id}/destroy', ['as' => 'forum.topic.destroy', 'before' => 'csrf', 'uses' => 'ForumTopicController@destroy']);
+        });
+        Route::get('{id}', ['as' => 'forum.topic.show', 'uses' => 'ForumTopicController@show']);
+    });
+
+    # Threads
+    Route::group(['prefix' => 'thread'], function()
+    {
+        Route::get('{id}', ['as' => 'forum.thread.show', 'uses' => 'ForumThreadController@show']);
+
+        Route::group(['before' => 'auth'], function()
+        {
+            Route::get('create/{topic_id}', ['as' => 'forum.thread.create', 'uses' => 'ForumThreadController@create']);
+            Route::post('create', ['as' => 'forum.thread.store', 'before' => 'csrf', 'uses' => 'ForumThreadController@store']);
+            Route::post('{id}/destroy', ['as' => 'forum.thread.destroy', 'before' => 'csrf', 'uses' => 'ForumThreadController@destroy']);
+        });
+    });
+
+    # Posts
+    Route::group(['prefix' => 'post', 'before' => 'auth|csrf'], function()
+    {
+        Route::post('create', ['as' => 'forum.post.store', 'uses' => 'ForumPostController@store']);
+        Route::post('{id}/destroy', ['as' => 'forum.post.destroy', 'uses' => 'ForumPostController@destroy']);
+    });
 });
 
 # Tutorials
@@ -54,6 +81,7 @@ Route::group(array('prefix' => 'lanparty', 'before' => 'lanparty'), function()
 	Route::get('roster', array('before' => 'admin', 'uses' => 'LanPartyController@getRoster'));
 	Route::post('roster/add', array('before' => 'admin', 'uses' => 'LanPartyController@postAddtoRoster'));
 	Route::get('manage', 'LanPartyController@getManage');
+    Route::post('create', ['as' => 'lanparty.store', 'before' => 'admin|csrf', 'uses' => 'LanPartyController@store']);
 });
 
 # Special Intrest Groups

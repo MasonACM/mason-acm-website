@@ -3,7 +3,11 @@
 class ForumTopic extends Eloquent
 {
 	protected $table = 'forum_topics';
-	protected $guarded = ['id'];
+
+    protected $fillable = [
+        'title',
+        'name'
+    ];
 
 	public function getFirstFiveThreads()
 	{
@@ -16,6 +20,11 @@ class ForumTopic extends Eloquent
 	{
 		return $this->hasMany('ForumThread', 'topic_id');
 	}
+
+    public function getThreads()
+    {
+        return $this->threads()->orderBy('created_at');
+    }
 
 	public function getNumThreads()
 	{

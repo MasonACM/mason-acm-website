@@ -8,7 +8,7 @@
 	@foreach(ForumTopic::all() as $topic)
 		<div class="row">
 			{{ HTML::link('forum/topic/' . $topic->id, $topic->name, ['class' => 'col-md-10 col-xs-7 forum-topic']) }}
-			<a class='col-md-2 col-xs-5 forum-new-thread green-glow' href="{{ URL::to('forum/new/thread/' . $topic->id) }}">
+			<a class='col-md-2 col-xs-5 forum-new-thread green-glow' href="{{ URL::to('forum/thread/create/' . $topic->id) }}">
 				<i class='fa fa-plus'></i>&nbsp; New Thread
 			</a>
 		</div>

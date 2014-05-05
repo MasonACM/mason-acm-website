@@ -5,14 +5,14 @@
 @stop
 
 @section('content')
-	{{ Form::open(['action'=>'ForumController@postCreatetopic']) }}
+	{{ Form::open(['route' => 'forum.topic.store']) }}
 		
 		<div>
-			{{ Form::text('name', null, ['placeholder' => 'name']) }}
+			{{ Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) }}
 		</div><br>
 
 		<div>
-			{{ Form::textarea('description', null, ['placeholder' => 'Description', 'style' => 'width: 368px; height: 83px;']) }}
+			{{ Form::textarea('description', null, ['placeholder' => 'Description', 'class' => 'form-control']) }}
 		</div><br>
 		
 		<div>

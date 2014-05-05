@@ -59,7 +59,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .panel-button {
-	padding: 40px;
+	padding: 25px;
+    font-size: 20px;
 }
 
 .btn-link {
@@ -310,6 +311,11 @@ input[type="color"]:focus,
 .btn-info:hover {
 	background: #0C6DD5;
 	border-color: #0C6DD5;
+}
+
+.well {
+	background: #222222;
+    border: none;
 }
 
 .danger {

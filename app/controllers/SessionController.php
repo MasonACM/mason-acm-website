@@ -1,7 +1,5 @@
 <?php
 
-use MasonACM\Forms\LoginForm;
-
 class SessionController extends BaseController {
 
     /**
@@ -27,7 +25,7 @@ class SessionController extends BaseController {
         } 
 
         return Redirect::to('login')
-            ->with('auth_message', 'Incorrect email or password')
+            ->withAuthMessage('Incorrect email or password')
             ->withInput();
     }
 

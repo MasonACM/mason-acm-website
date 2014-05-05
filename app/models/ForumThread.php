@@ -3,26 +3,35 @@
 class ForumThread extends Eloquent
 {
 	protected $table = 'forum_threads';
-	protected $guarded = ['id'];
+
+	protected $fillable = [
+        'author_id',
+        'title',
+        'topic_id'
+    ];
 
 	public function posts()
 	{
-		return $this->hasMany('ForumPost', 'thread_id')->orderBy('created_at');
+		return $this->hasMany('ForumPost', 'thread_id');
 	}
+
+    /**
+     * Gets the posts ordered by their creation date
+     *
+     * @return Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts()->orderBy('created_at');
+    }
 	
 	public function topic()
 	{
-		return ForumTopic::find($this->topic_id);
+        return $this->belongsTo('ForumTopic', 'topic_id');
 	}
 
-	public function getReplies()
+	public function replies()
 	{
-		$replies = $this->hasMany('ForumPost', 'thread_id')
-						->count() - 1;
-
-		if ($replies == 1)
-			return "1 Reply";
-		else
-			return $replies . " Replies";
+	    return $this->posts()->count() - 1;
 	}
 }

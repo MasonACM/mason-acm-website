@@ -4,17 +4,18 @@ use Laracasts\Validation\FormValidator;
 
 class RegistrationForm extends FormValidator {
 
-	/**
-	 * Validation rules for creating an account
-	 * 
-	 * @var array
-	 */ 
-	protected $rules = [
-		'email'     => 'required|email|unique:users',
-		'firstname' => 'required|min:2|max:50|alpha_dash',
-		'lastname'  => 'required|min:2|max:50|alpha_dash',
-		'grad_year' => 'required|number|digits:4',
-		'password'  => 'required|confirmed'
+    /**
+     * Validation rules when a user registers
+     *
+     * @var array
+     */
+    protected $rules = [
+		'email'     => 'email|required|max:50',
+		'password'  => 'required|confirmed|min:6',
+        'firstname' => 'required|max:50|alpha_dash',
+        'lastname'  => 'required|max:50|alpha_dash',
+        'grad_year' => 'required|digits:4|numeric'
+
 	];
 
 }
