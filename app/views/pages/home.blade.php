@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+	Home
+@stop
+
 @section('jumbotron')
 	<div class="jumbotron">
 		<div class="container">
@@ -46,7 +50,7 @@
 				<div class="col-md-6 large-link  large-link-left">				
 					<h2>
 						About &nbsp;
-						<span class="fa fa-eye"></span>
+						<span class="fa fa-info-circle"></span>
 					</h2>
 				</div>
 			</a>

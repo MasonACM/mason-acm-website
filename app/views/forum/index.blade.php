@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.masterWithTitle')
 
 @section('title')
-
+	Forum
 @stop
 
 @section('content')

@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
-@section('title', 'Forum')
+@section('title')
+	{{ $thread->title }}
+@stop
 
 @section('content')
 	<ul class="breadcrumb">

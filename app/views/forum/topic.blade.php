@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Forum
+	{{ $topic->name }}
 @stop
 
 @section('content')

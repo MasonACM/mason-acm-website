@@ -2,13 +2,14 @@
 <html>
 <head>
     <title>
-        Mason ACM @yield('title')
+        Mason ACM | @yield('title')
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
     {{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') }}
     {{ HTML::style('css/styles.css') }}
+    {{ HTML::style('css/acmicon.css') }}
     @yield('css')
 
 </head>

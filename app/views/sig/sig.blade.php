@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	New SIG
+	{{ $sig->name }}
 @stop
 
 @section('content')

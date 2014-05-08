@@ -1,6 +1,6 @@
 $(function() {
 	var d = new Date;
-	if (date.getMonth() == 3 && date.getDate() ==1) {
+	if (d.getMonth() == 3 && d.getDate() ==1) {
 	    var rand = Math.floor((Math.random()*180)+1);
 	    document.writeln("<style>");
 	    document.writeln("html{");
@@ -9,5 +9,6 @@ $(function() {
 	    document.writeln("  transform: rotate("+rand+"deg);");
 	    document.writeln("}");
 	    document.writeln("</style>");
+	}
 });
 

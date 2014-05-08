@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Edit SIG
+	Edit {{ $sig->name }}
 @stop
 
 @section('content')
@@ -9,6 +9,9 @@
 		{{ Form::hidden('id', $sig->id) }}	
 		<div>
 			{{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) }}
+		</div><br>
+		<div>
+			{{ Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'Icon']) }}
 		</div><br>
 		<div>
 			{{ Form::text('url', null, ['class' => 'form-control', 'placeholder' => 'Url']) }}

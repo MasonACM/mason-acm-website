@@ -9,6 +9,14 @@ HTML::macro('linkWithIcon', function($url = '/', $text = 'link', $icon = 'extern
 });
 
 /**
+ * Generates a link with a custom icon from acmicon
+ */
+HTML::macro('linkWithCustomIcon', function($url = '/', $text = 'link', $icon = 'external-link', $options = []) 
+{
+	return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='ai ai-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
+});
+
+/**
  * Generates a delete form
  */
 Form::macro('delete', function($url, $text = 'Delete', $button_class = '')

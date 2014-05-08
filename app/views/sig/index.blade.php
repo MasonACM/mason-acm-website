@@ -12,7 +12,7 @@
 			@endif
 
 			@foreach($all_sig as $sig)		
-				{{ HTML::link('sig/' . $sig->url, $sig->name, ['class' => 'btn btn-inverse sig-btn']) }}
+				{{ HTML::linkWithIcon('sig/' . $sig->url, $sig->name, $sig->icon, ['class' => 'btn btn-inverse sig-btn']) }}
 			@endforeach
 		</div>
 	</div>

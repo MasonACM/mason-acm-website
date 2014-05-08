@@ -13,6 +13,9 @@
 			{{ Form::text('url', null, ['class' => 'form-control', 'placeholder' => 'Url']) }}
 		</div><br>
 		<div>
+			{{ Form::text('icon', null, ['class' => 'form-control', 'placeholder' => 'Icon']) }}
+		</div><br>
+		<div>
 			{{ Form::textarea('body', null, ['class' => 'editor']) }}
 		</div><br>	
 		<div>
