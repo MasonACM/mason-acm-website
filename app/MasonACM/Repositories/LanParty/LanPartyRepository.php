@@ -6,7 +6,6 @@ use Auth;
 
 class LanPartyRepository implements LanPartyRepositoryInterface {
 
-
 	/**
 	 * Adds or removes a user from the roster
      *
@@ -15,14 +14,15 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
 	public function addOrRemoveFromRoster($userId)
 	{
 		$attendee = LAN_Attendee::getByUserId($userId);
+        $user = User::find($userId);
 
 		if ($attendee == null)
 		{
 			$attendee = new LAN_Attendee();
-			$attendee->user_id = Auth::user()->id;
-			$attendee->firstname = Auth::user()->firstname;
-			$attendee->lastname = Auth::user()->lastname;
-			$attendee->lanparty_id = LAN_Party::getActiveParty()->id;
+			$attendee->user_id = $userId;
+			$attendee->firstname = $user->firstname;
+			$attendee->lastname = $user->lastname;
+			$attendee->lanparty_id = $this->getActiveParty()->id;
 			$attendee->save();
 		} 
 		else
@@ -31,7 +31,13 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
 		}
 	}
 
-	public function addToRoster($input)
+    /**
+     * Add to the current LAN party's roster
+     *
+     * @param  array $input
+     * @return LAN_Attendee
+     */
+    public function addToRoster($input)
 	{
 		$lanAttendee = new LAN_Attendee;
 		$lanAttendee->fill($input);
@@ -39,6 +45,17 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
 
 		return $lanAttendee;
 	}
+
+    /**
+     * Determine if a specified user is attending the active LAN Party
+     *
+     * @param  int $user_id
+     * @return bool
+     */
+    public function isAttendingLan($user_id)
+    {
+        return $this->getActiveParty()->attendees()->where('user_id', $user_id)->count() > 0;
+    }
 
     /**
 	 * Gets all the LAN Parties
@@ -96,6 +113,13 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
         $this->findPartyById($id)->delete();
     }
 
+    /**
+     * Update a specified LAN Party
+     *
+     * @param $id
+     * @param $input
+     * @return bool|LAN_Party
+     */
     public function updateParty($id, $input)
     {
         if ( ! $party = $this->findPartyById($id)) return false;
@@ -105,11 +129,22 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
         return $party;
     }
 
+    /**
+     * Get the active LAN Party
+     *
+     * @return LAN_Party
+     */
     public function getActiveParty()
     {
         return LAN_Party::whereActive(true)->first();
     }
 
+    /**
+     * Set the active LAN Party
+     *
+     * @param  int $id
+     * @return LAN_Party $party
+     */
     public function setActiveParty($id)
     {
         if ( ! ($party = $this->getActiveParty()) == null)
@@ -125,5 +160,7 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
 
             $party->save();
         }
+
+        return $party;
     }
 }

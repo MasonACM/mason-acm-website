@@ -11,15 +11,16 @@ class LanPartyPresenter extends Presenter {
 	 */ 
     public function shortDate()
     {
-    	$carbon = new Carbon($this->date);
-
-    	return $carbon->format('M jS');
+    	return $this->date->format('M jS');
     }
 
     public function longDate()
     {
-        $carbon = new Carbon($this->date);
+    	return $this->date->format('F jS, Y');
+    }
 
-    	return $carbon->toFormattedDateString();
+    public function quickDate()
+    {
+        return $this->date->format('m/d/y');
     }
 }

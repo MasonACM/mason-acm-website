@@ -117,6 +117,7 @@ th {
 }
 
 .container > .navbar-collapse {
+	border: none;
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -127,8 +128,7 @@ th {
 }
 
 .navbar-inverse {
-	border-bottom-style: solid;
-	border-bottom-color: #000000;
+	border: none;	
 	box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
 	-moz-box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
 	-webkit-box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
@@ -188,10 +188,8 @@ th {
 }
 
 .navbar-right li:hover > ul, .navbar-nav li:hover > ul{
-	display: block;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #000000;
+	display: block;	
+	border: 1px rgb(29, 29, 29);
 	/*border-top: none !important;*/
 	box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
 	-moz-box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
@@ -685,8 +683,13 @@ div > a:focus {
 	padding: 25px;
 }
 
-.pagination > ul > li > a, .pagination > ul > li > span {
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li.disabled > span:hover {
+	background: rgba(27, 27, 27, 0.5);
+}
+
+.pagination > li > a, .pagination > li > span, .pagination > li.disabled > span {
 	position: relative;
+	border: none;
 	float: left;
 	padding: 6px 12px;
 	margin-left: -1px;
@@ -697,19 +700,23 @@ div > a:focus {
 	margin-right: 2px;
 }
 
-.pagination > ul > li.active > span {
+.pagination > li.active > span {
 	background-color: rgb(29, 115, 65);
 	color: white;
 }
 
-.pagination > ul {
+.pagination > li.active > span:hover {
+	background-color: rgba(29, 115, 65, 0.9);
+}
+
+.pagination {
 	display: inline-block;
 	padding-left: 0;
 	margin: 20px 0;
 	border-radius: 4px;
 }
 
-.pagination > ul > li {
+.pagination > li {
 	display: inline;
 }
 

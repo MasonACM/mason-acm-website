@@ -33,9 +33,12 @@
                     <li>{{ HTML::linkWithIcon('login', 'Login', 'sign-in', ['id' => 'login-link']) }}</li>
                     <li>{{ HTML::linkWithIcon('register', 'Register', 'plus') }}</li>
                 @else
-                    <li><a><i class="fa fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</a>
-                        <ul>
-                            <li>{{ HTML::linkWithIcon('edit_user', 'Edit Information', 'pencil') }}</li> 
+                    <li>
+                        <a>
+                            <i class="fa fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->present()->fullname() }} 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>{{ HTML::linkWithIcon('profile/edit', 'Edit Information', 'pencil') }}</li> 
                             @if(Auth::user()->isAdmin())
                                 <li>{{ HTML::linkWithIcon('admin', 'Admin Settings', 'user-md') }}</li> 
                             @endif

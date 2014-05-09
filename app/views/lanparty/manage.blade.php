@@ -12,13 +12,23 @@
                     <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i> Add</button>
                 </div>
                 <div class="form-group pull-right">
-                    {{ Form::input('text', 'date', '', ['class' => 'form-control', 'placeholder' => 'Date', 'id' => 'date']) }}
+                    {{ Form::input('text', 'date', '', ['class' => 'form-control date', 'placeholder' => 'Date', 'id' => 'date']) }}
                 </div>
             {{ Form::close() }}
         </div>
     </div>
 	@foreach($lans as $lan)
         <div class="row well">
+            <div class="col-md-3">
+                {{ Form::model($lan, ['route' => 'lanparty.update', 'class' => 'form-inline']) }}
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                    </div>
+                    <div class="form-group pull-right">
+                        {{ Form::text('date', $lan->present()->quickDate(), ['class' => 'form-control', 'id' => 'date' . $lan->id]) }}
+                    </div>
+                {{ Form::close() }}
+            </div>
             <div class="col-md-2">
                 <h5>
                     <i class="fa fa-calendar"></i>&nbsp;
@@ -35,6 +45,9 @@
             <div class="col-md-2">
                 {{ $lan->attendeeCount() }} Attendees
             </div>
+            <div class="col-md-2">
+                {{ HTML::linkWithIcon('lanparty/' . $lan->id . '/roster', 'Roster', 'list-alt', ['class' => 'btn btn-link']) }}
+            </div>
         </div>
 	@endforeach
 @stop
@@ -48,6 +61,6 @@
     <script type="application/javascript">
         $(function() {
             $('#date').datepicker();
-        })
+        });
     </script>
 @stop
