@@ -8,7 +8,9 @@ class LAN_Party extends Eloquent {
 
     protected $presenter = 'MasonACM\Presenters\LanPartyPresenter';
 
-	protected $table = 'lan_partys';	
+	protected $table = 'lan_partys';
+
+    protected $dates = ['date'];
 
 	public function attendees()
 	{

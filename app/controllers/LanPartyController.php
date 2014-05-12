@@ -4,67 +4,45 @@ use MasonACM\Repositories\LanParty\LanPartyRepositoryInterface;
 
 class LANPartyController extends BaseController {
 
-	private $lanParty;
+    /**
+     * @var LanPartyRepositoryInterface
+     */
+    private $lanParty;
 
-	public function __construct(LanPartyRepositoryInterface $lanParty)
+    /**
+     * Create a LanPartyController
+     *
+     * @param LanPartyRepositoryInterface $lanParty
+     */
+    public function __construct(LanPartyRepositoryInterface $lanParty)
 	{
 		$this->lanParty = $lanParty;
 	}
 
 	/**
 	 * Displays the LAN Party management page
+     *
+     * @return Response
 	 */ 
-	public function getManage()
+	public function index()
 	{
-		$lans = $this->lanParty->getAll();
+		$lans = $this->lanParty->getAllParties();
 
 		return View::make('lanparty.manage', compact('lans'));
 	}
 
 	/**
-	 *	Gets the LAN Party Roster view 
+	 * Display the LAN Party roster
+	 * 
+	 * @return Response 
 	 */
-	public function getRoster() 
+	public function show($id)
 	{
-		$attendees = LAN_Party::getActiveParty()->attendees;
+		$attendees = $this->lanParty->findPartyById($id)->attendees;
 
 		return View::make('lanparty.roster.index', compact('attendees'));	
 	}
 
-	/**
-	 * Adds or removes a user to the roster
-	 */
-	public function postSignUp()
-	{
-		$this->lanParty->addOrRemoveFromRoster(Auth::user()->id);
-
-		return Redirect::back()->with('reloaded', true);
-	}
-
-	/**
-	 * Returns the LAN Party Sign-up view 
-	 *
-	 * @return Response
-	 */ 
-	public function getSignUp()
-	{
-		$party = LAN_Party::getActiveParty();
-		$isAttendingLan = LAN_Attendee::isAttendingLan();
-
-		return View::make('lanparty.signup', compact('party', 'isAttendingLan'));
-	}
-
-	/**
-	 * Adds someone to the roster
-	 * 
-	 * @return Response
-	 */ 
-	public function postAddToRoster() 
-	{
-		$this->lanParty->addToRoster(Input::all());
-
-		return Redirect::back();
-	}
 
     public function store()
     {

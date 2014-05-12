@@ -9,7 +9,7 @@ class UserPresenter extends Presenter {
 	 */ 
     public function fullName()
     {
-        return $this->firstname . ' ' . $this->lastname;
+        return ucwords($this->firstname . ' ' . $this->lastname);
     }
 
     public function accountAge()

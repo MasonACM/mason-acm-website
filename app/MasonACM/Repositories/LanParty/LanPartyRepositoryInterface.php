@@ -21,4 +21,6 @@ interface LanPartyRepositoryInterface {
 	public function addOrRemoveFromRoster($userId);
 
 	public function addToRoster($input);
+
+    public function isAttendingLan($user_id);
 }

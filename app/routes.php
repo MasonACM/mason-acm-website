@@ -16,10 +16,12 @@ Route::group(['prefix' => 'register', 'before' => 'guest'], function()
     Route::get('/', ['as' => 'register.create', 'uses' => 'RegistrationController@create']);
 });
 
-# Files
-Route::get('files/download/{file_name}', 'FileController@getDownload');
-Route::get('files/upload',  array('before' => 'admin', 'uses' => 'FileController@getUpload'));
-Route::post('files/upload', array('before' => 'admin', 'uses' => 'FileController@postUpload'));
+# Profile
+Route::group(['prefix' => 'profile', 'before' => 'auth'], function() 
+{
+    Route::get('edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::post('update', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+});
 
 # Forum
 Route::group(['prefix' => 'forum'], function() 
@@ -73,15 +75,18 @@ Route::get('tutorials', 'TutorialController@getIndex');
 # API
 Route::controller('api', 'APIController');
 
-# LAN Party
-Route::group(array('prefix' => 'lanparty', 'before' => 'lanparty'), function() 
+Route::group(array('prefix' => 'lanparty'), function()
 {
-	Route::get('/', 'LanPartyController@getSignUp');
-	Route::post('/', 'LanPartyController@postSignUp');
-	Route::get('roster', array('before' => 'admin', 'uses' => 'LanPartyController@getRoster'));
-	Route::post('roster/add', array('before' => 'admin', 'uses' => 'LanPartyController@postAddtoRoster'));
-	Route::get('manage', 'LanPartyController@getManage');
+    # LAN Party Attendee
+    Route::get('/', ['as' => 'lanparty.register','before' => 'lanparty', 'uses' => 'LanAttendeeController@create']);
+    Route::post('/',['as' => 'lanparty.storeOrDestroy', 'before' => 'lanparty', 'uses' => 'LanPartyController@createOrDestroy']);
+    Route::post('{id}/roster/add', ['as' => 'lanparty.roster.add', 'before' => 'admin', 'uses' => 'LanAttendeeController@store']);
+
+    # LAN Party
+    Route::get('{id}/roster', ['before' => 'admin', 'uses' => 'LanPartyController@show']);
+    Route::get('manage', ['as' => 'lanparty.manage', 'before' => 'admin', 'uses' => 'LanPartyController@index']);
     Route::post('create', ['as' => 'lanparty.store', 'before' => 'admin|csrf', 'uses' => 'LanPartyController@store']);
+    Route::post('{id}/edit', ['as' => 'lanparty.update', 'before' => 'admin|csrf', 'uses' => 'LanPartyController@update']);
 });
 
 # Special Intrest Groups
