@@ -35,7 +35,9 @@ class LanAttendeeController extends BaseController {
 	{
 		$party = $this->lanRepo->getActiveParty();
 
-        $isAttendingLan = $this->lanRepo->isAttendingLan(Auth::user()->id);
+		$isAttendingLan = Auth::check() 
+			? $this->lanRepo->isAttendingLan(Auth::user()->id)
+			: false;
 
 		return View::make('lanparty.signup', compact('party', 'isAttendingLan'));
 	}

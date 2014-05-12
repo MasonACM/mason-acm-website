@@ -14,13 +14,14 @@
                 <div class="form-group pull-right">
                     {{ Form::input('text', 'date', '', ['class' => 'form-control date', 'placeholder' => 'Date', 'id' => 'date']) }}
                 </div>
+                <input type="hidden" name="active" value="false">
             {{ Form::close() }}
         </div>
     </div>
 	@foreach($lans as $lan)
         <div class="row well">
             <div class="col-md-3">
-                {{ Form::model($lan, ['route' => 'lanparty.update', 'class' => 'form-inline']) }}
+                {{ Form::model($lan, ['route' => ['lanparty.update', $lan->id], 'class' => 'form-inline']) }}
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit">Update</button>
                     </div>
@@ -37,17 +38,20 @@
             </div>
             <div class="col-md-2">
                 @if($lan->active)
-                    <div class="btn btn-sm btn-primary">Make Active</div>
+                    {{ link_to_route('lanparty.activate', 'Make Active', $lan->id, ['class' => 'btn btn-primary']) }}
                 @else
-                    <div class="btn btn-sm btn-danger">Make Inactive</div>
+                    {{ link_to_route('lanparty.deactivate', 'Make Inactive', $lan->id, ['class' => 'btn btn-danger']) }}
                 @endif
             </div>
             <div class="col-md-2">
                 {{ $lan->attendeeCount() }} Attendees
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 {{ HTML::linkWithIcon('lanparty/' . $lan->id . '/roster', 'Roster', 'list-alt', ['class' => 'btn btn-link']) }}
             </div>
+            <div class="col-md-2">
+                {{ Form::delete('lanparty/' . $lan->id . '/destroy') }}
+            </div> 
         </div>
 	@endforeach
 @stop

@@ -43,9 +43,65 @@ class LANPartyController extends BaseController {
 		return View::make('lanparty.roster.index', compact('attendees'));	
 	}
 
-
+	/**
+	 * Create a LAN Party
+	 * 
+	 * @return Response
+	 */ 
     public function store()
     {
+    	$this->lanParty->createParty(Input::all());
 
+    	return Redirect::back();
+    }
+
+    /**
+     * Update a specified LAN Party
+     * 
+     * @return Response
+     */ 
+    public function update($id)
+    {
+    	$this->lanParty->updateParty($id, Input::all());
+
+    	return Redirect::back();
+    }
+
+    /**
+     * Delete a specified LAN Party
+     * 
+     * @return Response
+     */ 
+    public function destroy($id)
+    {
+    	$this->lanParty->deleteParty($id);
+
+    	return Redirect::back();
+    }
+
+    /**
+     * Make a specified LAN Party Active
+     *
+     * @return Response  
+     */
+    public function activate($id)
+    {
+    	$party = $this->lanParty->setActiveParty($id);
+        dd($party);
+
+    	return Redirect::back();
+    }
+
+    /**
+     * Make a specified LAN Party inactive
+     * 
+     * @return Response 
+     */ 
+    public function deactivate($id)
+    {
+    	$party = $this->lanParty->setPartyActivity($id, false);
+        dd($party);
+
+    	return Redirect::back();
     }
 }

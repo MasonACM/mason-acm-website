@@ -3,6 +3,7 @@
 use LAN_Party;
 use LAN_Attendee;
 use Auth;
+use Carbon\Carbon;
 
 class LanPartyRepository implements LanPartyRepositoryInterface {
 
@@ -58,13 +59,13 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
     }
 
     /**
-	 * Gets all the LAN Parties
+	 * Get all the LAN Parties, ordered by date
      *
      * @return Collection
 	 */
 	public function getAllParties()
 	{
-		return LAN_Party::all();
+		return LAN_Party::orderBy('date', 'desc')->get();
 	}
 
     /**
@@ -93,6 +94,8 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
     public function createParty($input)
     {
         $party = new LAN_Party;
+
+        $input['date'] = new Carbon($input['date']); 
 
         $party->fill($input)->save();
 
@@ -124,6 +127,8 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
     {
         if ( ! $party = $this->findPartyById($id)) return false;
 
+        $input['date'] = new Carbon($input['date']); 
+
         $party->fill($input)->save();
 
         return $party;
@@ -147,6 +152,7 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
      */
     public function setActiveParty($id)
     {
+        // Set the active party to inactive (if there is one)
         if ( ! ($party = $this->getActiveParty()) == null)
         {
             $party->active = false;
@@ -154,13 +160,31 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
             $party->save();
         }
 
-        if ( ! ($party = $this->findPartyById($id)) == null)
-        {
-            $party->active = true;
-
-            $party->save();
-        }
+        // Make the specified party active
+        $party = $this->setPartyActivity($id, true);
 
         return $party;
+    }
+
+    /**
+     * Set the activity of a specified LAN Party
+     * 
+     * @param  int $id
+     * @param  boolean $active
+     * @return LAN_Party|boolean
+     *
+     */ 
+    public function setPartyActivity($id, $active)
+    {
+        if ( ! ($party = $this->findPartyById($id)) == null)
+        {
+            $party->active = $active;
+
+            $party->save();
+
+            return $party;
+        }
+
+        return false;
     }
 }

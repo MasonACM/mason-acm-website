@@ -4,7 +4,7 @@ class SessionController extends BaseController {
 
     /**
 	 * Displays the login page
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function create()
@@ -14,15 +14,15 @@ class SessionController extends BaseController {
 
 	/**
 	 * Logs a user in
-	 * 
+	 *
 	 * @return Response
-	 */ 
+	 */
 	public function store()
 	{
 		if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')]))
         {
             return Redirect::intended('/');
-        } 
+        }
 
         return Redirect::to('login')
             ->withAuthMessage('Incorrect email or password')
@@ -31,9 +31,9 @@ class SessionController extends BaseController {
 
 	/**
 	 * Logs a user out
-	 * 
-	 * @return Response 
-	 */ 
+	 *
+	 * @return Response
+	 */
 	public function destroy()
 	{
 		Auth::logout();
