@@ -1,4 +1,8 @@
-@extends('layouts.masterWithTitle')
+@extends('layouts.masterWithTitleAndIcon')
+
+@section('icon')
+    <i class="fa fa-user-md"></i>
+@stop
 
 @section('title')
 	Admin Dashboard

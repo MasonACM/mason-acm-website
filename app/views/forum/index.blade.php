@@ -1,4 +1,8 @@
-@extends('layouts.masterWithTitle')
+@extends('layouts.masterWithTitleAndIcon')
+
+@section('icon')
+    <i class="fa fa-comments-o"></i>
+@stop
 
 @section('title')
 	Forum

@@ -1,5 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.masterWithTitleAndIcon')
 
+@section('icon')
+    <i class="fa fa-{{ $sig->icon }}"></i>
+@stop
 @section('title')
 	{{ $sig->name }}
 @stop

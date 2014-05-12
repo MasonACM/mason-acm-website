@@ -1,4 +1,8 @@
-@extends('layouts.masterWithTitle')
+@extends('layouts.masterWithTitleAndIcon')
+
+@section('icon')
+    <i class="fa fa-file-text"></i>
+@stop
 
 @section('title')
 	Tutorials
@@ -11,7 +15,7 @@
 			
 			@foreach(TutorialTopic::all() as $tt)
 				<br><br>
-				{{ HTML::link('tutorials/' . $tt->name, $tt->name, ['class' => 'btn btn-inverse btn-lg']) }}
+				{{ HTML::linkWithIcon('tutorials/' . $tt->name, $tt->name, 'ai', $tt->icon, ['class' => 'btn btn-inverse btn-lg', 'style'=>'font-size: 30px !important;']) }}
 			@endforeach
 			
 			<br><br><br>

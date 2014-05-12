@@ -1,7 +1,11 @@
-@extends('layouts.master')
+@extends('layouts.masterWithTitleAndIcon')
+
+@section('icon')
+    <i class="ai ai-{{ $tt->icon }}"></i>
+@stop
 
 @section('title')
-	Create Tutorial
+	{{ $tt->name }} Tutorials
 @stop
 
 @section('content')
