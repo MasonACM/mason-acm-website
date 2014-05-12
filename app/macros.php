@@ -3,17 +3,15 @@
 /**
  * Generates a link with an icon
  */
-HTML::macro('linkWithIcon', function($url = '/', $text = 'link', $icon = 'external-link', $options = []) 
+HTML::macro('linkWithIcon', function($url = '/', $text = 'link', $iconset = 'icon-font', $icon = 'external-link', $options = []) 
 {
-	return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='fa fa-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
-});
-
-/**
- * Generates a link with a custom icon from acmicon
- */
-HTML::macro('linkWithCustomIcon', function($url = '/', $text = 'link', $icon = 'external-link', $options = []) 
-{
-	return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='ai ai-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
+	if($iconset=="fa"){
+		return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='fa fa-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
+	}elseif($iconset=="ai"){
+		return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='ai ai-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
+	}else{
+		return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i></i>&nbsp;&nbsp;{$text}</a>";
+	}
 });
 
 /**

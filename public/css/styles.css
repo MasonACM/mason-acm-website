@@ -111,13 +111,12 @@ th {
 /***********************/
 
 .navbar-fixed-top > .navbar-inner {
-	background-color: rgb(29, 29, 29);
+	background-color: rgb(20, 20, 20);
 	border-radius: 0px;
 	border: none;
 }
 
 .container > .navbar-collapse {
-	border: none;
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -128,7 +127,8 @@ th {
 }
 
 .navbar-inverse {
-	border: none;	
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
 	box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
 	-moz-box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
 	-webkit-box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
@@ -137,30 +137,21 @@ th {
 	color: rgb(29, 115, 65);
 }
 
-.navbar .nav > li > a, .navbar-right li:hover > ul > li > a {
+.navbar .nav > li > a, .navbar-dropdown:hover > ul > li > a {
 	text-shadow: none;
 	font-weight: 300;
 }
 
-.navbar > .container .navbar-brand {
-	margin-left: 0px;
-}
-
-.navbar > .container .navbar-brand > a, .navbar-right li:hover > ul > li > a, .navbar-nav li:hover > ul > li > a {
+.navbar-dropdown:hover > ul > li > a{
 	color: rgb(153, 153, 153) !important;
 }
 
-.navbar > .container .navbar-brand > a:hover, .navbar-right li:hover > ul > li > a:hover, .navbar-nav li:hover > ul > li > a:hover {
+.navbar-dropdown:hover > ul > li > a:hover{
 	color: white !important;
 	text-decoration: none !important;
 }
 
-.navbar > .container .navbar-brand:hover {
-	color: white;
-	background-color: rgb(29, 29, 29);
-}
-
-.navbar .nav > li > a:hover, .nav-collapse .nav > li:hover, .navbar-right li:hover > ul > li > a:hover, .navbar-nav li:hover > ul > li > a:hover {
+.navbar .nav > li > a:hover, .nav-collapse .nav > li:hover, .navbar-dropdown:hover > ul > li > a:hover{
 	color: white;
 }
 
@@ -168,15 +159,32 @@ th {
 	background-color: rgb(29, 100, 65);
 }
 
-.navbar-fixed-top .nav > li:hover, .navbar .nav > li.active, .navbar-right li:hover > ul > li:hover, .navbar-right li:hover > ul > li:active, .navbar-nav li:hover > ul > li:hover, .navbar-nav li:hover > ul > li:active {
-	background-color: rgb(29, 29, 29);
+.navbar-fixed-top .nav li a, .navbar .nav li a{
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(35, 35, 35);
+	border-top: none;
+	border-bottom: none;
 }
 
-.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus, .navbar-right li:hover > ul > li > a:hover, .navbar-right li:hover > ul > li > a:focus, .navbar-nav li:hover > ul > li > a:hover, .navbar-nav li:hover > ul > li > a:focus {
-    background-color: rgb(29, 29, 29);
+.navbar-fixed-top .nav > li:hover > a, .navbar .nav > li.active > a{
+	background-color: rgb(20, 20, 20);
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+	border-top: none;
+	border-bottom: none;
 }
 
-.navbar-right li ul, .navbar-nav li ul{
+.navbar-dropdown:hover > ul > li:hover, .navbar-dropdown:hover > ul > li:active{
+	background-color: rgb(20, 20, 20);
+}
+
+.nav-collapse .nav > li > a:hover, .nav-collapse .nav > li > a:focus, .nav-collapse .dropdown-menu a:hover, .nav-collapse .dropdown-menu a:focus, .navbar-dropdown:hover > ul > li > a:hover, .navbar-dropdown:hover > ul > li > a:focus {
+    background-color: rgb(20, 20, 20);
+}
+
+.navbar-dropdown ul{
 	padding: 6px;
 	width: 100%;
 	list-style: none;
@@ -187,9 +195,11 @@ th {
 	border-bottom-right-radius: 5px;
 }
 
-.navbar-right li:hover > ul, .navbar-nav li:hover > ul{
-	display: block;	
-	border: 1px rgb(29, 29, 29);
+.navbar-dropdown:hover > ul{
+	display: block;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
 	/*border-top: none !important;*/
 	box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);
 	-moz-box-shadow: 0px 2px 6px rgba(0,0,0, 0.65);

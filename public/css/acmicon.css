@@ -31,3 +31,24 @@
 .ai-logo:before {
   content: "b";
 }
+.ai-cpp:before {
+  content: "c";
+}
+.ai-logo-new:before {
+  content: "g";
+}
+.ai-java:before {
+  content: "d";
+}
+.ai-vb6:before {
+  content: "e";
+}
+.ai-vbnet:before {
+  content: "f";
+}
+.ai-troll:before {
+  content: "h";
+}
+.ai-unknown:before {
+  content: "i";
+}
