@@ -33,11 +33,11 @@
                     <li>{{ HTML::linkWithIcon('login', 'Login', 'fa', 'sign-in', ['id' => 'login-link']) }}</li>
                     <li>{{ HTML::linkWithIcon('register', 'Register', 'fa', 'plus') }}</li>
                 @else
-                    <li class="navbar-dropdown"><a><i class="fa fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->present()->fullname() }}</a>
+                    <li class="navbar-dropdown" style="width: 150px;"><a><i class="fa fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->present()->fullname() }}</a>
                         <ul>
-                            <li>{{ HTML::linkWithIcon('profile/edit', 'Edit Information', 'fa', 'pencil') }}</li> 
+                            <li>{{ HTML::linkWithIcon('profile/edit', 'Edit Profile', 'fa', 'pencil') }}</li> 
                             @if(Auth::user()->isAdmin())
-                                <li>{{ HTML::linkWithIcon('admin', 'Admin Settings', 'fa', 'user-md') }}</li> 
+                                <li>{{ HTML::linkWithIcon('admin', 'Admin Dashboard', 'fa', 'user-md') }}</li> 
                             @endif
                             <li>{{ HTML::linkWithIcon('logout', 'Logout', 'fa', 'sign-out') }}</li> 
                         </ul>
