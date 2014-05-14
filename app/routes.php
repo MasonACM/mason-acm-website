@@ -91,6 +91,7 @@ Route::group(array('prefix' => 'lanparty'), function()
     Route::get('{id}/activate', ['as' => 'lanparty.activate', 'before' => 'admin|auth', 'uses' => 'LanPartyController@activate']);
     Route::get('{id}/deactivate', ['as' => 'lanparty.deactivate', 'before' => 'admin|auth', 'uses' => 'LanPartyController@deactivate']);
     Route::post('{id}/destroy', ['as' => 'lanparty.destroy', 'before' => 'admin|auth|csrf', 'uses' => 'LanPartyController@destroy']);
+    Route::get('test', 'LanPartyController@test');
 });
 
 # Special Intrest Groups

@@ -87,7 +87,6 @@ class LANPartyController extends BaseController {
     public function activate($id)
     {
     	$party = $this->lanParty->setActiveParty($id);
-        dd($party);
 
     	return Redirect::back();
     }
@@ -100,8 +99,12 @@ class LANPartyController extends BaseController {
     public function deactivate($id)
     {
     	$party = $this->lanParty->setPartyActivity($id, false);
-        dd($party);
 
     	return Redirect::back();
+    }
+
+    public function test()
+    {
+        return $this->lanParty->getAllParties();
     }
 }
