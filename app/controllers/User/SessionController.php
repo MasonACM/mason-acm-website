@@ -1,6 +1,23 @@
 <?php
 
+use MasonACM\Repositories\User\UserRepositoryInterface;
+
 class SessionController extends BaseController {
+
+    /**
+     * @var UserRepositoryInterface
+     */ 
+    private $userRepo;
+
+    /**
+     * Creates the RegistraionRepository
+     *
+     * @param UserRepositoryInterface $userRepo
+     */
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
 
     /**
 	 * Displays the login page
@@ -19,8 +36,10 @@ class SessionController extends BaseController {
 	 */
 	public function store()
 	{
-		if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')]))
+		if ($user = $this->userRepo->attemptLogin(Input::all()))
         {
+        	Auth::login($user);
+
             return Redirect::intended('/');
         }
 

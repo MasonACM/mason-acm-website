@@ -21,7 +21,7 @@ class LanAttendeeController extends BaseController {
 	 */
 	public function storeOrDestroy()
 	{
-		$this->lanParty->addOrRemoveFromRoster(Auth::user()->id);
+		$this->lanRepo->addOrRemoveFromRoster(Auth::user()->id);
 
 		return Redirect::back()->with('reloaded', true);
 	}
@@ -49,7 +49,7 @@ class LanAttendeeController extends BaseController {
 	 */
 	public function store()
 	{
-		$this->lanParty->addToRoster(Input::all());
+		$this->lanRepo->addToRoster(Input::all());
 
 		return Redirect::back();
 	}

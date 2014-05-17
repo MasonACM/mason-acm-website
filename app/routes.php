@@ -1,5 +1,15 @@
 <?php
 
+# Api
+Route::group(['prefix' => 'api'], function() 
+{
+    # User
+    Route::group(['prefix' => 'user'], function()
+    {
+        Route::post('login', 'UserApiController@login');
+    });
+});
+
 # Basic Pages
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getHome']);
 Route::get('about', ['as' => 'about', 'uses' => 'PagesController@getAbout']);
@@ -72,15 +82,12 @@ Route::get('tutorials/view/{id}', 'TutorialController@getTutorial');
 Route::get('tutorials/{name}', 'TutorialController@getTopic');
 Route::get('tutorials', 'TutorialController@getIndex');
 
-# API
-Route::controller('api', 'APIController');
-
 # LAN Party / Attendee
 Route::group(array('prefix' => 'lanparty'), function()
 {
     # LAN Party Attendee
     Route::get('/', ['as' => 'lanparty.register','before' => 'lanparty', 'uses' => 'LanAttendeeController@create']);
-    Route::post('/',['as' => 'lanparty.storeOrDestroy', 'before' => 'lanparty', 'uses' => 'LanPartyController@createOrDestroy']);
+    Route::post('/',['as' => 'lanparty.storeOrDestroy', 'before' => 'lanparty', 'uses' => 'LanAttendeeController@storeOrDestroy']);
     Route::post('{id}/roster/add', ['as' => 'lanparty.roster.add', 'before' => 'admin', 'uses' => 'LanAttendeeController@store']);
 
     # LAN Party

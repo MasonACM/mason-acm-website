@@ -4,6 +4,7 @@ use LAN_Party;
 use LAN_Attendee;
 use Auth;
 use Carbon\Carbon;
+use User;
 
 class LanPartyRepository implements LanPartyRepositoryInterface {
 
