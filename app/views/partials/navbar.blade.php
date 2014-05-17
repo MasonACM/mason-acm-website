@@ -20,10 +20,21 @@
                 <li>{{ HTML::linkWithIcon('forum', 'Forum', 'fa', 'comments-o') }}</li>
                 <li>{{ HTML::linkWithIcon('tutorials', 'Tutorials', 'fa', 'file-text') }}</li>
                 <li class="navbar-dropdown">{{ HTML::linkWithIcon('sig', 'Special Interest Groups', 'fa', 'group') }}
-                    <ul>
-                        @foreach(SIG::all() as $sig)      
+                    <ul class="sig">
+                        <script>var a=0;</script>
+                        @foreach(SIG::all() as $sig)
                             <li>{{ HTML::linkWithIcon('sig/' . $sig->url, $sig->name, 'fa', $sig->icon) }}</li>
+                            <script>a++;</script>
                         @endforeach
+                        <script>
+                            a=a*32;
+                            document.writeln("<style>");
+                            document.writeln("    .navbar-dropdown:hover > .sig{");
+                            document.writeln("        height: " + a + "px;");
+                            document.writeln("        z-index: 100;");
+                            document.writeln("    }");
+                            document.writeln("</style>");
+                        </script>
                     </ul>
                 </li>
                 <li>{{ HTML::linkWithIcon('about', 'About', 'fa', 'info-circle') }}</li>
@@ -34,12 +45,25 @@
                     <li>{{ HTML::linkWithIcon('register', 'Register', 'fa', 'plus') }}</li>
                 @else
                     <li class="navbar-dropdown" style="width: 150px;"><a><i class="fa fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->present()->fullname() }}</a>
-                        <ul>
-                            <li>{{ HTML::linkWithIcon('profile/edit', 'Edit Profile', 'fa', 'pencil') }}</li> 
+                        <ul class="user">
+                            <script>a=0;</script>
+                            <li>{{ HTML::linkWithIcon('profile/edit', 'Edit Profile', 'fa', 'pencil') }}</li>
+                            <script>a++;</script>
                             @if(Auth::user()->isAdmin())
-                                <li>{{ HTML::linkWithIcon('admin', 'Admin Dashboard', 'fa', 'user-md') }}</li> 
+                                <li>{{ HTML::linkWithIcon('admin', 'Admin Dashboard', 'fa', 'user-md') }}</li>
+                                <script>a++;</script>
                             @endif
-                            <li>{{ HTML::linkWithIcon('logout', 'Logout', 'fa', 'sign-out') }}</li> 
+                            <li>{{ HTML::linkWithIcon('logout', 'Logout', 'fa', 'sign-out') }}</li>
+                            <script>a++;</script>
+                            <script>
+                                a=a*32;
+                                document.writeln("<style>");
+                                document.writeln("    .navbar-dropdown:hover > .user{");
+                                document.writeln("        height: " + a + "px;");
+                                document.writeln("        z-index: 99;");
+                                document.writeln("    }");
+                                document.writeln("</style>");
+                            </script>
                         </ul>
                     </li>
                 @endif
