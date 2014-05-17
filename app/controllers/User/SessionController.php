@@ -1,10 +1,27 @@
 <?php
 
+use MasonACM\Repositories\User\UserRepositoryInterface;
+
 class SessionController extends BaseController {
 
     /**
+     * @var UserRepositoryInterface
+     */ 
+    private $userRepo;
+
+    /**
+     * Creates the RegistraionRepository
+     *
+     * @param UserRepositoryInterface $userRepo
+     */
+    public function __construct(UserRepositoryInterface $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+
+    /**
 	 * Displays the login page
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function create()
@@ -14,15 +31,17 @@ class SessionController extends BaseController {
 
 	/**
 	 * Logs a user in
-	 * 
+	 *
 	 * @return Response
-	 */ 
+	 */
 	public function store()
 	{
-		if (Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')]))
+		if ($user = $this->userRepo->attemptLogin(Input::all()))
         {
+        	Auth::login($user);
+
             return Redirect::intended('/');
-        } 
+        }
 
         return Redirect::to('login')
             ->withAuthMessage('Incorrect email or password')
@@ -31,9 +50,9 @@ class SessionController extends BaseController {
 
 	/**
 	 * Logs a user out
-	 * 
-	 * @return Response 
-	 */ 
+	 *
+	 * @return Response
+	 */
 	public function destroy()
 	{
 		Auth::logout();

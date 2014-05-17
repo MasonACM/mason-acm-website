@@ -1,6 +1,7 @@
 <?php namespace MasonACM\Repositories\User;
 
 use User;
+use Auth;
 use Hash;
 
 class UserRepository implements UserRepositoryInterface {
@@ -20,6 +21,15 @@ class UserRepository implements UserRepositoryInterface {
 	    $user->save();
 
 	    return $user;
+	}
+
+	public function attemptLogin($input)
+	{
+		$user = Auth::validate(['email' => $input['email'], 'password' => $input['password']]);	
+
+		if ( ! $user) return false;
+
+		return User::whereEmail($input['email'])->first();
 	}
 
 }

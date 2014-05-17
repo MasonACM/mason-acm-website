@@ -1,5 +1,15 @@
 <?php
 
+# Api
+Route::group(['prefix' => 'api'], function() 
+{
+    # User
+    Route::group(['prefix' => 'user'], function()
+    {
+        Route::post('login', 'UserApiController@login');
+    });
+});
+
 # Basic Pages
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getHome']);
 Route::get('about', ['as' => 'about', 'uses' => 'PagesController@getAbout']);
@@ -72,21 +82,23 @@ Route::get('tutorials/view/{id}', 'TutorialController@getTutorial');
 Route::get('tutorials/{name}', 'TutorialController@getTopic');
 Route::get('tutorials', 'TutorialController@getIndex');
 
-# API
-Route::controller('api', 'APIController');
-
+# LAN Party / Attendee
 Route::group(array('prefix' => 'lanparty'), function()
 {
     # LAN Party Attendee
     Route::get('/', ['as' => 'lanparty.register','before' => 'lanparty', 'uses' => 'LanAttendeeController@create']);
-    Route::post('/',['as' => 'lanparty.storeOrDestroy', 'before' => 'lanparty', 'uses' => 'LanPartyController@createOrDestroy']);
+    Route::post('/',['as' => 'lanparty.storeOrDestroy', 'before' => 'lanparty', 'uses' => 'LanAttendeeController@storeOrDestroy']);
     Route::post('{id}/roster/add', ['as' => 'lanparty.roster.add', 'before' => 'admin', 'uses' => 'LanAttendeeController@store']);
 
     # LAN Party
-    Route::get('{id}/roster', ['before' => 'admin', 'uses' => 'LanPartyController@show']);
-    Route::get('manage', ['as' => 'lanparty.manage', 'before' => 'admin', 'uses' => 'LanPartyController@index']);
+    Route::get('{id}/roster', ['before' => 'admin|auth', 'uses' => 'LanPartyController@show']);
+    Route::get('manage', ['as' => 'lanparty.manage', 'before' => 'admin|auth', 'uses' => 'LanPartyController@index']);
     Route::post('create', ['as' => 'lanparty.store', 'before' => 'admin|csrf', 'uses' => 'LanPartyController@store']);
-    Route::post('{id}/edit', ['as' => 'lanparty.update', 'before' => 'admin|csrf', 'uses' => 'LanPartyController@update']);
+    Route::post('{id}/update', ['as' => 'lanparty.update', 'before' => 'admin|csrf|auth', 'uses' => 'LanPartyController@update']);
+    Route::get('{id}/activate', ['as' => 'lanparty.activate', 'before' => 'admin|auth', 'uses' => 'LanPartyController@activate']);
+    Route::get('{id}/deactivate', ['as' => 'lanparty.deactivate', 'before' => 'admin|auth', 'uses' => 'LanPartyController@deactivate']);
+    Route::post('{id}/destroy', ['as' => 'lanparty.destroy', 'before' => 'admin|auth|csrf', 'uses' => 'LanPartyController@destroy']);
+    Route::get('test', 'LanPartyController@test');
 });
 
 # Special Intrest Groups

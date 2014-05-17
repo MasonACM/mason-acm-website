@@ -1,4 +1,4 @@
-{{ Form::open(['url' => 'lanparty/roster/add']) }}	
+{{ Form::open(['route' => ['lanparty.roster.add', $lan]]) }}	
 	
 	<p class='form-title'>Add to roster</p>
 	<div class="form-group"> 

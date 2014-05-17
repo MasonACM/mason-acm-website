@@ -1,6 +1,7 @@
 <?php
 
 use MasonACM\Presenters\PresentableTrait;
+use Carbon\Carbon;
 
 class LAN_Party extends Eloquent {
 
@@ -11,6 +12,11 @@ class LAN_Party extends Eloquent {
 	protected $table = 'lan_partys';
 
     protected $dates = ['date'];
+
+    protected $fillable = [
+        'date',
+        'active'
+    ];
 
 	public function attendees()
 	{
@@ -29,11 +35,16 @@ class LAN_Party extends Eloquent {
 
     public static function getActiveParty()
     {
-    	return LAN_Party::where('active', 'true')->first();
+    	return LAN_Party::where('active', true)->first();
     }
 
     public static function hasActiveParty()
     {
-        return LAN_Party::where('active', 'true')->count() > 0;
+        return LAN_Party::where('active', true)->count() > 0;
+    }
+
+    public function getDates()
+    {
+        return ['date'];
     }
 }

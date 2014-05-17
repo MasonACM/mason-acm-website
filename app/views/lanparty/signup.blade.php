@@ -35,20 +35,20 @@
 @section('lp-javascript')
 	@if(!Session::has('reloaded'))
 		<script type="application/javascript">
-			$(function() {
-				var container = $('.lan-party-container');
-				var contents = $('.lan-party-contents');
+			// $(function() {
+			// 	var container = $('.lan-party-container');
+			// 	var contents = $('.lan-party-contents');
 
-				$(container).css({'height': '0px', 'padding': '0px'});
-				$(contents).hide();
+			// 	$(container).css({'height': '0px', 'padding': '0px'});
+			// 	$(contents).hide();
 
-				$(container).animate({
-					height: "500px",
-					padding: "40px"
-				}, 600, function () {
-					contents.fadeIn(200);
-				})
-			})
+			// 	$(container).animate({
+			// 		height: "500px",
+			// 		padding: "40px"
+			// 	}, 600, function () {
+			// 		contents.fadeIn(200);
+			// 	})
+			// })
 		</script>
 	@endif
 @stop
