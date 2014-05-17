@@ -2,7 +2,7 @@
 
 use MasonACM\Repositories\LanParty\LanPartyRepositoryInterface;
 
-class LANPartyController extends BaseController {
+class LanPartyController extends BaseController {
 
     /**
      * @var LanPartyRepositoryInterface
@@ -39,8 +39,9 @@ class LANPartyController extends BaseController {
 	public function show($id)
 	{
 		$attendees = $this->lanParty->findPartyById($id)->attendees;
+        $lan = $this->lanParty->findPartyById($id);
 
-		return View::make('lanparty.roster.index', compact('attendees'));	
+		return View::make('lanparty.roster.index', compact('attendees', 'lan'));	
 	}
 
 	/**

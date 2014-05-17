@@ -30,13 +30,14 @@ Route::filter('auth', function()
 # Guest Filter
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::home()->withFlashMessage('you already have an account lol');
+	if (Auth::check()) return Redirect::home();
 });
 
 # LAN Party Filter
 Route::filter('lanparty', function()
 {
-	if(!LAN_Party::hasActiveParty()) return Redirect::to('/')->with('message', 'Sorry, but no LAN Party is currently planned!');
+	if(!LAN_Party::hasActiveParty()) return Redirect::to('/')
+		->withFlashMessage('Sorry, but no LAN Party is currently planned!');
 });
 
 // CSRF Filter

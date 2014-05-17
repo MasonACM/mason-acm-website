@@ -38,9 +38,9 @@
             </div>
             <div class="col-md-2">
                 @if($lan->active)
-                    {{ link_to_route('lanparty.activate', 'Make Active', $lan->id, ['class' => 'btn btn-primary']) }}
-                @else
                     {{ link_to_route('lanparty.deactivate', 'Make Inactive', $lan->id, ['class' => 'btn btn-danger']) }}
+                @else
+                    {{ link_to_route('lanparty.activate', 'Make Active', $lan->id, ['class' => 'btn btn-primary']) }}
                 @endif
             </div>
             <div class="col-md-2">

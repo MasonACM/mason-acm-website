@@ -8,7 +8,7 @@
 	<?php $counter = 0; ?>
 	<div class="row">
 		<div class="col-md-2">
-			{{ HTML::linkWithIcon('roster/add', 'Add', 'plus', ['class' => 'btn btn-primary btn-lg btn-add']) }}
+			{{ HTML::linkWithIcon($lan->id . '/roster/add', 'Add', 'fa', 'plus', ['class' => 'btn btn-primary btn-lg btn-add']) }}
 		</div>
 		<div class="col-md-8">
 			<table class="table" id="roster">

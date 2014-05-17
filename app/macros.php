@@ -5,11 +5,16 @@
  */
 HTML::macro('linkWithIcon', function($url = '/', $text = 'link', $iconset = 'icon-font', $icon = 'external-link', $options = []) 
 {
-	if($iconset=="fa"){
+	if ($iconset == "fa") 
+	{
 		return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='fa fa-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
-	}elseif($iconset=="ai"){
+	} 
+	else if ($iconset == "ai")
+	{
 		return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i class='ai ai-{$icon}'></i>&nbsp;&nbsp;{$text}</a>";
-	}else{
+	}
+	else
+	{
 		return "<a href='" . URL::to($url) . "'" . HTML::attributes($options) . "><i></i>&nbsp;&nbsp;{$text}</a>";
 	}
 });

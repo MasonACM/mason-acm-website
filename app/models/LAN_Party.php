@@ -35,12 +35,12 @@ class LAN_Party extends Eloquent {
 
     public static function getActiveParty()
     {
-    	return LAN_Party::where('active', 'true')->first();
+    	return LAN_Party::where('active', true)->first();
     }
 
     public static function hasActiveParty()
     {
-        return LAN_Party::where('active', 'true')->count() > 0;
+        return LAN_Party::where('active', true)->count() > 0;
     }
 
     public function getDates()

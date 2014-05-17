@@ -97,6 +97,7 @@ class LanPartyRepository implements LanPartyRepositoryInterface {
         $party = new LAN_Party;
 
         $input['date'] = new Carbon($input['date']); 
+        $input['active'] = false;
 
         $party->fill($input)->save();
 
