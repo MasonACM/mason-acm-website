@@ -19,8 +19,9 @@
                 @endif
                 <li>{{ HTML::linkWithIcon('forum', 'Forum', 'fa', 'comments-o') }}</li>
                 <li>{{ HTML::linkWithIcon('tutorials', 'Tutorials', 'fa', 'file-text') }}</li>
-                <li class="navbar-dropdown">{{ HTML::linkWithIcon('sig', 'Special Interest Groups', 'fa', 'group') }}
-                    <ul class="sig">
+                <li class="dropdown navbar-dropdown">
+                    {{ HTML::linkWithIcon('sig', 'Special Interest Groups', 'fa', 'group', ['data-toggle'=>"dropdown"]) }}
+                    <ul class="dropdown-menu sig">
                         <script>var a=0;</script>
                         @foreach(SIG::all() as $sig)
                             <li>{{ HTML::linkWithIcon('sig/' . $sig->url, $sig->name, 'fa', $sig->icon) }}</li>
@@ -30,7 +31,7 @@
                             a=a*32;
                             document.writeln("<style>");
                             document.writeln("    .navbar-dropdown:hover > .sig{");
-                            document.writeln("        height: " + a + "px;");
+                            document.writeln("        height: " + a + "px !important;");
                             document.writeln("        z-index: 100;");
                             document.writeln("    }");
                             document.writeln("</style>");
@@ -44,8 +45,9 @@
                     <li>{{ HTML::linkWithIcon('login', 'Login', 'fa', 'sign-in', ['id' => 'login-link']) }}</li>
                     <li>{{ HTML::linkWithIcon('register', 'Register', 'fa', 'plus') }}</li>
                 @else
-                    <li class="navbar-dropdown" style="width: 150px;"><a><i class="fa fa-user"></i>&nbsp;&nbsp;{{ Auth::user()->present()->fullname() }}</a>
-                        <ul class="user">
+                    <li class="dropdown navbar-dropdown" style="width: 160px;">
+                        {{ HTML::linkWithIcon('#', Auth::user()->present()->fullname(), 'fa', 'user', ['data-toggle'=>"dropdown"]) }}
+                        <ul class="dropdown-menu user">
                             <script>a=0;</script>
                             <li>{{ HTML::linkWithIcon('profile/edit', 'Edit Profile', 'fa', 'pencil') }}</li>
                             <script>a++;</script>
@@ -59,7 +61,7 @@
                                 a=a*32;
                                 document.writeln("<style>");
                                 document.writeln("    .navbar-dropdown:hover > .user{");
-                                document.writeln("        height: " + a + "px;");
+                                document.writeln("        height: " + a + "px !important;");
                                 document.writeln("        z-index: 99;");
                                 document.writeln("    }");
                                 document.writeln("</style>");
