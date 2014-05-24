@@ -28,7 +28,7 @@
                             <script>a++;</script>
                         @endforeach
                         <script>
-                            a=a*32;
+                            a=(a*32)-2;
                             document.writeln("<style>");
                             document.writeln("    .navbar-dropdown:hover > .sig{");
                             document.writeln("        height: " + a + "px !important;");
@@ -58,7 +58,7 @@
                             <li>{{ HTML::linkWithIcon('logout', 'Logout', 'fa', 'sign-out') }}</li>
                             <script>a++;</script>
                             <script>
-                                a=a*32;
+                                a=(a*32)-2;
                                 document.writeln("<style>");
                                 document.writeln("    .navbar-dropdown:hover > .user{");
                                 document.writeln("        height: " + a + "px !important;");
