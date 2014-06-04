@@ -27,6 +27,7 @@
                     </ul>
                 </li>
                 <li>{{ HTML::linkWithIcon('about', 'About', 'fa', 'info-circle') }}</li>
+                <li>{{ HTML::linkWithIcon('vb', 'Download VB6', 'fa', 'cloud-download') }}</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if(Auth::guest())

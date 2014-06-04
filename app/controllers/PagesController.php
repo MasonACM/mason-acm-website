@@ -13,4 +13,9 @@ class PagesController extends BaseController {
 	{
 		return View::make('pages.about');
 	}
+
+	public function getVB()
+	{
+		return View::make('pages.vb');
+	}
 }

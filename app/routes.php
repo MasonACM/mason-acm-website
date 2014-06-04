@@ -13,6 +13,7 @@ Route::group(['prefix' => 'api'], function()
 # Basic Pages
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getHome']);
 Route::get('about', ['as' => 'about', 'uses' => 'PagesController@getAbout']);
+Route::get('vb', ['as' => 'vb', 'uses' => 'PagesController@getVB']);
 
 # Sessions
 Route::get('logout', ['as' => 'logout', 'before' => 'auth', 'uses' => 'SessionController@destroy']);
