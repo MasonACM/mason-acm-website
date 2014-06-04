@@ -31,9 +31,6 @@
 .ai-logo:before {
   content: "b";
 }
-.ai-cpp:before {
-  content: "c";
-}
 .ai-logo-new:before {
   content: "g";
 }
@@ -46,9 +43,21 @@
 .ai-vbnet:before {
   content: "f";
 }
+.ai-unknown:before {
+  content: "i";
+}
 .ai-troll:before {
   content: "h";
 }
-.ai-unknown:before {
-  content: "i";
+.ai-cpp:before {
+  content: "c";
+}
+.ai-ios:before {
+  content: "j";
+}
+.ai-android:before {
+  content: "k";
+}
+.ai-dino:before {
+  content: "l";
 }
