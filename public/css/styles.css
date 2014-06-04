@@ -800,3 +800,19 @@ div > a:focus {
 .spacing-top {
 	margin-top: 10px;
 }
+
+.vb6-dl {
+	text-align: center;
+	padding: 25px;
+	font-size: 72px;
+	background: #222222;
+}
+
+.vb6-dl-text {
+	font-size: 36px;
+	margin-bottom: 50px;
+}
+
+.vb6-dl-icon {
+	font-size: 150px;
+}
