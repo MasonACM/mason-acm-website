@@ -1,5 +1,6 @@
-.idea
+.idea/
 app/storage/sessions/
 vendor/
 app/config/database.php
+_ide_helper.php
 
