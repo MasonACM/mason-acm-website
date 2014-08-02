@@ -36,8 +36,8 @@ Route::filter('guest', function()
 # LAN Party Filter
 Route::filter('lanparty', function()
 {
-	if(!LAN_Party::hasActiveParty()) return Redirect::to('/')
-		->withFlashMessage('Sorry, but no LAN Party is currently planned!');
+	//if(!LAN_Party::hasActiveParty()) return Redirect::to('/')
+		//->withFlashMessage('Sorry, but no LAN Party is currently planned!');
 });
 
 // CSRF Filter

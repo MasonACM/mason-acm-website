@@ -1,4 +1,4 @@
-@extends('layouts.masterWithTitle')
+@extends('layouts.master')
 
 @section('javascript')
 	@yield('lp-javascript')

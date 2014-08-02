@@ -4,29 +4,30 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
-		"intervention/image": "dev-master",
-		"laracasts/validation": "~1.0",
-		"barryvdh/laravel-ide-helper": "1.*",
+		"laravel/framework": "4.2.*",
+		"bhoeting/navigation-builder": "*",
+		"doctrine/dbal": "*",
+		"graham-campbell/markdown": "~2.0"
+	},
+	"require-dev": {
 		"way/generators": "*"
 	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
 			"app/controllers",
-			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
 		"psr-4": {
+			"App\\": "app/",
 			"MasonACM\\": "app/MasonACM"	
 		}
 	},
 	"scripts": {
 		"post-install-cmd": [
-			"php artisan optimize",
-            "php artisan ide-helper:generate"
+			"php artisan optimize"
 		],
 		"pre-update-cmd": [
 			"php artisan clear-compiled"

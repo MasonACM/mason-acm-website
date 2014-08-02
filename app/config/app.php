@@ -67,6 +67,8 @@ return array(
 
 	'key' => 'X6ZhiCCgptGCRccnQKoqRi9GHdvdx284',
 
+	'cipher' => MCRYPT_RIJNDAEL_128,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Autoloaded Service Providers
@@ -105,10 +107,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-        'Intervention\Image\ImageServiceProvider',
-        'Laracasts\Validation\ValidationServiceProvider',
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Way\Generators\GeneratorsServiceProvider'
+        'Way\Generators\GeneratorsServiceProvider',
+        'bhoeting\NavigationBuilder\NavigationServiceProvider',
+        'GrahamCampbell\Markdown\MarkdownServiceProvider'
 	),
 
 	/*
@@ -173,7 +174,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-        'Image'          => 'Intervention\Image\Facades\Image',
+		'Navigation'      => 'bhoeting\NavigationBuilder\Navigation',
+		'Markdown' 		  => 'GrahamCampbell\Markdown\Facades\Markdown'
 		
 	),
 

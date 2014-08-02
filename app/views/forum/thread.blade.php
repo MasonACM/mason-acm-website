@@ -1,71 +1,40 @@
 @extends('layouts.master')
 
-@section('title')
-	{{ $thread->title }}
-@stop
-
 @section('content')
-	<ul class="breadcrumb">
-		<li> {{ HTML::link('forum', 'Forum') }} 
-			<span class="divider"></span>
-		</li>
-	    <li> 
-	    	{{ HTML::link('forum/topic/' . $topic->id, $topic->name) }} 
-	    	<span class="divider"></span>
-	    </li>
-	    <li class="active">Thread</li>
-	</ul>
-
-	@if($user && ($user->isAdmin()))
-		{{ Form::delete('forum/thread/' . $thread->id . '/destroy', 'Delete Thread') }}
-	@endif
-
-	<div class="row">
-		<div class="forum-topic col-md-12">
-			{{ $thread->title }}		
-			<div class="pull-right">
-				<i class="fa fa-comment"></i>
-				&nbsp;{{ $thread->replies() }}
-			</div>
+	<div class="container spacing-top">		
+		<div class="row thread">
+			<h2 class="help-block">
+				<span class="pull-left post-thread-title">
+					{{ $thread->title }}
+				</span>
+				<span class="pull-right">	
+					<i class="fa fa-share"></i> {{ $thread->replies() }}
+				</span>
+			</h2>
+		</div>	
+		@foreach($posts as $post)
+			@include('forum._post', compact($post))
+		@endforeach
+		<div class="row spacing-top-sm">
+			{{ $posts->links() }}
 		</div>
-	</div>
-
-	@foreach($posts as $post)
 		<div class="row">
-			<div class="forum-post col-md-12">
-				<span class="col-md-2">
-					<div class="forum-author">
-						{{ $post->user->present()->fullname() }}
+			@if(Auth::check())
+				{{ Form::open(['route' => 'post.store', 'class' => 'row spacing-top-sm']) }}	
+					<div class="col-md-8">
+						{{ Form::hidden('thread_id', $thread->id) }}
+						<div class="form-group">
+							{{ Form::textarea('body', null, ['class' => 'form-control post-body', 'rows' => '6']) }}
+						</div>	
+						<button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-check"></i> Post</button>
 					</div>
-				  	<div class='forum-time'>{{ $post->present()->date() }}</div> <br>
-					@if($user && ($user->id == $post->author_id || $user->isAdmin()))
-						<div>{{ Form::delete('forum/post/' . $post->id . '/destroy', 'Delete Post', 'btn-sm') }}</div>
-					@endif
-					<br>
-				</span>
-				<span class="forum-body col-md-10">
-					{{ $post->body }}
-				</span>
-			</div>
+				{{ Form::close() }}
+			@else
+				<a href="{{ URL::route('login') }}" class="btn btn-primary btn-lg spacing-top-sm">
+					<i class="fa fa-sign-in"></i>
+					Login to reply!
+				</a>	
+			@endif	
 		</div>
-	@endforeach
-
-	{{ $posts->links() }}
-	
-	<div class="row">
-		@if($user)
-			{{ Form::open(['url' => 'forum/post/create', 'class' => 'col-md-8 forum-reply-form']) }}
-				<input type="hidden" name="thread_id" value="{{ $thread->id }}">	
-				<div class="form-group">
-					{{ Form::textarea('body', null, ['rows' => '5', 'class' => 'form-control', 'style' => 'resize: none;']) }}  
-				</div>
-				<div>
-					{{ Form::submit('Reply', ['class' => 'btn btn-primary']) }}
-				</div>
-			{{ Form::close() }}
-		@else
-			<br><br>
-			{{ HTML::link('login', 'Login to reply!', array('class' => 'btn btn-primary')) }}
-		@endif
 	</div>
 @stop

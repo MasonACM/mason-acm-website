@@ -7,7 +7,7 @@ class UserPresenter extends Presenter {
 	 * 
 	 * @return String
 	 */ 
-    public function fullName()
+    public function fullname()
     {
         return ucwords($this->firstname . ' ' . $this->lastname);
     }

@@ -15,6 +15,7 @@ class CreateSIGTable extends Migration {
 			$table->increments('id');
 			$table->text('body');
 			$table->string('url');
+			$table->string('icon');
 			$table->string('name');
 		});
 	}

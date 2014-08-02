@@ -1,7 +1,6 @@
 <?php
 
-class UsersSeeder
-extends Seeder
+class UsersSeeder extends Seeder
 {
     public function run()
     {
@@ -9,7 +8,7 @@ extends Seeder
             [
                 "firstname" => "admin",
                 "lastname"  => "admin",
-                "password"  => Hash::make("masonacm123"),
+                "password"  => "masonacm123",
                 "email"     => "admin@masonacm.org",                
                 "grad_year" => 2015,
                 "role"      => 2
@@ -26,7 +25,7 @@ extends Seeder
 
         foreach ($users as $user)
         {
-            User::create($user);
+            MasonACM\Models\User::createAndValidate($user);
         }
     }
 }

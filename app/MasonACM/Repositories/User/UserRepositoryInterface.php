@@ -2,8 +2,5 @@
 
 interface UserRepositoryInterface {
 
-	public function register($input);
-
-	public function attemptLogin($input);
 
 }

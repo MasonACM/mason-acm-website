@@ -1,0 +1,26 @@
+.spacing-top {
+	margin-top: 60px;
+}
+
+.spacing-top-sm {
+	margin-top: 15px;
+}
+
+.btn-transparent {
+	color: @brand-primary;
+	background: transparent;	
+	border: 3px solid @brand-primary;
+	font-weight: bold;
+	transition: background 200ms ease, color 200ms;
+	&:hover {
+		color: white;
+		background: @brand-primary;
+		border: 3px solid @brand-primary;
+	}
+}
+
+.well {
+	padding: 40px;
+	background: @color-fg;
+	border: solid 1px darken(@color-fg, 1%)
+}

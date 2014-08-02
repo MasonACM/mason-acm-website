@@ -15,7 +15,6 @@ ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
 	app_path().'/controllers',
-	app_path().'/models',
 	app_path().'/database/seeds',
 
 ));
@@ -71,12 +70,6 @@ App::error(function(Exception $exception, $code)
 */    Log::error($exception);
 });
 
-# Form Validation exception handler
-App::error(function(Laracasts\Validation\FormValidationException $exception)
-{
-    return Redirect::back()->withInput()->withErrors($exception->getErrors());
-});
-
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
@@ -108,3 +101,4 @@ require app_path().'/filters.php';
 require app_path().'/macros.php';
 require app_path().'/helpers.php';
 require app_path().'/bindings.php';
+require app_path().'/composers.php';

@@ -21,15 +21,13 @@
 
     @yield('jumbotron')
 
-    <div class="container" style="padding: 20px;">                 
-        {{-- NoScript Friendly flash message --}}
+    <div class="container">                 
         @if(Session::has('message'))
             <div class="alert alert-danger" id="alert">{{ Session::get('message') }}</div> 
-        @endif
-        
-        {{-- Main content --}}
-        @yield('content')                                                
+        @endif     
     </div>
+
+    @yield('content')                                                
 
     {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
     {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}

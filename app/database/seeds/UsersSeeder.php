@@ -1,7 +1,8 @@
 <?php
 
-class UsersSeeder
-extends Seeder
+use MasonACM\Models\User;
+
+class UsersSeeder extends Seeder
 {
     public function run()
     {
@@ -9,7 +10,7 @@ extends Seeder
             [
                 "firstname" => "admin",
                 "lastname"  => "admin",
-                "password"  => Hash::make("masonacm123"),
+                "password"  => Hash::make("narwall3"),
                 "email"     => "admin@masonacm.org",                
                 "grad_year" => 2015,
                 "role"      => 2
@@ -17,7 +18,7 @@ extends Seeder
             [
                 "firstname" => "peasant",
                 "lastname"  => "busta",
-                "password"  => Hash::make("masonacm123"),
+                "password"  => Hash::make("narwall3"),
                 "email"     => "peasant.busta@gmail.com",                
                 "grad_year" => 2015,
                 "role"      => 0

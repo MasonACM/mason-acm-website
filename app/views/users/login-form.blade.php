@@ -1,25 +1,14 @@
-{{ Form::open(array('route' => 'login.post')) }}
-	
-	<p class='form-title'>LOGIN</p>
+{{ Form::open(array('route' => 'login.post')) }}	
 	<div class="form-group">
-		{{ Form::label('Email', null, ['class' => 'control-label']) }}
-		{{ Form::email('email', null, ['class' => 'form-control email']) }}  
+		{{ Form::email('email', null, ['class' => 'form-control input-lg email', 'placeholder' => 'Email']) }}  
 	</div>
-
 	<div class="form-group">
-		{{ Form::label('Password', null, ['class' => 'control-label']) }}
-		{{ Form::input('password', 'password', null, ['class' => 'form-control']) }}
+		{{ Form::input('password', 'password', null, ['class' => 'form-control input-lg', 'placeholder' => 'Password']) }}
 	</div>
-
-	<div class="checkbox">
-		<label class="remember-label">
-			{{ Form::checkbox("remember", 'no', false) }} Remember me					
-		</label>
-	</div> <br>
-		
-	{{ Form::input('submit', '', 'Login', ['class' => 'btn btn-primary']) }} &nbsp;&nbsp;&nbsp;
-	
+	<button class="btn btn-transparent btn-lg btn-block">Login</button>
 	@if(Session::has('auth_message'))
-		<div class="help-block text-error">{{ Session::get('auth_message') }}</div>
+		<div class="help-block text-danger">
+			{{ Session::get('auth_message') }}
+		</div>
 	@endif
 {{ Form::close() }}

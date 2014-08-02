@@ -5,21 +5,6 @@ use MasonACM\Repositories\User\UserRepositoryInterface;
 class SessionController extends BaseController {
 
     /**
-     * @var UserRepositoryInterface
-     */ 
-    private $userRepo;
-
-    /**
-     * Creates the RegistraionRepository
-     *
-     * @param UserRepositoryInterface $userRepo
-     */
-    public function __construct(UserRepositoryInterface $userRepo)
-    {
-        $this->userRepo = $userRepo;
-    }
-
-    /**
 	 * Displays the login page
 	 *
 	 * @return Response
@@ -30,16 +15,16 @@ class SessionController extends BaseController {
 	}
 
 	/**
-	 * Logs a user in
+	 * Login the user.
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		if ($user = $this->userRepo->attemptLogin(Input::all()))
-        {
-        	Auth::login($user);
+		$input = Input::all();
 
+		if (Auth::attempt(array_only($input, ['email', 'password'])))
+        {
             return Redirect::intended('/');
         }
 
@@ -49,7 +34,7 @@ class SessionController extends BaseController {
     }
 
 	/**
-	 * Logs a user out
+	 * Logout the user.
 	 *
 	 * @return Response
 	 */

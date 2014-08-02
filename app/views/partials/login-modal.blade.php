@@ -9,12 +9,10 @@
     </div>
 </div>
 
-<script>
-    $(function() {
-         
+<script type="application/javascript">
+    $(function() { 
         $('#login-link').on('click', function(e) {
             e.preventDefault();
-            // Focuses on the email field when the modal is opened
             $('#login-modal').on('shown.bs.modal', function(e) {
                 $('.email').focus();
             });

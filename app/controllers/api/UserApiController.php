@@ -10,9 +10,7 @@ class UserApiController extends ApiController {
     private $userRepo;
 
     /**
-     * Creates the UserApiController
-     *
-     * @param UserRepositoryInterface $userRepo
+    * @param UserRepositoryInterface $userRepo
      */
     public function __construct(UserRepositoryInterface $userRepo)
     {
@@ -25,9 +23,15 @@ class UserApiController extends ApiController {
 
 		if ($user = $this->userRepo->attemptLogin($input))
         {
-        	return Response::json($user, 200);
+        	return Response::json([
+				'data' => $this->transform($user)
+			], 200);
         }
 
-        return Response::json(false, 401);
+        return Response::json([
+			'error' => [
+				'message' => 'Bad credentials'
+			]
+		], 401);
     }
 }

@@ -1,30 +1,22 @@
 <?php
 
 use MasonACM\Forms\ForumPostForm;
-use MasonACM\Repositories\Forum\ForumRepositoryInterface;
+use MasonACM\Repositories\Forum\threadRepositoryInterface;
 
 class ForumThreadController extends \BaseController {
 
     /**
-     * @var ForumRepositoryInterface
+     * @var threadRepositoryInterface
      */
-    private $forumRepo;
+    private $threadRepo;
 
     /**
-     * @var ForumPostForm
-     */
-    private $forumPostForm;
-
-    /**
-     * Create the ForumPostController
-     *
      * @param $forumPostForm
-     * @param $forumRepo
+     * @param $threadRepo
      */
-    function __construct(ForumPostForm $forumPostForm, ForumRepositoryInterface $forumRepo)
+    function __construct(ThreadRepositoryInterface $threadRepo)
     {
-        $this->forumPostForm = $forumPostForm;
-        $this->forumRepo = $forumRepo;
+        $this->threadRepo = $threadRepo;
     }
 
     /**
@@ -35,8 +27,13 @@ class ForumThreadController extends \BaseController {
      */
     public function show($id)
     {
-        $thread = $this->forumRepo->findThreadById($id);
-        $posts = $this->forumRepo->paginatePosts($thread->id, 8);
+        $thread = $this->threadRepo->getById($id);
+
+        $posts = $this->threadRepo
+
+
+        $thread = $this->threadRepo->findThreadById($id);
+        $posts = $this->threadRepo->paginatePosts($thread->id, 8);
         $user = (Auth::check()) ? Auth::user() : false;
         $topic = $thread->topic;
 
@@ -67,7 +64,7 @@ class ForumThreadController extends \BaseController {
 
         $this->forumPostForm->validate($input);
 
-        $thread = $this->forumRepo->createThread($input);
+        $thread = $this->threadRepo->createThread($input);
 
         return Redirect::to('forum/thread/' . $thread->id);
     }
