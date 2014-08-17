@@ -7,16 +7,16 @@ class LanPartyController extends BaseController {
     /**
      * @var LanPartyRepositoryInterface
      */
-    private $lanParty;
+    private $lanPartyRepo;
 
     /**
      * Create a LanPartyController
      *
-     * @param LanPartyRepositoryInterface $lanParty
+     * @param LanPartyRepositoryInterface$lanPartyRepo 
      */
-    public function __construct(LanPartyRepositoryInterface $lanParty)
+    public function __construct(LanPartyRepositoryInterface $lanPartyRepo)
 	{
-		$this->lanParty = $lanParty;
+		$this->lanPartyRepo = $lanPartyRepo;
 	}
 
 	/**
@@ -26,7 +26,7 @@ class LanPartyController extends BaseController {
 	 */ 
 	public function index()
 	{
-		$lans = $this->lanParty->getAllParties();
+		$lans = $this->lanPartyRepo->getAllParties();
 
 		return View::make('lanparty.manage', compact('lans'));
 	}
@@ -38,8 +38,8 @@ class LanPartyController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$attendees = $this->lanParty->findPartyById($id)->attendees;
-        $lan = $this->lanParty->findPartyById($id);
+		$attendees = $this->lanPartyRepo->findPartyById($id)->attendees;
+        $lan = $this->lanPartyRepo->findPartyById($id);
 
 		return View::make('lanparty.roster.index', compact('attendees', 'lan'));	
 	}
@@ -51,7 +51,7 @@ class LanPartyController extends BaseController {
 	 */ 
     public function store()
     {
-    	$this->lanParty->createParty(Input::all());
+    	$this->lanPartyRepo->createParty(Input::all());
 
     	return Redirect::back();
     }
@@ -63,7 +63,7 @@ class LanPartyController extends BaseController {
      */ 
     public function update($id)
     {
-    	$this->lanParty->updateParty($id, Input::all());
+    	$this->lanPartyRepo->updateParty($id, Input::all());
 
     	return Redirect::back();
     }
@@ -75,7 +75,7 @@ class LanPartyController extends BaseController {
      */ 
     public function destroy($id)
     {
-    	$this->lanParty->deleteParty($id);
+    	$this->lanPartyRepo->deleteParty($id);
 
     	return Redirect::back();
     }
@@ -87,7 +87,7 @@ class LanPartyController extends BaseController {
      */
     public function activate($id)
     {
-    	$party = $this->lanParty->setActiveParty($id);
+    	$party = $this->lanPartyRepo->setActiveParty($id);
 
     	return Redirect::back();
     }
@@ -99,13 +99,13 @@ class LanPartyController extends BaseController {
      */ 
     public function deactivate($id)
     {
-    	$party = $this->lanParty->setPartyActivity($id, false);
+    	$party = $this->lanPartyRepo->setPartyActivity($id, false);
 
     	return Redirect::back();
     }
 
     public function test()
     {
-        return $this->lanParty->getAllParties();
+        return $this->lanPartyRepo->getAllParties();
     }
 }

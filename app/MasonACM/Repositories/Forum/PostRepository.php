@@ -19,7 +19,7 @@ class PostRepository extends EloquentRepository implements PostRepositoryInterfa
 	 */
 	public function delete($id)
 	{
-		$post = $this->findById($id);
+		$post = $this->getById($id);
 
 		$thread = $post->thread;
 
@@ -31,8 +31,10 @@ class PostRepository extends EloquentRepository implements PostRepositoryInterfa
 		{
 			$thread->delete();
 
-			$posts->delete();
+			return $posts->delete();
 		}
+		
+		return $post->delete();
 	}
 
 }

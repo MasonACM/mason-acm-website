@@ -19,4 +19,11 @@ class InterestGroup extends \stdClass {
 		$this->html = $html;
 	}
 
+	public static function create($filename)
+	{
+		return new InterestGroup(
+			\Str::unslug(basename($filename, '.md')),
+			\URL::route('sig.show', basename($filename, '.md'))
+		);
+	}
 }

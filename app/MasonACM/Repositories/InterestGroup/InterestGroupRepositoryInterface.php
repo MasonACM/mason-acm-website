@@ -3,6 +3,11 @@
 interface InterestGroupRepositoryInterface {
 
 	/**
+	 * @return array
+	 */
+	public function getAll();
+
+	/**
 	 * @param  string $url
 	 * @return string
 	 */

@@ -86,6 +86,17 @@ App::down(function()
 	return Response::make("Be right back!", 503);
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Custom Auth extension
+|--------------------------------------------------------------------------
+*/
+Auth::extend('masonacm', function()
+{
+    return new MasonACM\Auth\MasonAcmAuth;
+});
+
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File

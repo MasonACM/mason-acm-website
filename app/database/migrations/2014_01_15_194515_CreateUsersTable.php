@@ -11,16 +11,19 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table){
-			$table->increments('id');
-			$table->string('firstname', 50);
-			$table->string('lastname', 50);
-			$table->string('email', 50)->unique();
-			$table->string('password', 64);
-			$table->integer('grad_year');
-			$table->integer('role');
-			$table->timestamps();
-		});
+		if ( ! Schema::hasTable('users'))
+		{
+			Schema::create('users', function($table){
+				$table->increments('id');
+				$table->string('firstname', 50);
+				$table->string('lastname', 50);
+				$table->string('email', 50)->unique();
+				$table->string('password', 64);
+				$table->integer('grad_year');
+				$table->integer('role');
+				$table->timestamps();
+			});
+		}
 	}
 
 	/**

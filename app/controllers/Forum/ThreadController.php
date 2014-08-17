@@ -1,6 +1,7 @@
 <?php
 
 use MasonACM\Repositories\Forum\ThreadRepositoryInterface;
+use MasonACM\Exceptions\ModelNotValidException;
 
 class ThreadController extends BaseController {
 
@@ -36,7 +37,7 @@ class ThreadController extends BaseController {
 	 */
 	public function create()
 	{
-	
+		return View::make('forum.create');	
 	}
 
 	/**
@@ -46,7 +47,20 @@ class ThreadController extends BaseController {
 	 */
 	public function store()
 	{
-		
+		$input = Input::all();
+
+		$input['user_id'] = Auth::user()->id;
+
+		try
+		{
+			$thread = $this->threadRepo->create($input);
+
+			return $this->show($thread->id);
+		}
+		catch (ModelNotValidException $e)
+		{
+			return Redirect::back()->withInput()->withErrors($e->errors());
+		}
 	}
 
 	/**
@@ -57,7 +71,10 @@ class ThreadController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$thread = $this->threadRepo->getById($id);
+		if ( ! $thread = $this->threadRepo->getById($id))
+		{
+			return Redirect::route('forum.index');
+		}
 
 		$posts = $this->threadRepo->getPostsPaginated($thread, 5);
 

@@ -11,13 +11,16 @@ class CreateThreadTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('forum_threads', function($table){
-			$table->increments('id');
-			$table->string('title');
-			$table->integer('topic_id');
-			$table->integer('author_id');	
-			$table->timestamps();
-		});
+		if ( ! Schema::hasTable('forum_threads'))
+		{
+			Schema::create('forum_threads', function($table){
+				$table->increments('id');
+				$table->string('title');
+				$table->integer('topic_id');
+				$table->integer('author_id');	
+				$table->timestamps();
+			});
+		}
 	}
 
 	/**

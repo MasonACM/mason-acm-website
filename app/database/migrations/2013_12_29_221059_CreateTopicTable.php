@@ -11,12 +11,15 @@ class CreateTopicTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('forum_topics', function($table){
-			$table->increments('id');
-			$table->string('name');
-			$table->string('description');	
-			$table->timestamps();
-		});
+		if ( ! Schema::hasTable('forum_topics'))
+		{
+			Schema::create('forum_topics', function($table){
+				$table->increments('id');
+				$table->string('name');
+				$table->string('description');	
+				$table->timestamps();
+			});
+		}
 	}
 
 	/**

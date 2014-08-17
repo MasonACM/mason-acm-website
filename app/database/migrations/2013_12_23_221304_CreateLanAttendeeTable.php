@@ -12,14 +12,17 @@ class CreateLanAttendeeTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lan_attendees', function($table)
+		if ( ! Schema::hasTable('lan_attendees'))
 		{
-			$table->increments('id');
-			$table->integer('user_id');
-			$table->integer('lanparty_id');
-			$table->string('firstname', 50);
-			$table->string('lastname', 50);
-		});
+			Schema::create('lan_attendees', function($table)
+			{
+				$table->increments('id');
+				$table->integer('user_id');
+				$table->integer('lanparty_id');
+				$table->string('firstname', 50);
+				$table->string('lastname', 50);
+			});
+		}
 	}
 
 

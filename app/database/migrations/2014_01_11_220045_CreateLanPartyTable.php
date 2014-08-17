@@ -11,13 +11,15 @@ class CreateLanPartyTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lan_partys', function($table){
-			$table->increments('id');
-			$table->dateTime('date');
-			$table->string('pic_path');	
-			$table->boolean('active');
-			$table->timestamps();
-		});
+		if ( ! Schema::hasTable('lan_partys'))
+		{
+			Schema::create('lan_partys', function($table){
+				$table->increments('id');
+				$table->date('date');
+				$table->boolean('active');
+				$table->timestamps();
+			});
+		}
 	}
 
 	/**

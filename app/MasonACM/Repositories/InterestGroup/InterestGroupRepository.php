@@ -11,6 +11,26 @@ class InterestGroupRepository implements InterestGroupRepositoryInterface {
 	public static $folder;
 
 	/**
+	 * @return array
+	 */
+	public function getAll()
+	{	
+		$groups = [];
+
+		if (static::$folder == null)
+		{
+			$folder = app_path() . '/MasonACM/Static/interest-groups/';
+		}
+
+		foreach (File::allFiles($folder) as $file)
+		{
+			array_push($groups, InterestGroup::create($file));
+		}
+
+		return $groups;
+	}
+
+	/**
 	 * @param  string $url
 	 * @return InterestGroup
 	 */

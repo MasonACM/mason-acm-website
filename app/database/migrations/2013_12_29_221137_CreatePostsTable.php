@@ -11,13 +11,16 @@ class CreatePostsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('forum_posts', function($table){
-			$table->increments('id');
-			$table->text('body');
-			$table->integer('thread_id');
-			$table->integer('author_id');
-			$table->timestamps();
-		});
+		if ( ! Schema::hasTable('forum_posts'))
+		{
+			Schema::create('forum_posts', function($table){
+				$table->increments('id');
+				$table->text('body');
+				$table->integer('thread_id');
+				$table->integer('author_id');
+				$table->timestamps();
+			});
+		}
 	}
 
 	/**

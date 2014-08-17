@@ -8,7 +8,7 @@
 		</a>
 	</div>
 	<div class="col-sm-2 pull-right label-user">
-		<i class="fa fa-user"></i> 
+		<i class="fa fa-user"></i>&nbsp;
 		{{ $thread->posts->first()->user->present()->fullname() }}
 	</div>
 	<div class="col-sm-2 pull-right label-time">

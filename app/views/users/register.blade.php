@@ -7,7 +7,7 @@
 @section('content')
 	<div class="container">	
 		<div class="col-sm-offset-3 col-sm-6 spacing-top well">
-			{{ Form::open(['route' => 'register.store']) }}
+			{{ Form::open(['route' => 'register']) }}
 				<div class="form-group">
 					{{ Form::text('firstname', null, ['class' => 'form-control input-lg', 'placeholder' => 'Firstname', 'required']) }}
 					{{ $errors->first('firstname', '<span class="help-block text-error">:message</span>') }}

@@ -2,11 +2,20 @@
 .thread {
 	background: @color-fg;
 	padding: 28px 25px 25px 25px;
-	border-top: 3px solid @brand-primary;
+	border-top: 2px solid @gray-dark;
+
+	&:first-child {
+		border-top: 3px solid @brand-primary;
+	}
 }
 
 .thread-title {
 	font-size: 18px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
 }
 
 .label-user, .label-time, .label-replies {
@@ -22,9 +31,10 @@
 
 .post {
 	background: @color-fg;
-	padding: 30px;
+	padding: @post-padding; 
 	font-size: 16px;
 	margin-top: 2px;
+	position: relative;
 }
 
 .post-body {
@@ -36,4 +46,19 @@
 
 .post-thread-title {
 	font-style: italic;
+	display: inline;
+}
+
+.post-actions {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.btn-delete-post {
+	color: white;
+	background: transparent;
+	&:hover {
+		color: @brand-danger;
+	}
 }

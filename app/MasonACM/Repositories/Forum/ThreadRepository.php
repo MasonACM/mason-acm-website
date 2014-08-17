@@ -6,11 +6,36 @@ use MasonACM\Models\Thread;
 class ThreadRepository extends EloquentRepository implements ThreadRepositoryInterface {
 
 	/**
+	 * @var PostRepositoryInterface
+	 */
+	private $postRepo;
+
+	/**
 	 * @param Thread $thread
 	 */
-	public function __construct(Thread $thread)
+	public function __construct(Thread $thread, PostRepositoryInterface $postRepo)
 	{
 		$this->model = $thread;
+		$this->postRepo = $postRepo;
+	}
+
+	/**
+	 * @param  type $input 
+	 * @return Thread
+	 */
+	public function create($input)
+	{
+		$threadInput = array_only($input, ['title']);
+
+		$postInput = array_only($input, ['body', 'user_id']);
+
+		$thread = parent::create($threadInput);
+
+		$postInput['thread_id'] = $thread->id;
+
+		$this->postRepo->create($postInput);
+
+		return $thread;
 	}
 
 	/**
@@ -23,7 +48,7 @@ class ThreadRepository extends EloquentRepository implements ThreadRepositoryInt
 	{
 		return $this->model->with(['posts' => function($query)
 		{
-			$query->take(1)->with('user');
+			$query->with('user');
 
 		}])->paginate(8);
 	}

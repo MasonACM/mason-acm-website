@@ -11,13 +11,16 @@ class CreateSIGTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('sig', function($table){
-			$table->increments('id');
-			$table->text('body');
-			$table->string('url');
-			$table->string('icon');
-			$table->string('name');
-		});
+		if ( ! Schema::hasTable('sig'))
+		{
+			Schema::create('sig', function($table){
+				$table->increments('id');
+				$table->text('body');
+				$table->string('url');
+				$table->string('icon');
+				$table->string('name');
+			});
+		}
 	}
 
 	/**

@@ -22,7 +22,7 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) 
 	{
-		return Redirect::to('users/login')
+		return Redirect::route('login')
 			->withFlashMessage('You must be logged in to view this page');
 	}
 });

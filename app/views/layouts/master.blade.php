@@ -30,8 +30,8 @@
     @yield('content')                                                
 
     {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
-    {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
-    {{ HTML::script('js/comfirm_delete.js') }}
+    {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
+    {{ HTML::script('js/global.js') }}
     @yield('javascript')
 
     {{-- Global javascript --}}
@@ -42,6 +42,8 @@
             banner.hide().fadeIn(700); 
         });
     </script>
+
+    @include('partials.confirm-modal')
 
     {{-- April Fools Day Joke --}}
     {{ HTML::script('js/april-fools.js') }}
@@ -54,7 +56,7 @@
     {{-- Login form modal --}}
     @if(Auth::guest())
         @include('partials.login-modal')
-    @endif 
+    @endif
 
 </body>
 </html>
