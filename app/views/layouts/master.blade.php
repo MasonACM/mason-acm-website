@@ -1,62 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        Mason ACM | @yield('title')
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		Mason ACM @yield('title')
+	</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
-    {{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') }}
-    {{ HTML::style('css/styles.css') }}
-    {{ HTML::style('css/acmicon.css') }}
-    @yield('css')
+	{{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css') }}
+	{{ HTML::style('css/styles.css') }}
+	@yield('css')
 
 </head>
 
 <body>
-    @include('partials.navbar')
+	{{-- Navigation bar --}}
+	@include('partials.navbar')
 
-    @yield('pageTitle')
+	{{-- Main content --}}
+	@yield('content')
 
-    @yield('jumbotron')
+	{{-- Javascript --}}
+	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
+	{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
+	{{ HTML::script('js/global.js') }}
+	@yield('javascript')
 
-    <div class="container">                 
-        @if(Session::has('message'))
-            <div class="alert alert-danger" id="alert">{{ Session::get('message') }}</div> 
-        @endif     
-    </div>
+	{{-- Flash Message modal --}}
+	@if (Session::has('flash_message'))
+	   @include('partials.flash-message-modal')
+	@endif
 
-    @yield('content')                                                
+	{{-- Login form modal --}}
+	@if (Auth::guest())
+		@include('partials.login-modal')
+	@endif
 
-    {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
-    {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
-    {{ HTML::script('js/global.js') }}
-    @yield('javascript')
-
-    {{-- Global javascript --}}
-    <script type="application/javascript">
-        $(function() {
-            // Banner animation
-            var banner = $('.banner-heading');
-            banner.hide().fadeIn(700); 
-        });
-    </script>
-
-    @include('partials.confirm-modal')
-
-    {{-- April Fools Day Joke --}}
-    {{ HTML::script('js/april-fools.js') }}
-    
-    {{-- Flash Message modal --}}
-    @if(Session::has('flash_message'))
-       @include('partials.flash-message-modal') 
-    @endif 
-
-    {{-- Login form modal --}}
-    @if(Auth::guest())
-        @include('partials.login-modal')
-    @endif
+	{{-- Confirm Modal --}}
+	@include('partials.confirm-modal')
 
 </body>
 </html>

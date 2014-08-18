@@ -1,72 +1,53 @@
-@extends('layouts.masterWithTitle')
-
-@section('title')
-	LAN Party Roster
-@stop
+@extends('layouts.master')
 
 @section('content')
-	<?php $counter = 0; ?>
-	<div class="row">
-		<div class="col-md-2">
-			{{ HTML::linkWithIcon($lan->id . '/roster/add', 'Add', 'fa', 'plus', ['class' => 'btn btn-primary btn-lg btn-add']) }}
+	<div ng-app ng-controller="RosterCtrl" class="container spacing-top">
+		<div class="col-md-4">
+			<div class="well">
+				<form>
+					<div class="form-group">
+						<input type="text" name="firstname" placeholder="Firstname" class="form-control" ng-model="attendeeData.firstname" required />
+					</div>
+					<div class="form-group">
+						<input type="text" name="lastname" placeholder="Lastname" class="form-control" ng-model="attendeeData.lastname" required />
+					</div>
+					<div class="form-group">
+						<input type="text" name="grad_year" placeholder="Graduation Year" class="form-control" ng-model="attendeeData.grad_year" required />
+					</div>
+					<input type="text" name="lanparty_id" value="{{ $party->id }}" class="hidden" ng-model="attendeeData.lanparty_id"  />
+					<input type="text" name="_token" value="{{ csrf_token() }}" class="hidden" ng-model="attendeeData._token"  />
+					<div class="form-group">
+						<button class="btn btn-primary" ng-click="addAttendee()">
+							<i class="fa fa-plus"></i> Add
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 		<div class="col-md-8">
-			<table class="table" id="roster">
-				<thead>
-					<tr class="header-white">
-						<th> # </td>
-						<th> First Name </td>
-						<th> Last Name  </td>
+			<input type="hidden" id="party-id" value="{{ $party->id }}"/>
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th><a href="" ng-click="order('firstname')">Firstname</a></th>
+					<th><a href="" ng-click="order('lastname')">Lastname</a></th>
+					<th><a href="" ng-click="order('grad_year')">Graduation Year</a></th>
+				</tr>
+				<tbody ng-repeat="attendee in attendees">
+					<tr>
+						<td>@{{ $index }}</td>
+						<td>@{{ attendee.firstname }}</td>
+						<td>@{{ attendee.lastname }}</td>
+						<td>@{{ attendee.grad_year }}</td>
 					</tr>
-				</thead>
-				
-				<tbody>
-					@foreach($attendees as $attendee) 
-						<tr>
-							<td> {{ ++$counter }}
-							<td> {{ $attendee->firstname }} </td>
-							<td> {{ $attendee->lastname  }} </td>
-						</tr>
-					@endforeach
 				</tbody>
 			</table>
-		</div>
-	</div>	
-	<div class="modal fade form-modal" id="add-modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-		    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <div class="modal-body">
-		            @include('lanparty.roster.add')
-		        </div>
-		    </div>
 		</div>
 	</div>
 @stop
 
 @section('javascript')
-	{{ HTML::script('js/jquery.dataTables.js') }}
-	<script type="text/javascript">
-		$(function() {
-			$('#roster').dataTable( {
-			    "bPaginate": false,
-			    "bLengthChange": false,
-			    "bFilter": true,
-			    "bSort": false,
-			    "bInfo": false,
-			    "bAutoWidth": false,
-			    "oLanguage": { "sSearch": "" }
-			});
-
-			$('.dataTables_filter input').addClass('form-control');
-
-            $('.btn-add').on('click', function(e) {
-                e.preventDefault();
-                $('#add-modal').on('shown.bs.modal', function(e) {
-                    $('#firstname-input').focus();
-                });
-            	$('#add-modal').modal();
-            });
-		});
-	</script>
+	{{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js')  }}
+	{{ HTML::script('js/roster.js') }}
 @stop
+

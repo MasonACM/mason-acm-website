@@ -1,68 +1,34 @@
 <?php
 
-use MasonACM\Repositories\LanParty\LanPartyRepositoryInterface;
+use MasonACM\Repositories\LanAttendee\LanAttendeeRepository;
+use MasonACM\Repositories\LanAttendee\LanAttendeeRepositoryInterface;
 
 class LanAttendeeController extends BaseController {
 
-    /**
-     * @var LanPartyRepositoryInterface
-     */
-    private $lanRepo;
-
-    function __construct(LanPartyRepositoryInterface $lanRepo)
-    {
-        $this->lanRepo = $lanRepo;
-    }
-
-    /**
-	 * Add or remove a user to or from the roster
-     *
-     * @return Response
+	/**
+	 * @var LanAttendeeRepositoryInterface
 	 */
-	public function storeOrDestroy()
-	{
-		$this->lanRepo->addOrRemoveFromRoster(Auth::user()->id);
+	private $lanAttendeeRepo;
 
-		return Redirect::back()->with('reloaded', true);
+
+	/**
+	 * @param LanAttendeeRepositoryInterface $lanAttendeeRepo
+	 */
+	function __construct(LanAttendeeRepositoryInterface $lanAttendeeRepo)
+	{
+		$this->lanAttendeeRepo = $lanAttendeeRepo;
 	}
 
 	/**
-	 * Returns the LAN Party pre-register view
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		$party = $this->lanRepo->getActiveParty();
-
-		$isAttendingLan = Auth::check() 
-			? $this->lanRepo->isAttendingLan(Auth::user()->id)
-			: false;
-
-		return View::make('lanparty.signup', compact('party', 'isAttendingLan'));
-	}
-
-	/**
-	 * Adds someone to the roster
-	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		$this->lanRepo->addToRoster(Input::all());
+		$attendee = $this->lanAttendeeRepo->create(Input::all());
+
+		if (Request::wantsJson()) return $attendee;
 
 		return Redirect::back();
 	}
-
-    /**
-     * Destroy a specified LAN Attendee
-     *
-     * @param int $id
-     */
-    public function destroy($id)
-    {
-
-    }
-
 
 }

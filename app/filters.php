@@ -3,18 +3,7 @@
 # Filter for admin actions
 Route::filter('admin', function()
 {
-	if (Auth::check()) 
-	{		
-		// If user is not admin
-	    if (Auth::user()->role < 1)
-	    {
-	        return Redirect::to('/');
-	    }
-	}
-	else
-	{
-		return Redirect::to('/');
-	}
+	if ( ! Auth::admin()) App::abort(403);
 });
 
 # Authentication Filter

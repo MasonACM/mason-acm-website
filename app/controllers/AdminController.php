@@ -4,7 +4,7 @@ class AdminController extends \BaseController  {
 	
     public function getIndex()
 	{
-		return View::make('admin.dashboard');
+		return View::make('admin.index');
     }
 
     public function getUsers()

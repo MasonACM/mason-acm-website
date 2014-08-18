@@ -10,41 +10,31 @@ abstract class EloquentRepository implements EloquentRepositoryInterface {
 	protected $model;
 
 	/**
-	 * Construct the EloquentRepository
-	 *
-	 * @param EloquentModel $model
-	 */
-	public function __construct(EloquentModel $model)
-	{
-		$this->model = $model;
-	}
-
-	/**
 	 * Get every record of the model.
 	 *
-	 * @return \Collection
+	 * @return Collection
 	 */
 	public function getAll()
 	{
-		return $this->model->model->all();
+		return $this->model->all();
 	}
 
 	/**
 	 * Get each record of the model in paginated form.
 	 * 
 	 * @param  int $count
-	 * @return \Collection
+	 * @return Collection
 	 */ 
 	public function getAllPaginated($count)
 	{
-		return $this->model->model->paginate($count);
+		return $this->model->paginate($count);
 	}
 
 	/**
 	 * Eagerly load a model relationship.
 	 *
 	 * @param  string $with 
-	 * @return \Collection 
+	 * @return Collection
 	 */
 	public function eagerLoad($with)
 	{
@@ -79,8 +69,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface {
 	 * 
 	 * @param  string $field
 	 * @param  string $value
-	 * @return Collection 
-	 */ 
+	 */
 	public function getManyByField($field, $value)
 	{
 		return $this->model->where($field, '=', $value)->get();

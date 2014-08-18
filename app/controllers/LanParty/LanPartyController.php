@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+use MasonACM\Exceptions\ModelNotValidException;
 use MasonACM\Repositories\LanParty\LanPartyRepositoryInterface;
 
 class LanPartyController extends BaseController {
@@ -9,103 +11,94 @@ class LanPartyController extends BaseController {
      */
     private $lanPartyRepo;
 
-    /**
-     * Create a LanPartyController
-     *
-     * @param LanPartyRepositoryInterface$lanPartyRepo 
-     */
-    public function __construct(LanPartyRepositoryInterface $lanPartyRepo)
+	/**
+	 * @param LanPartyRepositoryInterface $lanPartyRepo
+	 */
+	public function __construct(LanPartyRepositoryInterface $lanPartyRepo)
 	{
 		$this->lanPartyRepo = $lanPartyRepo;
 	}
 
 	/**
-	 * Displays the LAN Party management page
-     *
-     * @return Response
-	 */ 
+	 * @return mixed
+	 */
 	public function index()
 	{
-		$lans = $this->lanPartyRepo->getAllParties();
+		$parties = $this->lanPartyRepo->getAll();
 
-		return View::make('lanparty.manage', compact('lans'));
+		return View::make('lanparty.index')->withParties($parties);
 	}
 
 	/**
-	 * Display the LAN Party roster
-	 * 
-	 * @return Response 
+	 * @param  int $id
+	 * @return mixed
 	 */
 	public function show($id)
 	{
-		$attendees = $this->lanPartyRepo->findPartyById($id)->attendees;
-        $lan = $this->lanPartyRepo->findPartyById($id);
+		$party = $this->lanPartyRepo->getById($id);
 
-		return View::make('lanparty.roster.index', compact('attendees', 'lan'));	
+		$attendees = $party->attendees;
+
+		if (Request::wantsJson()) return Response::json($attendees);
+
+		return View::make('lanparty.roster.index')->withParty($party);
 	}
 
 	/**
-	 * Create a LAN Party
-	 * 
-	 * @return Response
-	 */ 
-    public function store()
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function store()
     {
-    	$this->lanPartyRepo->createParty(Input::all());
+		$input = Input::all();
+
+		$input['date'] = new Carbon($input['date']);
+
+		$this->lanPartyRepo->create($input);
+
+		return Redirect::back();
+    }
+
+	/**
+	 * @param  int $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function update($id)
+    {
+    	$this->lanPartyRepo->update($id, Input::all());
 
     	return Redirect::back();
     }
 
-    /**
-     * Update a specified LAN Party
-     * 
-     * @return Response
-     */ 
-    public function update($id)
+	/**
+	 * @param  int $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function destroy($id)
     {
-    	$this->lanPartyRepo->updateParty($id, Input::all());
+    	$this->lanPartyRepo->delete($id);
 
     	return Redirect::back();
     }
 
-    /**
-     * Delete a specified LAN Party
-     * 
-     * @return Response
-     */ 
-    public function destroy($id)
+	/**
+	 * @param  int $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function activate($id)
     {
-    	$this->lanPartyRepo->deleteParty($id);
+		$this->lanPartyRepo->setActiveParty($id);
 
     	return Redirect::back();
     }
 
-    /**
-     * Make a specified LAN Party Active
-     *
-     * @return Response  
-     */
-    public function activate($id)
+	/**
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function deactivate()
     {
-    	$party = $this->lanPartyRepo->setActiveParty($id);
+		$this->lanPartyRepo->deactivateActiveParty();
 
     	return Redirect::back();
     }
 
-    /**
-     * Make a specified LAN Party inactive
-     * 
-     * @return Response 
-     */ 
-    public function deactivate($id)
-    {
-    	$party = $this->lanPartyRepo->setPartyActivity($id, false);
-
-    	return Redirect::back();
-    }
-
-    public function test()
-    {
-        return $this->lanPartyRepo->getAllParties();
-    }
 }

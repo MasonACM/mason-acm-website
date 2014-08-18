@@ -7,6 +7,11 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use MasonACM\Presenters\PresentableTrait;
 use Hash;
 
+/**
+ * @property mixed firstname
+ * @property mixed lastname
+ * @property mixed grad_year
+ */
 class User extends EloquentModel implements UserInterface, RemindableInterface {
 
     use UserTrait, RemindableTrait, PresentableTrait;

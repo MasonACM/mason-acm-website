@@ -10,7 +10,8 @@
 		"graham-campbell/markdown": "~2.0"
 	},
 	"require-dev": {
-		"way/generators": "*"
+		"way/generators": "*",
+		"fzaninotto/faker": "*"
 	},
 	"autoload": {
 		"classmap": [

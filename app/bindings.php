@@ -2,6 +2,7 @@
 
 # LAN Party repository
 App::bind('MasonACM\Repositories\LanParty\LanPartyRepositoryInterface', 'MasonACM\Repositories\LanParty\LanPartyRepository');
+App::bind('MasonACM\Repositories\LanAttendee\LanAttendeeRepositoryInterface', 'MasonACM\Repositories\LanAttendee\LanAttendeeRepository');
 
 # User repository
 App::bind('MasonACM\Repositories\User\UserRepositoryInterface', 'MasonACM\Repositories\User\UserRepository');

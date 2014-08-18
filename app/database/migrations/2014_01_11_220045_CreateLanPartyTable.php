@@ -11,9 +11,9 @@ class CreateLanPartyTable extends Migration {
 	 */
 	public function up()
 	{
-		if ( ! Schema::hasTable('lan_partys'))
+		if ( ! Schema::hasTable('lan_parties'))
 		{
-			Schema::create('lan_partys', function($table){
+			Schema::create('lan_parties', function($table){
 				$table->increments('id');
 				$table->date('date');
 				$table->boolean('active');
@@ -29,7 +29,7 @@ class CreateLanPartyTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('lan_partys');
+		Schema::dropIfExists('lan_parties');
 	}
 
 }

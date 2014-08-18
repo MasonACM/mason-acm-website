@@ -19,17 +19,11 @@ HTML::macro('linkWithIcon', function($url = '/', $text = 'link', $icon = 'extern
 /**
  * Generate a delete form
  */
-Form::macro('delete', function($url, $text = 'Delete', $buttonClass = '')
+Form::macro('delete', function($attributes = [])
 {
-	$options['method'] = 'POST';
-	$options['url'] = $url;
-	$options['class'] = 'delete-form';
 
-	$button_options['type'] = 'submit';
-	$button_options['class'] = 'btn btn-danger ' . $buttonClass;
-
-	return Form::open($options)
-		    . "<button" . HTML::attributes($button_options) . "><i class='fa fa-trash-o'></i>&nbsp;{$text}</button>"
+	return Form::open($attributes)
+		    . "<button" . HTML::attributes(['class' => 'btn btn-danger']) . "><i class='fa fa-trash-o'></i>&nbsp;Delete</button>"
 		    . Form::close(); 
 });
 

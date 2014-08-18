@@ -17,10 +17,11 @@ class CreateLanAttendeeTable extends Migration {
 			Schema::create('lan_attendees', function($table)
 			{
 				$table->increments('id');
-				$table->integer('user_id');
-				$table->integer('lanparty_id');
+				$table->unsignedInteger('lanparty_id');
 				$table->string('firstname', 50);
 				$table->string('lastname', 50);
+				$table->unsignedInteger('grad_year');
+				$table->timestamps();
 			});
 		}
 	}

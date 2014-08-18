@@ -6,7 +6,7 @@ interface EloquentRepositoryInterface {
 
 	/**
 	 * @param  int $count
-	 */ 
+	 */
 	public function getAllPaginated($count);
 		
 	/**

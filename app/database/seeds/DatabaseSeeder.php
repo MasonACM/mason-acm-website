@@ -9,5 +9,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UsersSeeder');
 		
 		$this->call('ForumSeeder');
+
+		$this->call('LanPartySeeder');
 	}
 }
