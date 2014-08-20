@@ -2,18 +2,25 @@
 
 class PagesController extends BaseController {
 
+	/**
+	 * @return Response
+	 */
 	public function getHome()
 	{
-		//$lanPartyIsActive = LAN_Party::hasActiveParty();
-
 		return View::make('pages.home');
 	}
 
+	/**
+	 * @return Response
+	 */
 	public function getAbout()
 	{
 		return View::make('pages.about');
 	}
 
+	/**
+	 * @return Response
+	 */
 	public function getVB()
 	{
 		return View::make('pages.vb');

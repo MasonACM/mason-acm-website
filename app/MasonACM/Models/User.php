@@ -11,6 +11,7 @@ use Hash;
  * @property mixed firstname
  * @property mixed lastname
  * @property mixed grad_year
+ * @property mixed id
  */
 class User extends EloquentModel implements UserInterface, RemindableInterface {
 

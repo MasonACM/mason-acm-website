@@ -1,5 +1,6 @@
 <?php namespace MasonACM\Composers;
 
+use MasonACM\Models\LanParty;
 use MasonACM\Repositories\InterestGroup\InterestGroupRepositoryInterface;
 
 class NavbarComposer {
@@ -22,9 +23,14 @@ class NavbarComposer {
 	 */
 	public function compose($view)
 	{
+		$activeLanParty = LanParty::hasActiveParty();
+
 		$groups = $this->groupRepo->getAll();
 
-		$view->with('groups', $groups);
+		$view->with([
+			'groups' => $groups,
+			'activeLanParty' => $activeLanParty
+		]);
 	}
 
 }

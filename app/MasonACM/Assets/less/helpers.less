@@ -28,3 +28,26 @@
 .modal-header {
 	color: white;
 }
+
+.btn-huge {
+	padding: 50px;
+	background: @color-fg;
+	font-size: 24px;
+	font-weight: bold;
+	border: none;
+	text-align: center;
+	margin-bottom: 30px;
+	transition: background 200ms ease, color 200ms;
+	&:hover {
+		color: white;
+		background: @brand-primary;
+	}
+}
+
+.btn-huge-block {
+	&:extend(.btn-huge);
+	&:hover {
+		&:extend(.btn-huge:hover);
+	}
+	width: 100%;
+}

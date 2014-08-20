@@ -17,15 +17,15 @@ class LanAttendee extends EloquentModel {
     /**
      * @var array
      */
-    protected $fillable = ['firstname', 'lastname', 'grad_year', 'lanparty_id'];
+    protected $fillable = ['firstname', 'lastname', 'grad_year', 'lanparty_id', 'user_id'];
 
     /**
      * @var array
      */
     protected static $rules = [
-		'firstname'   => 'required|max:50|alpha_dash',
-		'lastname'    => 'required|max:50|alpha_dash',
-		'grad_year'   => 'required|digits:4|numeric',
+    		'firstname'   => 'required|max:50|alpha_dash',
+    		'lastname'    => 'required|max:50|alpha_dash',
+    		'grad_year'   => 'required|digits:4|numeric',
         'lanparty_id' => 'required|numeric'
     ];
 
@@ -38,6 +38,14 @@ class LanAttendee extends EloquentModel {
     }
 
 	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user()
+	{
+		return $this->belongsTo('MasonACM\Models\User');
+	}
+
+	/**
 	 * @param  User $user
 	 * @return LanAttendee
 	 */
@@ -47,8 +55,18 @@ class LanAttendee extends EloquentModel {
            'firstname'   => $user->firstname,
            'lastname'    => $user->lastname,
            'grad_year'   => $user->grad_year,
+		   'user_id'     => $user->id,
            'lanparty_id' => LanParty::getActiveParty()->id
        ]);
     }
+
+	/**
+	 * @param  int $id
+	 * @return bool
+	 */
+	public static function checkByUserId($id)
+	{
+		return static::where('user_id', $id)->exists();
+	}
 
 }

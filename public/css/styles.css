@@ -2056,7 +2056,7 @@ pre code {
   }
 }
 table {
-  background-color: transparent;
+  background-color: #222222;
 }
 th {
   text-align: left;
@@ -2075,11 +2075,11 @@ th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #222222;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
-  border-bottom: 2px solid #dddddd;
+  border-bottom: 2px solid #222222;
 }
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
@@ -2090,7 +2090,7 @@ th {
   border-top: 0;
 }
 .table > tbody + tbody {
-  border-top: 2px solid #dddddd;
+  border-top: 2px solid #222222;
 }
 .table .table {
   background-color: rgba(27, 27, 27, 0.9);
@@ -2104,7 +2104,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #dddddd;
+  border: 1px solid #222222;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2112,7 +2112,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #dddddd;
+  border: 1px solid #222222;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2120,11 +2120,11 @@ th {
 }
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #f9f9f9;
+  background-color: #1d1d1d;
 }
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background-color: #f5f5f5;
+  background-color: #1d1d1d;
 }
 table col[class*="col-"] {
   position: static;
@@ -2149,14 +2149,14 @@ table th[class*="col-"] {
 .table > thead > tr.active > th,
 .table > tbody > tr.active > th,
 .table > tfoot > tr.active > th {
-  background-color: #f5f5f5;
+  background-color: #1d1d1d;
 }
 .table-hover > tbody > tr > td.active:hover,
 .table-hover > tbody > tr > th.active:hover,
 .table-hover > tbody > tr.active:hover > td,
 .table-hover > tbody > tr:hover > .active,
 .table-hover > tbody > tr.active:hover > th {
-  background-color: #e8e8e8;
+  background-color: #101010;
 }
 .table > thead > tr > td.success,
 .table > tbody > tr > td.success,
@@ -2249,7 +2249,7 @@ table th[class*="col-"] {
     overflow-y: hidden;
     overflow-x: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 1px solid #dddddd;
+    border: 1px solid #222222;
     -webkit-overflow-scrolling: touch;
   }
   .table-responsive > .table {
@@ -5205,7 +5205,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel > .panel-body + .table,
 .panel > .panel-body + .table-responsive {
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #222222;
 }
 .panel > .table > tbody:first-child > tr:first-child th,
 .panel > .table > tbody:first-child > tr:first-child td {
@@ -6342,6 +6342,27 @@ textarea {
 .modal-header {
   color: white;
 }
+.btn-huge,
+.btn-huge-block {
+  padding: 50px;
+  background: #222222;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+  margin-bottom: 30px;
+  -webkit-transition: background 200ms ease, color 200ms;
+       -o-transition: background 200ms ease, color 200ms;
+          transition: background 200ms ease, color 200ms;
+}
+.btn-huge:hover,
+.btn-huge-block:hover {
+  color: white;
+  background: #1d7341;
+}
+.btn-huge-block {
+  width: 100%;
+}
 .navbar-nav > li > a,
 .navbar-brand {
   padding-top: 20px;
@@ -6420,4 +6441,7 @@ textarea {
 .interest-group-html h3 {
   color: #1d7341;
   font-weight: bold;
+}
+.lan-info-block {
+  border: solid 10px rgba(27, 27, 27, 0.9);
 }

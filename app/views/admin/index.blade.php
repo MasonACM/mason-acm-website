@@ -12,8 +12,13 @@
 	</div>
 	<div class="container">
 		<div class="col-md-3">
-			<a href="{{ URL::route('lanparty.index') }}">
+			<a href="{{ URL::route('lanparty.index') }}" class="btn btn-huge">
 				<i class="fa fa-gamepad"></i> LAN Party
+			</a>
+		</div>
+		<div class="col-md-3">
+			<a href="{{ URL::route('users.index') }}" class="btn btn-huge">
+				<i class="fa fa-users"></i> Manage Users
 			</a>
 		</div>
     </div>

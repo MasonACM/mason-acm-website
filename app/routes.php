@@ -10,19 +10,36 @@ Route::get('logout', ['as' => 'logout', 'before' => 'auth', 'uses' => 'SessionCo
 Route::get('login', ['as' => 'login', 'before' => 'guest', 'uses' => 'SessionController@create']);
 Route::post('login', ['as' => 'login.post', 'before' => 'guest|csrf', 'uses' => 'SessionController@store']);
 
-# Registration
-Route::group(['prefix' => 'register', 'before' => 'guest'], function()
-{
-    Route::post('/', ['as' => 'register', 'before' => 'csrf', 'uses' => 'RegistrationController@store']);
-    Route::get('/', ['as' => 'register', 'uses' => 'RegistrationController@create']);
-});
+# User
+Route::get('users', [
+	'as' => 'users.index',
+	'before' => 'admin',
+	'uses' => 'UserController@index'
+]);
 
-# Profile
-Route::group(['prefix' => 'profile', 'before' => 'auth'], function() 
-{
-    Route::get('edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-    Route::post('update', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-});
+Route::post('register', [
+	'as' => 'register',
+	'before' => 'csrf', 
+	'uses' => 'UserController@store'
+]);
+
+Route::get('register', [
+	'as' => 'register',
+	'before' => 'guest',
+	'uses' => 'UserController@create'
+]);
+
+Route::get('profile', [
+	'as' => 'profile.edit',
+	'before' => 'auth',
+	'uses' => 'UserController@edit'
+]);
+
+Route::put('profile', [
+	'as' => 'profile.update',
+	'before' => 'auth|csrf',
+	'uses' => 'UserController@update'
+]);
 
 # Forum
 Route::group(['prefix' => 'forum'], function() 
@@ -51,23 +68,13 @@ Route::group(['prefix' => 'forum'], function()
     });
 });
 
-# Tutorials
-Route::get('tutorials/create', array('before' => 'auth', 'uses' =>  'TutorialController@getCreate'));
-Route::post('tutorials/create', array('before' => 'auth', 'uses' => 'TutorialController@postCreate'));
-Route::get('tutorials/edit/{id}', array('before' => 'auth', 'uses' => 'TutorialController@getEdit'));
-Route::post('tutorials/edit/{id}', array('before' => 'auth', 'uses' => 'TutorialController@postEdit'));
-Route::post('tutorials/delete/{id}', array('before' => 'auth', 'uses' => 'TutorialController@postDelete'));
-Route::get('tutorials/view/{id}', 'TutorialController@getTutorial');
-Route::get('tutorials/{name}', 'TutorialController@getTopic');
-Route::get('tutorials', 'TutorialController@getIndex');
-
 # LAN Party / Attendee
 Route::group(['prefix' => 'lanparty'], function()
 {
 	Route::get('/', [
 		'as' => 'lanparty.register',
 		'before' => 'auth',
-		'LanAttendeeController@create'
+		'uses' => 'LanAttendeeController@create'
 	]);
 
 	Route::get('manage', [
@@ -115,12 +122,23 @@ Route::group(['prefix' => 'lanparty'], function()
 	Route::post('{id}/roster/add', [
 		'as' => 'lanparty.roster.add',
 		'before' => 'admin',
+		'uses' => 'LanAttendeeController@storeFromUser'
+	]);
+
+	Route::post('{id}/admin/roster/add', [
+		'as' => 'lanparty.admin.roster.add',
+		'before' => 'admin',
 		'uses' => 'LanAttendeeController@store'
 	]);
 });
 
 # Interest Group
-Route::get('special-interest-group/{url}', [
+Route::get('special-interest-groups', [
+    'as' => 'sig.index',
+    'uses' => 'InterestGroupController@index'
+]);
+
+Route::get('special-interest-groups/{url}', [
     'as' => 'sig.show',
     'uses' => 'InterestGroupController@show'
 ]);

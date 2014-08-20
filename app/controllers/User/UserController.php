@@ -4,7 +4,7 @@ use MasonACM\Repositories\User\UserRepositoryInterface;
 use MasonACM\Exceptions\ModelNotValidException;
 use MasonACM\Models\User;
 
-class RegistrationController extends BaseController {
+class UserController extends BaseController {
     
     /**
      * @var UserRepositoryInterface
@@ -20,8 +20,23 @@ class RegistrationController extends BaseController {
     }
 
     /**
-     * Displays the registration page
-     * 
+     * @return Response
+     */ 
+    public function index()
+    {
+        $count = Input::has('count') ? Input::get('count') : 8;
+
+        $users = $this->userRepo->getAllPaginated($count);
+
+        if (Request::wantsJson())
+        {
+            return $users;
+        }
+
+        return View::make('users.index', compact('users', 'count'));
+    }
+
+    /**
      * @return Response
      */ 
     public function create()
@@ -30,8 +45,6 @@ class RegistrationController extends BaseController {
     }
 
     /**
-     * Creates a new user
-     * 
      * @return Response
      */
     public function store()
@@ -51,7 +64,30 @@ class RegistrationController extends BaseController {
         {
             return Redirect::back()->withInput()->withErrors($e->errors()); 
         }
+    }
 
+    /**
+     * @return Response
+     */ 
+    public function edit()
+    {
+        $user = Auth::user();
+
+        return View::make('users.profile', compact('user'));
+    }
+
+    /**
+     * @return Response
+     */ 
+    public function update()
+    {
+        $input = Input::all();
+
+        $user = Auth::user();
+
+        $this->userRepo->update($user->id, $input);
+
+        return Redirect::back()->withFlashMessage('Profile updated!');
     }
 
 }

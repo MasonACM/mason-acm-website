@@ -18,8 +18,16 @@ class InterestGroupController extends BaseController {
 	}
 
 	/**
-	 * Display an Interest Group page.
-	 *
+	 * @return Response
+	 */ 
+	public function index()
+	{
+		$interestGroups = $this->groupRepo->getAll();
+
+		return View::make('interest-group.index', compact('interestGroups'));
+	}
+
+	/**
 	 * @param  string $url 
 	 * @return Response 
 	 */
