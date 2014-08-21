@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"bhoeting/navigation-builder": "*",
 		"doctrine/dbal": "*",
 		"graham-campbell/markdown": "~2.0"
 	},

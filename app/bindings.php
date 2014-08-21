@@ -13,3 +13,6 @@ App::bind('MasonACM\Repositories\Forum\PostRepositoryInterface', 'MasonACM\Repos
 
 # Interest Group repository
 App::bind('MasonACM\Repositories\InterestGroup\InterestGroupRepositoryInterface', 'MasonACM\Repositories\InterestGroup\InterestGroupRepository');
+
+# Team repository
+App::bind('MasonACM\Repositories\Team\TeamRepositoryInterface', 'MasonACM\Repositories\Team\TeamRepository');

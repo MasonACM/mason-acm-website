@@ -1415,7 +1415,9 @@ pre code {
   padding-left: 15px;
   padding-right: 15px;
 }
-.row {
+.row,
+.lan-info-container,
+.register-form-container {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -2072,7 +2074,7 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 16px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #222222;
@@ -5423,7 +5425,8 @@ a.list-group-item-danger.active:focus {
 .embed-responsive.embed-responsive-4by3 {
   padding-bottom: 75%;
 }
-.well {
+.well,
+.game-card {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -6036,7 +6039,11 @@ button.close {
 .panel-body:before,
 .panel-body:after,
 .modal-footer:before,
-.modal-footer:after {
+.modal-footer:after,
+.lan-info-container:before,
+.lan-info-container:after,
+.register-form-container:before,
+.register-form-container:after {
   content: " ";
   display: table;
 }
@@ -6054,7 +6061,9 @@ button.close {
 .navbar-collapse:after,
 .pager:after,
 .panel-body:after,
-.modal-footer:after {
+.modal-footer:after,
+.lan-info-container:after,
+.register-form-container:after {
   clear: both;
 }
 .center-block {
@@ -6309,6 +6318,22 @@ body {
 textarea {
   resize: none;
 }
+.table {
+  font-size: 20px;
+}
+.table tbody {
+  color: #777777;
+}
+.table tbody tr td {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.table thead tr td {
+  font-weight: bold;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
 .ai-logo {
   float: left;
   font-size: 18px;
@@ -6334,7 +6359,8 @@ textarea {
   background: #1d7341;
   border: 3px solid #1d7341;
 }
-.well {
+.well,
+.game-card {
   padding: 40px;
   background: #222222;
   border: solid 1px #1f1f1f;
@@ -6442,6 +6468,34 @@ textarea {
   color: #1d7341;
   font-weight: bold;
 }
+.lan-info-container {
+  margin-bottom: 20px;
+}
+.register-form-container {
+  padding: 15px;
+}
 .lan-info-block {
-  border: solid 10px rgba(27, 27, 27, 0.9);
+  padding: 40px;
+  font-weight: normal;
+  background: #222222;
+}
+.lan-info-date .fa {
+  color: #cca62d;
+}
+.lan-info-location .fa {
+  color: #962624;
+}
+.lan-info-time .fa {
+  color: #4547bb;
+}
+.lan-info-money .fa {
+  color: #1d7341;
+}
+.game-card {
+  position: relative;
+}
+.game-card-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

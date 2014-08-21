@@ -7,7 +7,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<table class="table h3">
+		<table class="table">
 			<thead>
 				<td>Email</td>
 				<td>Firstname</td>

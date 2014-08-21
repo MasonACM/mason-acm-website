@@ -73,7 +73,7 @@ Route::group(['prefix' => 'lanparty'], function()
 {
 	Route::get('/', [
 		'as' => 'lanparty.register',
-		'before' => 'auth',
+		'before' => 'auth|lanparty',
 		'uses' => 'LanAttendeeController@create'
 	]);
 
@@ -129,6 +129,23 @@ Route::group(['prefix' => 'lanparty'], function()
 		'as' => 'lanparty.admin.roster.add',
 		'before' => 'admin',
 		'uses' => 'LanAttendeeController@store'
+	]);
+
+	Route::get('{id}/games', [
+		'as' => 'games.index',
+		'uses' => 'GameController@index'
+	]);
+
+	Route::post('{id}/games', [
+		'as' => 'games.store',
+		'before' => 'admin|csrf',
+		'uses' => 'GameController@store'
+	]);
+
+	Route::delete('{partyId}/games/{gameId}/delete', [
+		'as' => 'games.destroy',
+		'before' => 'admin|csrf',
+		'uses' => 'GameController@destroy'
 	]);
 });
 

@@ -40,10 +40,3 @@
 	</div>
 @stop
 
-@section('javascript')
-	<script type="application/javascript">
-		$(function() {
-			$('.large-link').hide().fadeIn(600);
-		});
-	</script>
-@stop

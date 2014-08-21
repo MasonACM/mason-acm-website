@@ -51,6 +51,11 @@
 					</a>
 				</div>
 				<div class="col-md-1">
+					<a href="{{ URL::route('games.index', $party->id) }}" class="btn btn-primary">
+						<span class="fa fa-gamepad"></span>
+					</a>
+				</div>
+				<div class="col-md-1">
 					{{ Form::delete(['route' => 'lanparty.destroy', 'confirm']) }}
 				</div>
 			</div>

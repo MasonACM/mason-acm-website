@@ -11,7 +11,7 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) 
 	{
-		return Redirect::route('login')
+		return Redirect::guest('login')
 			->withFlashMessage('You must be logged in to view this page');
 	}
 });
@@ -25,8 +25,8 @@ Route::filter('guest', function()
 # LAN Party Filter
 Route::filter('lanparty', function()
 {
-	//if(!LAN_Party::hasActiveParty()) return Redirect::to('/')
-		//->withFlashMessage('Sorry, but no LAN Party is currently planned!');
+	if( ! MasonACM\Models\LanParty::hasActiveParty()) return Redirect::to('/')
+		->withFlashMessage('Sorry, but no LAN Party is currently planned!');
 });
 
 // CSRF Filter
