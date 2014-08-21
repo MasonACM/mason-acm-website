@@ -1,4 +1,3 @@
-
 ## Welcome to the Programming Contests Special Interest Group!
 
 We plan on going to a lot more contests this season!

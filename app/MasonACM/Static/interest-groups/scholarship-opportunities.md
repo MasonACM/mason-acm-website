@@ -1,0 +1,2 @@
+## Scholarship Opportunities
+New scholarship opportunities coming soon. Email <a href="mailto:TylerHGuitarist@gmail.com">TylerHGuitarist@gmail.com</a> if you have any scholarships you want to put on this list.
