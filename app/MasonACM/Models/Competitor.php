@@ -17,7 +17,7 @@ class Competitor extends EloquentModel {
 	 */
 	public function user()
 	{
-		return $this->belongsTo('user');
+		return $this->belongsTo('MasonACM\Models\User');
 	}
 
 	/**
@@ -25,7 +25,7 @@ class Competitor extends EloquentModel {
 	 */ 
 	public function team()
 	{
-		return $this->belongsTo('team');
+		return $this->belongsTo('MasonACM\Models\Team');
 	}
 
 }

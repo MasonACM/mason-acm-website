@@ -41,7 +41,7 @@ class Team extends EloquentModel {
 	 */ 
 	public function competitors()
 	{
-		return $this->hasMany('MasonACM\Models\Competitors');
+		return $this->hasMany('MasonACM\Models\Competitor');
 	}
 
 	/**

@@ -10,7 +10,7 @@
 			</div>
 		@endif
 		<div class="h3">
-			<a href="{{ URL::to('') }}">{{ $game->title }}</a>
+			<a href="{{ URL::route('teams.index', $game->id) }}">{{ $game->title }}</a>
 		</div>
 		<div class="h4">
 			{{ $game->present()->playerCount(); }}

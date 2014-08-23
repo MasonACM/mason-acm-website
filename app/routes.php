@@ -147,6 +147,11 @@ Route::group(['prefix' => 'lanparty'], function()
 		'before' => 'admin|csrf',
 		'uses' => 'GameController@destroy'
 	]);
+
+	Route::get('games/{gameId}', [
+		'as' => 'teams.index',
+		'uses' => 'TeamController@index'
+	]);
 });
 
 # Interest Group

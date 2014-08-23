@@ -5,29 +5,32 @@ use MasonACM\Models\User;
 class UsersSeeder extends Seeder
 {
     public function run()
-    {
-        $users = [
-            [
-                "firstname" => "admin",
-                "lastname"  => "admin",
-                "password"  => Hash::make("narwall3"),
-                "email"     => "admin@masonacm.org",                
-                "grad_year" => 2015,
-                "role"      => 2
-            ], 
-            [
-                "firstname" => "peasant",
-                "lastname"  => "busta",
-                "password"  => Hash::make("narwall3"),
-                "email"     => "peasant.busta@gmail.com",                
-                "grad_year" => 2015,
-                "role"      => 0
-            ]
-        ];
+    {        
+        $faker = Faker\Factory::create();
 
-        foreach ($users as $user)
+        $users = [];
+
+        User::create([
+            "firstname" => "admin",
+            "lastname"  => "admin",
+            "password"  => Hash::make("busta33"),
+            "email"     => "admin@masonacm.org",                
+            "grad_year" => 2015,
+            "role"      => 2
+        ]);
+
+        foreach (range(1, 200) as $index)
         {
-            User::create($user);
+            array_push($users, [
+                'firstname' => $faker->firstName(),
+                'lastname'  => $faker->lastName(),
+                'email'     => $faker->email(),
+                'grad_year' => $faker->year(),
+                'role'      => 0,
+            ]);
         }
+
+        User::insert($users);
+
     }
 }

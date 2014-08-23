@@ -1,61 +1,31 @@
 <?php
 
+use MasonACM\Repositories\Team\TeamRepositoryInterface;
+
 class TeamController extends \BaseController {
 
 	/**
-	 * @return Response
+	 * @var TeamRepositoryInterface
+	 */ 
+	private $teamRepo;
+
+	/**
+	 * @param TeamRepositoryInterface $teamRepo
 	 */
-	public function index()
+	public function __construct(TeamRepositoryInterface $teamRepo)
 	{
-	
+		$this->teamRepo = $teamRepo;
 	}
 
 	/**
+	 * @param  int $id
 	 * @return Response
 	 */
-	public function create()
+	public function index($id)
 	{
-		//
-	}
+		$game = $this->teamRepo->getAllWithCompetitors($id);
 
-	/**
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-	}
-
-	/**
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-	}
-
-	/**
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-	}
-
-	/**
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
+		return View::make('lanparty.games.show', compact('game'));
 	}
 
 }

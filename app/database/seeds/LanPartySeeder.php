@@ -2,15 +2,17 @@
 
 use Carbon\Carbon;
 use MasonACM\Models\LanAttendee;
+use MasonACM\Models\Competitor;
 use MasonACM\Models\LanParty;
+use MasonACM\Models\Team;
 
-class LanPartySeeder extends Seeder 
-{
+class LanPartySeeder extends Seeder {
+
 	public function run()
 	{
 		$faker = Faker\Factory::create();
 
-		$partys = array(
+		$parties = array(
 			array(
 				'date' => Carbon::today(),
 				'active' => true
@@ -21,17 +23,32 @@ class LanPartySeeder extends Seeder
 			)
 		);
 
-		LanParty::insert($partys);
+		LanParty::insert($parties);
 
 		foreach (range(1, 100) as $index)
 		{
 			LanAttendee::create([
 				'firstname'   => $faker->firstName(),
 				'lastname'    => $faker->lastName(),
-				'lanparty_id' => 1,
-				'grad_year'   => $faker->year()
+				'grad_year'   => $faker->year(),
+				'lanparty_id' => 1
 			]);
 		}
 
+		foreach (range(1, 5) as $teamId)
+		{
+			Team::create([
+				'game_id' => 1,
+				'name'    => $faker->text(20)
+			]);
+
+			foreach (range(1, 5) as $competitorId)
+			{
+				Competitor::create([
+					'team_id' => $teamId,
+					'user_id' => $competitorId
+				]);
+			}	
+		}		
 	}
 }

@@ -42,6 +42,9 @@
 						<button class="btn btn-lg btn-primary" disabled>
 							<i class="fa fa-check"></i> You are now pre-registered!
 						</button>
+						<a href="{{ URL::route('games.index', $party->id) }}" class="btn btn-lg btn-info pull-right">
+							<i class="fa fa-arrow-right"></i> Sign up for gaming tournaments! 
+						</a>
 						<div>
 							<button type="submit" class="btn-link">
 								(un-pre-register)

@@ -3,7 +3,6 @@
 use MasonACM\Models\Team;
 use MasonACM\Models\Game;
 use MasonACM\Models\LanParty;
-use MasonACM\Models\Competitor;
 use MasonACM\Repositories\Eloquent\EloquentRepository;
 
 class TeamRepository extends EloquentRepository implements TeamRepositoryInterface {
@@ -31,22 +30,20 @@ class TeamRepository extends EloquentRepository implements TeamRepositoryInterfa
 	public function __construct(Team $team, LanParty $party, Game $game)
 	{
 		$this->team = $team;
-
 		$this->model = $team;
-
-		$this->party = $pary;
-
+		$this->party = $party;
 		$this->game = $game;
 	}
 
 	/**
+	 * @param  int $id
 	 * @return Party
-	 */ 
-	public funtion getAll()
+	 */
+	public function getAllWithCompetitors($id)
 	{
-		$party = $this->party->getActiveParty();
-
-		return $party->with('games.teams.competitors.user');
+		return $this->game->where('id', $id)
+						  ->with('teams.competitors.user')
+			  			  ->first();
 	}
 
 }

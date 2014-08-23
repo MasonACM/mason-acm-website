@@ -24,16 +24,15 @@ class UserController extends BaseController {
      */ 
     public function index()
     {
-        $count = Input::has('count') ? Input::get('count') : 8;
+        if ( ! Request::wantsJson()) return View::make('users.index');
 
-        $users = $this->userRepo->getAllPaginated($count);
+        $input = Input::all();
 
-        if (Request::wantsJson())
-        {
-            return $users;
-        }
+        $users = $this->userRepo->getAllSorted(
+            $input['count'], $input['sortBy'], $input['sortOrder']
+        );
 
-        return View::make('users.index', compact('users', 'count'));
+        return $users;
     }
 
     /**
