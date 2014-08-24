@@ -29,6 +29,13 @@ Route::filter('lanparty', function()
 		->withFlashMessage('Sorry, but no LAN Party is currently planned!');
 });
 
+# LAN Attendee filter
+Route::filter('lanattendee', function()
+{
+	if ( ! \MasonACM\Models\LanAttendee::checkByUserId(Auth::id())) return Redirect::to('/')
+		->withFlashMessage('You must be signed up for the LAN Party to view this page');
+});
+
 // CSRF Filter
 Route::filter('csrf', function()
 {

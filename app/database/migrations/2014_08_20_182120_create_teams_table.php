@@ -18,8 +18,7 @@ class CreateTeamsTable extends Migration {
 			{
 				$table->increments('id');
 				$table->string('name');
-				$table->unsignedInteger('lanparty_id');
-				$table->unsignedInteger('game_id');
+				$table->unsignedInteger('competition_id');
 				$table->timestamps();
 			});
 		}

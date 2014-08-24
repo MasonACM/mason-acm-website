@@ -51,8 +51,8 @@
 					</a>
 				</div>
 				<div class="col-md-1">
-					<a href="{{ URL::route('games.index', $party->id) }}" class="btn btn-primary">
-						<span class="fa fa-gamepad"></span>
+					<a href="{{ URL::route('competitions.index') }}" class="btn btn-primary">
+						<i class="fa fa-gamepad"></i>
 					</a>
 				</div>
 				<div class="col-md-1">

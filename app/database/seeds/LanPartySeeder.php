@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use MasonACM\Models\Competition;
 use MasonACM\Models\LanAttendee;
 use MasonACM\Models\Competitor;
 use MasonACM\Models\LanParty;
@@ -35,20 +36,44 @@ class LanPartySeeder extends Seeder {
 			]);
 		}
 
-		foreach (range(1, 5) as $teamId)
+		foreach (range(1, 4) as $competitionId)
+		{
+			Competition::create([
+				'lanparty_id' => 1,
+				'max_players' => 4,
+				'game_title' => $faker->text(20),
+			]);
+		}
+
+		foreach (range(1, 4) as $teamId)
 		{
 			Team::create([
-				'game_id' => 1,
-				'name'    => $faker->text(20)
+				'name' => $faker->text(10),
+				'competition_id' => $teamId
 			]);
 
-			foreach (range(1, 5) as $competitorId)
+			foreach (range(1, 4) as $competitorId)
 			{
 				Competitor::create([
-					'team_id' => $teamId,
-					'user_id' => $competitorId
+					'user_id' => $teamId * $competitorId,
+					'team_id' => $teamId
 				]);
-			}	
-		}		
+			}
+		}
+
+		Competition::create([
+			'lanparty_id' => 1,
+			'max_players' => 1,
+			'game_title' => 'Super Smash Brothers'
+		]);
+
+		foreach (range(1, 4) as $index)
+		{
+			$team = Team::create(['competition_id' => 5]);
+			Competitor::create([
+				'team_id' => $team->id,
+				'user_id' => $index + 20
+			]);
+		}
 	}
 }
