@@ -182,64 +182,6 @@ Route::group(['prefix' => 'lanparty'], function()
 		'uses' => 'LanAttendeeController@store'
 	]);
 
-	# Competition routes
-	Route::group(['prefix' => 'competitions', 'before' => 'lanattendee'], function()
-	{
-		Route::get('/', [
-			'as' => 'competitions.index',
-			'uses' => 'CompetitionController@index'
-		]);
-
-		Route::post('/', [
-			'as' => 'competitions.store',
-			'before' => 'admin|csrf',
-			'uses' => 'CompetitionController@store'
-		]);
-
-		Route::delete('{id}/delete', [
-			'as' => 'competitions.destroy',
-			'before' => 'admin|csrf',
-			'uses' => 'CompetitionController@destroy'
-		]);
-
-		Route::get('{id}', [
-			'as' => 'competitions.show',
-			'uses' => 'CompetitionController@show'
-		]);
-	});
-
-	# Team
-	Route::group(['prefix' => 'teams', 'before' => 'lanattendee'], function()
-	{
-		Route::post('{competitionId}', [
-			'as' => 'teams.store',
-			'before' => 'csrf|auth',
-			'uses' => 'CompetitorController@storeTeam'
-		]);
-
-		Route::delete('{id}', [
-			'as' => 'teams.destroy',
-			'before' => 'csrf|auth',
-			'uses' => 'CompetitorController@deleteTeam'
-		]);
-	});
-
-	# Competitor
-	Route::group(['prefix' => 'competitors', 'before' => 'lanattendee'], function()
-	{
-		Route::post('{competitionId}', [
-			'as' => 'competitors.store',
-			'before' => 'csrf|auth',
-			'uses' => 'CompetitorController@storeCompetitor'
-		]);
-
-		Route::delete('{teamId}', [
-			'as' => 'competitors.destroy',
-			'before' => 'csrf|auth',
-			'uses' => 'CompetitorController@deleteCompetitor'
-		]);
-	});
-
 });
 
 # Interest Group
