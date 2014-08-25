@@ -1,14 +1,39 @@
 <?php
 
 # Basic Pages
-Route::get('/', ['as' => 'home', 'uses' => 'PagesController@getHome']);
-Route::get('about', ['as' => 'about', 'uses' => 'PagesController@getAbout']);
-Route::get('vb', ['as' => 'vb', 'uses' => 'PagesController@getVB']);
+Route::get('/', [
+	'as' => 'home', 
+	'uses' => 'PagesController@getHome'
+]);
+
+Route::get('about', [
+	'as' => 'about', 
+	'uses' => 'PagesController@getAbout'
+]);
+
+Route::get('vb', [
+	'as' => 'vb', 
+	'uses' => 'PagesController@getVB'
+]);
 
 # Sessions
-Route::get('logout', ['as' => 'logout', 'before' => 'auth', 'uses' => 'SessionController@destroy']);
-Route::get('login', ['as' => 'login', 'before' => 'guest', 'uses' => 'SessionController@create']);
-Route::post('login', ['as' => 'login.post', 'before' => 'guest|csrf', 'uses' => 'SessionController@store']);
+Route::get('logout', [
+	'as' => 'logout', 
+	'before' => 'auth', 
+	'uses' => 'SessionController@destroy'
+]);
+
+Route::get('login', [
+	'as' => 'login', 
+	'before' => 'guest', 
+	'uses' => 'SessionController@create'
+]);
+
+Route::post('login', [
+	'as' => 'login.post', 
+	'before' => 'guest|csrf', 
+	'uses' => 'SessionController@store'
+]);
 
 # User
 Route::get('users', [
@@ -45,26 +70,52 @@ Route::put('profile', [
 Route::group(['prefix' => 'forum'], function() 
 {
     # Index
-    Route::get('/', ['as' => 'forum.index', 'uses' => 'ThreadController@index']);
+    Route::get('/', [
+    	'as' => 'forum.index', 
+    	'uses' => 'ThreadController@index'
+    ]);
 
     # Threads
-    Route::get('thread/create', ['as' => 'thread.create', 'before' => 'auth', 'uses' => 'ThreadController@create']);
+    Route::get('thread/create', [
+    	'as' => 'thread.create', 
+    	'before' => 'auth', 'uses' => 'ThreadController@create'
+    ]);
+
     Route::group(['prefix' => 'thread'], function()
     {
-        Route::get('{id}', ['as' => 'thread.show', 'uses' => 'ThreadController@show']);
+        Route::get('{id}', [
+        	'as' => 'thread.show', 
+        	'uses' => 'ThreadController@show'
+        ]);
 
         Route::group(['before' => 'auth'], function()
         {
-            Route::post('create', ['as' => 'thread.store', 'before' => 'csrf', 'uses' => 'ThreadController@store']);
-            Route::delete('{id}/destroy', ['as' => 'thread.destroy', 'before' => 'csrf', 'uses' => 'ThreadController@destroy']);
+            Route::post('create', [
+            	'as' => 'thread.store', 
+            	'before' => 'csrf', 
+            	'uses' => 'ThreadController@store'
+            ]);
+
+            Route::delete('{id}/destroy', [
+            	'as' => 'thread.destroy', 
+            	'before' => 'csrf', 
+            	'uses' => 'ThreadController@destroy'
+            ]);
         });
     });
 
     # Posts
     Route::group(['prefix' => 'post', 'before' => 'auth|csrf'], function()
     {
-        Route::post('store', ['as' => 'post.store', 'uses' => 'PostController@store']);
-        Route::delete('{id}/destroy', ['as' => 'post.destroy','before' => 'admin', 'uses' => 'PostController@destroy']);
+        Route::post('store', [
+        	'as' => 'post.store', 
+        	'uses' => 'PostController@store'
+        ]);
+        Route::delete('{id}/destroy', [
+        	'as' => 'post.destroy',
+        	'before' => 'admin',
+        	'uses' => 'PostController@destroy'
+        ]);
     });
 });
 
@@ -205,5 +256,9 @@ Route::get('special-interest-groups/{url}', [
 # Admin
 Route::group(['prefix' => 'admin', 'before' => 'admin'], function() 
 {
-    Route::get('/', ['as' => 'admin.index', 'before' => 'admin', 'uses' => 'AdminController@getIndex']);
+    Route::get('/', [
+    	'as' => 'admin.index',
+    	'before' => 'admin',
+    	'uses' => 'AdminController@getIndex'
+    ]);
 });
