@@ -108,8 +108,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
-        'bhoeting\NavigationBuilder\NavigationServiceProvider',
-        'GrahamCampbell\Markdown\MarkdownServiceProvider'
+        'GrahamCampbell\Markdown\MarkdownServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*

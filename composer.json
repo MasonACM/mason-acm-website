@@ -10,7 +10,8 @@
 	},
 	"require-dev": {
 		"way/generators": "*",
-		"fzaninotto/faker": "*"
+		"fzaninotto/faker": "*",
+        "barryvdh/laravel-debugbar": "1.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -30,7 +31,8 @@
 			"php artisan optimize"
 		],
 		"pre-update-cmd": [
-			"php artisan clear-compiled"
+			"php artisan clear-compiled",
+            "php artisan debugbar:publish"
 		],
 		"post-update-cmd": [
 			"php artisan optimize"
