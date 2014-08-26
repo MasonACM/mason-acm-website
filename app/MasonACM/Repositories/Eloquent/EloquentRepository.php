@@ -106,7 +106,7 @@ abstract class EloquentRepository implements EloquentRepositoryInterface {
 	 */
 	public function update($id, $input)
 	{
-		return $this->model->getById($id)->fill($input)->save();
+		return $this->getById($id)->updateAndValidate($input);
 	}
 
 	/**

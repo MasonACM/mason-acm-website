@@ -61,7 +61,24 @@ class User extends EloquentModel implements UserInterface, RemindableInterface {
         return parent::create($attributes);
     }
 
-    /**
+	/**
+	 * @param  array $attributes
+	 * @return $this
+	 * @throws \MasonACM\Exceptions\ModelNotValidException
+	 */
+	public function updateAndValidate(array $attributes)
+	{
+		static::validate($attributes, ['password', 'password_confirmation']);
+
+		$user = parent::fill($attributes);
+
+		$user->save();
+
+		return $user;
+	}
+
+
+	/**
      * @return boolean
      */
     public function isAdmin()

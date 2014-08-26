@@ -24,7 +24,7 @@ class UserController extends BaseController {
      */ 
     public function index()
     {
-        if ( ! Request::wantsJson()) return View::make('users.index');
+		if ( ! Request::wantsJson()) return View::make('users.index');
 
         $input = Input::all();
 
@@ -80,13 +80,19 @@ class UserController extends BaseController {
      */ 
     public function update()
     {
-        $input = Input::all();
+		try
+		{
+        	$id = Auth::id();
 
-        $user = Auth::user();
+        	$this->userRepo->update($id, Input::all());
 
-        $this->userRepo->update($user->id, $input);
+        	return Redirect::back()->withFlashMessage('Profile updated!');
+		}
+		catch (ModelNotValidException $e)
+		{
+			return Redirect::back()->withInput()->withErrors($e->errors());
+		}
 
-        return Redirect::back()->withFlashMessage('Profile updated!');
     }
 
 }
