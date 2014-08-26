@@ -68,7 +68,7 @@ class User extends EloquentModel implements UserInterface, RemindableInterface {
 	 */
 	public function updateAndValidate(array $attributes)
 	{
-		static::validate($attributes, ['password', 'password_confirmation']);
+		static::validate($attributes, ['email', 'password', 'password_confirmation']);
 
 		$user = parent::fill($attributes);
 
