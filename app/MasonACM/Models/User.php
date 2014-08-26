@@ -58,7 +58,13 @@ class User extends EloquentModel implements UserInterface, RemindableInterface {
 
         $attributes['password'] = Hash::make($attributes['password']);
 
-        return parent::create($attributes);
+        $user = new User($attributes);
+
+        $user->role = 0;
+
+        $user->save();
+
+        return $user;
     }
 
 	/**
