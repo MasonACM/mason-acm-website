@@ -10,24 +10,23 @@
 			{{ Form::open(['route' => 'register']) }}
 				<div class="form-group">
 					{{ Form::text('firstname', null, ['class' => 'form-control input-lg', 'placeholder' => 'Firstname', 'required']) }}
-					{{ $errors->first('firstname', '<span class="help-block text-error">:message</span>') }}
+					<span class="error">{{ $errors->first('firstname') }}</span>
 				</div>
 				<div class="form-group">
 					{{ Form::text('lastname', null, ['class' => 'form-control input-lg', 'placeholder' => 'Lastname', 'required']) }}
-					{{ $errors->first('lastname', '<span class="help-block text-error">:message</span>') }}
+					<span class="error">{{ $errors->first('lastname') }}</span>
 				</div>
 				<div class="form-group">	
 					{{ Form::email('email', null, ['class' => 'form-control input-lg', 'placeholder' => 'Email', 'required']) }}
-					{{ $errors->first('email', '<span class="help-block text-error">:message</span>') }}
+					<span class="error">{{ $errors->first('email') }}</span>
 				</div>
 				<div class="form-group">
 					{{ Form::text('grad_year', null, ['class' => 'form-control input-lg', 'placeholder' => 'Graduation Year'], 'required') }} 
-					{{ $errors->first('grad_year', '<span class="help-block text-error">:message</span>') }}
+					<span class="error">{{ $errors->first('grad_year') }}</span>
 				</div>
 				<div class="form-group">
 					{{ Form::password('password', ['class' => 'form-control input-lg', 'placeholder' => 'Password'], 'required') }} 
-					{{--$errors->first('password', '<span class="help-block text-error">:message</span>') --}}
-					<span class="help-block">{{ $errors->first('password') }}</span>
+					<span class="error">{{ $errors->first('password') }}</span>
 				</div>	
 				<div class="form-group">
 					{{ Form::password('password_confirmation', ['class' => 'form-control input-lg', 'placeholder' => 'Password Confirmation'], 'required') }}

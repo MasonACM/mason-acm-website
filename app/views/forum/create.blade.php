@@ -15,11 +15,11 @@
 		{{ Form::open(['route' => 'thread.store']) }}
 			<div class="form-group">
 				{{ Form::text('title', null, ['class' => 'form-control input-lg', 'placeholder' => 'Title', 'required']) }}
-				<span class="help-block">{{ $errors->first('title') }}</span>
+				<span class="error">{{ $errors->first('title') }}</span>
 			</div>
 			<div class="form-group">
 				{{ Form::textarea('body', null, ['class' => 'form-control input-lg', 'placeholder' => 'Body', 'required']) }}
-				<span class="help-block">{{ $errors->first('body') }}</span>
+				<span class="error">{{ $errors->first('body') }}</span>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>

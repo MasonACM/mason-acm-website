@@ -6345,6 +6345,10 @@ textarea {
 .spacing-top-sm {
   margin-top: 15px;
 }
+.error {
+  color: #962624;
+  text-style: italic;
+}
 .btn-transparent {
   color: #1d7341;
   background: transparent;

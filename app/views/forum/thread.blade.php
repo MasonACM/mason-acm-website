@@ -25,6 +25,7 @@
 						{{ Form::hidden('thread_id', $thread->id) }}
 						<div class="form-group">
 							{{ Form::textarea('body', null, ['class' => 'form-control post-body', 'rows' => '6']) }}
+							<span class="error">{{ $errors->first('body') }}</span>
 						</div>	
 						<button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-check"></i> Post</button>
 					</div>

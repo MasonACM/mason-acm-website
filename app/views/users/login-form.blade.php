@@ -6,8 +6,8 @@
 		{{ Form::input('password', 'password', null, ['class' => 'form-control input-lg', 'placeholder' => 'Password']) }}
 	</div>
 	<button class="btn btn-transparent btn-lg btn-block">Login</button>
-	@if(Session::has('auth_message'))
-		<div class="help-block text-danger">
+	@if (Session::has('auth_message'))
+		<div class="error">
 			{{ Session::get('auth_message') }}
 		</div>
 	@endif
