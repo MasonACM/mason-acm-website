@@ -20,6 +20,6 @@
 		</div>
 	</div>
 	<div class="col-sm-10">
-		<div class="post-body">{{ $post->body }}</div>
+		<div class="post-body">{{{ $post->body }}}</div>
 	</div>
 </div>

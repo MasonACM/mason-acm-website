@@ -4,7 +4,7 @@
 	</div>
 	<div class="col-sm-6">
 		<a href="{{ $thread->getUrl() }}" class="thread-title">
-			{{ $thread->title }}
+			{{{ $thread->title }}}
 		</a>
 	</div>
 	<div class="col-sm-2 pull-right label-user">
