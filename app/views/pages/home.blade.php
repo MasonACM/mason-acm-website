@@ -17,7 +17,7 @@
 			</div>
 		@else
 			<div class="col-md-6">
-				<a href="{{ URL::route('pages.about') }}" class="btn btn-huge-block">
+				<a href="{{ URL::route('about') }}" class="btn btn-huge-block">
 					<i class="fa fa-question-circle"></i> About
 				</a>
 			</div>

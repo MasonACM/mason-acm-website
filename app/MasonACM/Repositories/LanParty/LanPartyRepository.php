@@ -32,7 +32,7 @@ class LanPartyRepository extends EloquentRepository implements LanPartyRepositor
 
         $party = $this->getById($id);
 
-        $party->update(['active' => true])->save();
+        $party->fill(['active' => true])->save();
 
         return $party;
     }
@@ -42,6 +42,13 @@ class LanPartyRepository extends EloquentRepository implements LanPartyRepositor
 	 */
 	public function deactivateActiveParty()
 	{
-		return $this->model->getActiveParty()->fill(['active', false])->save();
+		if ($party = $this->model->getActiveParty())
+        {
+            $party->active = false;
+
+            $party->save();
+
+            return $party;
+        }
 	}
 }

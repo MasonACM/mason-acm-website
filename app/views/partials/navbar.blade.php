@@ -28,7 +28,7 @@
 						<i class="fa fa-cloud-download"></i> Download VB6
 					</a>
 				</li>
-				<li class="{{ active('special-interest-group') }} dropdown dropdown-open">
+				<li class="{{ active('special-interest-groups') }} dropdown dropdown-open">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-users"></i>&nbsp; Special Interest Groups &nbsp;<i class="fa fa-caret-down"></i>
 					</a>
