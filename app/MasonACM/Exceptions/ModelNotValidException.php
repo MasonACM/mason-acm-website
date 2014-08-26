@@ -15,7 +15,7 @@ class ModelNotValidException extends \Exception {
 	{
 		$this->errors = $errors;
 
-		parent::__construct($message);
+		parent::__construct($errors);
 	}
 
 	/**
