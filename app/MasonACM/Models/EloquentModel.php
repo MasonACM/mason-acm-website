@@ -11,7 +11,13 @@ abstract class EloquentModel extends Eloquent {
 	protected static $rules;
 
 	/**
+	 * @var array
+	 */ 
+	protected static $sanitizers;
+
+	/**
 	 * @param  array $attributes
+	 * @param  array $except
 	 * @throws ModelNotValidException
 	 * @return void
 	 */
@@ -25,6 +31,24 @@ abstract class EloquentModel extends Eloquent {
 		{
 			throw new ModelNotValidException('The model is not valid.', $validator->errors());
 		}
+	}
+
+	/**
+	 * @param  array $input
+	 * @param  array $except
+	 * @return void
+	 */
+	public static function sanitize(array $attributes, $except = [])
+	{
+		foreach (array_except(static::$sanitizers, $except) as $attribute => $sanitizer)
+		{
+			foreach (explode('|', $sanitizer) as $function)
+			{
+				$attributes[$attribute] = call_user_func($function, $attributes[$attribute]);
+			}
+		}
+
+		return $attributes;
 	}
 
 	/**
