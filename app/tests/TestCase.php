@@ -11,11 +11,17 @@ class TestCase extends LaravelTestCase {
 	protected $fake;
 
 	/**
+	 * @var int
+	 */
+	protected $count;
+
+	/**
 	 * Initialize the Faker library
 	 */
 	public function __construct()
 	{
 		$this->fake = Faker::create();
+		$this->count = 1;
 	}
 
 	/**
@@ -40,6 +46,17 @@ class TestCase extends LaravelTestCase {
 		parent::setUp();
 
 		Artisan::call('migrate');
+	}
+
+	/**
+	 * @param  int $times
+	 * @return $this
+	 */
+	public function times($times)
+	{
+		$this->count = $times;
+
+		return $this;
 	}
 
 }

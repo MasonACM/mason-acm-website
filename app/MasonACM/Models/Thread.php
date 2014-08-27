@@ -17,7 +17,6 @@ class Thread extends EloquentModel {
 	 */
 	protected static $rules = [
 		'title'    => 'required|max:100',
-		'topic_id' => 'number'
 	];
 
 	/**
