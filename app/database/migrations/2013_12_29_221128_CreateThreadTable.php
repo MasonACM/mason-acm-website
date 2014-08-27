@@ -16,8 +16,6 @@ class CreateThreadTable extends Migration {
 			Schema::create('forum_threads', function($table){
 				$table->increments('id');
 				$table->string('title');
-				$table->integer('topic_id');
-				$table->integer('author_id');	
 				$table->timestamps();
 			});
 		}
