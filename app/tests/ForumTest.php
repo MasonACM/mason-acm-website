@@ -11,8 +11,7 @@ class ForumTest extends TestCase {
 	private function createThreadAndPost($postCount = 1)
 	{
 		$thread = Thread::createAndValidate([
-			'title' => $this->fake->text(10),
-			'topic_id' => 1
+			'title' => $this->fake->text(10)
 		]);
 
 		$posts = [];
