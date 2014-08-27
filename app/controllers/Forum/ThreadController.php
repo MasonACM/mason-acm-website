@@ -55,7 +55,7 @@ class ThreadController extends BaseController {
 		{
 			$thread = $this->threadRepo->create($input);
 
-			return $this->show($thread->id);
+			return Redirect::route('thread.show', $thread->id);
 		}
 		catch (ModelNotValidException $e)
 		{
