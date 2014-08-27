@@ -42,6 +42,11 @@
 					   @endforeach
 					</ul>
 				</li>
+				<li class="{{ active('about') }}">
+					<a href="{{ URL::route('about') }}">
+						<i class="fa fa-question-circle"></i> About
+					</a>
+				</li>
 			</ul>
 			<ul class="navbar-nav navbar-right nav">
 				@if (Auth::guest())

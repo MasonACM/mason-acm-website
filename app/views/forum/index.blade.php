@@ -7,6 +7,11 @@
 @section('title', 'Forum')
 
 @section('content')	
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Forums</h1>
+		</div>
+	</div>
 	<div class="container spacing-top">
 		<div class="thread-container">
 			@foreach($threads as $thread)
