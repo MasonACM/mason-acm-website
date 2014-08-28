@@ -24,7 +24,10 @@
 		"psr-4": {
 			"App\\": "app/",
 			"MasonACM\\": "app/MasonACM"	
-		}
+		},
+		"files": [
+			"app/helpers.php"
+		]
 	},
 	"scripts": {
 		"post-install-cmd": [
