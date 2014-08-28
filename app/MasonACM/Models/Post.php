@@ -46,4 +46,24 @@ class Post extends EloquentModel {
 		return $this->belongsTo('MasonACM\Models\Thread');
 	}
 
+	/**
+	 * Delete the post and possibly its thread
+	 * 
+	 * @return bool
+	 */ 
+	public function deleteWithThread()
+	{
+		$thread = $this->thread;
+
+		// Get the id of the first post in the thread
+		$firstPostId = $thread->posts()->first(['id'])->id;
+
+		// If the the first post of the thread is being deleted,
+		// then delete the thread and all of its posts
+		if ($firstPostId == $this->id) $thread->deleteWithPosts();
+		
+		// Otherwise, simply delete the post
+		else return $this->delete();
+	}
+
 }

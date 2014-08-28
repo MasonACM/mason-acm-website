@@ -39,4 +39,16 @@ class Thread extends EloquentModel {
 	{
 		return $this->posts()->count() - 1;
 	}
+
+	/**
+	 * Delete a thread and all of its posts
+	 * 
+	 * @return bool
+	 */ 
+	public function deleteWithPosts()
+	{
+		$this->posts()->delete();
+
+		return $this->delete();
+	}
 }
