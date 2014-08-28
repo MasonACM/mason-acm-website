@@ -3,7 +3,7 @@
 use MasonACM\Models\LanParty;
 use MasonACM\Repositories\InterestGroup\InterestGroupRepositoryInterface;
 
-class NavbarComposer {
+class NavbarComposer extends BaseComposer {
 
 	/**
 	 * @var InterestGroupRepositoryInterface
@@ -23,13 +23,12 @@ class NavbarComposer {
 	 */
 	public function compose($view)
 	{
-		$activeLanParty = LanParty::hasActiveParty();
+		parent::compose($view);
 
 		$groups = $this->groupRepo->getAll();
 
 		$view->with([
-			'groups' => $groups,
-			'activeLanParty' => $activeLanParty
+			'groups' => $groups
 		]);
 	}
 

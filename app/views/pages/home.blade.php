@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="container spacing-top">
-		@if (MasonACM\Models\LanParty::hasActiveParty())	
+		@if ($activeLanParty)	
 			<div class="col-md-6">
 				<a href="{{ URL::route('lanparty.register') }}" class="btn btn-huge-block">
 					<i class="fa fa-gamepad"></i> LAN Party
@@ -31,7 +31,7 @@
 				<i class="fa fa-users"></i> Special Interest Groups
 			</a>
 		</div>
-		@if (!MasonACM\Models\LanParty::hasActiveParty())
+		@unless ($activeLanParty)
 			<div class="col-md-6">
 				<a href="{{ URL::route('about') }}" class="btn btn-huge-block">
 					<i class="fa fa-question-circle"></i> About
