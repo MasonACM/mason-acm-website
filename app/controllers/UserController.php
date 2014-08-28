@@ -28,6 +28,10 @@ class UserController extends BaseController {
 
         $input = Input::all();
 
+        $input = array_merge([
+            'count' => 8,'sortBy' => 'id', 'sortOrder' => 'asc'
+        ], $input);
+
         $users = $this->userRepo->getAllSorted(
             $input['count'], $input['sortBy'], $input['sortOrder']
         );
