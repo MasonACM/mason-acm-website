@@ -88,6 +88,8 @@ class LanPartyController extends BaseController {
     {
 		$this->lanPartyRepo->setActiveParty($id);
 
+		Cache::forget('active_lan_party');
+
     	return Redirect::back();
     }
 
@@ -97,6 +99,8 @@ class LanPartyController extends BaseController {
 	public function deactivate()
     {
 		$this->lanPartyRepo->deactivateActiveParty();
+
+		Cache::forget('active_lan_party');
 
     	return Redirect::back();
     }
