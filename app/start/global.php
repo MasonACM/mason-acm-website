@@ -110,6 +110,5 @@ Auth::extend('masonacm', function()
 
 require app_path().'/filters.php';
 require app_path().'/macros.php';
-require app_path().'/helpers.php';
 require app_path().'/bindings.php';
 require app_path().'/composers.php';
