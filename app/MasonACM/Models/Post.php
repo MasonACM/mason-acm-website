@@ -60,7 +60,7 @@ class Post extends EloquentModel {
 
 		// If the the first post of the thread is being deleted,
 		// then delete the thread and all of its posts
-		if ($firstPostId == $this->id) $thread->deleteWithPosts();
+		if ($firstPostId == $this->id) return $thread->deleteWithPosts();
 		
 		// Otherwise, simply delete the post
 		else return $this->delete();
