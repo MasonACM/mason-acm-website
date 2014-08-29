@@ -1,7 +1,8 @@
 <?php
 
-use MasonACM\Repositories\Forum\ThreadRepositoryInterface;
+use MasonACM\Models\Thread;
 use MasonACM\Exceptions\ModelNotValidException;
+use MasonACM\Repositories\Forum\ThreadRepositoryInterface;
 
 class ThreadController extends BaseController {
 
@@ -11,11 +12,17 @@ class ThreadController extends BaseController {
 	private $threadRepo;
 
 	/**
+	 * @var Thread
+	 */ 
+	private $thread;
+
+	/**
 	 * @param ThreadRepositoryInterface $threadRepo
 	 */
-	public function __construct(ThreadRepositoryInterface $threadRepo)
+	public function __construct(ThreadRepositoryInterface $threadRepo, Thread $thread)
 	{
 		$this->threadRepo = $threadRepo;
+		$this->thread = $thread;
 	}
 
 	/**
@@ -89,7 +96,10 @@ class ThreadController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->threadRepo->destroy($id);
+		$this->thread->find($id)->deleteWithPosts();
+
+		return Redirect::route('forum.index')
+			->withFlashMessage('Thread deleted successfully!');
 	}
 
 }

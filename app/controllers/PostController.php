@@ -1,21 +1,21 @@
 <?php
 
-use MasonACM\Repositories\Forum\PostRepositoryInterface;
+use MasonACM\Models\Post;
 use MasonACM\Exceptions\ModelNotValidException;
 
 class PostController extends \BaseController {
 
 	/**
-	 * @var ThreadRepositoryInterface
+	 * @var Post 
 	 */
-	private $postRepo;
+	private $post;
 
 	/**
-	 * @param ThreadRepositoryInterface $threadRepo
+	 * @param Post $post
 	 */
-	public function __construct(PostRepositoryInterface $postRepo)
+	public function __construct(Post $post)
 	{
-		$this->postRepo = $postRepo;
+		$this->post = $post;
 	}
 
 	/**
@@ -31,7 +31,7 @@ class PostController extends \BaseController {
 
 		try
 		{
-			$this->postRepo->create($input);
+			$this->post->createAndValidate($input);
 
 			return Redirect::back();
 		}
@@ -49,7 +49,7 @@ class PostController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$this->postRepo->delete($id);
+		$this->post->find($id)->deleteWithThread();
 
 		return Redirect::back()->withFlashMessage('Post successfully deleted!');
 	}
