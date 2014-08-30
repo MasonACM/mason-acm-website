@@ -8,24 +8,26 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			@if ($competition->isTeamBased())
-				{{ Form::open(['route' => ['teams.store', $competition->id], 'class' => 'well']) }}
-					<div class="form-group">
-						<input type="text" name="name" class="form-control" placeholder="Team name" required/>
-					</div>
-					<button class="btn btn-primary" type="submit">
-						<i class="fa fa-plus"></i> Create Team
-					</button>
-				{{ Form::close() }}
-			@endif
+			<div class="col-md-4">
+				@if ($competition->isTeamBased())
+		            {{ Form::open(['route' => ['teams.store', $competition->id]]) }}
+		            	<div class="input-group">
+							<input type="text" name="name" class="form-control input-lg" placeholder="Team name" required/>
+		            		<div class="input-group-btn">
+								<button class="btn btn-primary btn-lg" type="submit">Create Team</button>
+							</div>
+						</div>
+					{{ Form::close() }}
+				@endif
+			</div>
 		</div>
-		<div class="row">
+		<div class="row spacing-top">
 			@if ($competition->isTeamBased())
 				@foreach ($competition->teams as $team)
 					@include('lanparty.competition._team', ['team' => $team])
 				@endforeach
 			@else
-				<div class="well">
+				<div class="card">
 					@foreach ($competition->teams as $team)
 						<h4>{{ $team->playerName() }}</h4>
 					@endforeach

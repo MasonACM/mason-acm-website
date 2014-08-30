@@ -23,7 +23,7 @@ class SessionController extends BaseController {
 	{
 		$input = Input::all();
 
-		if (Auth::attempt(array_only($input, ['email', 'password'])))
+		if (Auth::attempt(array_only($input, ['email', 'password']), true))
         {
             return Redirect::intended();
         }
