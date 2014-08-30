@@ -69,54 +69,54 @@ Route::put('profile', [
 # Forum
 Route::group(['prefix' => 'forum'], function() 
 {
-    # Index
-    Route::get('/', [
-    	'as' => 'forum.index', 
-    	'uses' => 'ThreadController@index'
-    ]);
+# Index
+	Route::get('/', [
+		'as' => 'forum.index', 
+		'uses' => 'ThreadController@index'
+	]);
 
-    # Threads
-    Route::get('thread/create', [
-    	'as' => 'thread.create', 
-    	'before' => 'auth', 'uses' => 'ThreadController@create'
-    ]);
+# Threads
+	Route::get('thread/create', [
+		'as' => 'thread.create', 
+		'before' => 'auth', 'uses' => 'ThreadController@create'
+	]);
 
-    Route::group(['prefix' => 'thread'], function()
-    {
-        Route::get('{id}', [
-        	'as' => 'thread.show', 
-        	'uses' => 'ThreadController@show'
-        ]);
+	Route::group(['prefix' => 'thread'], function()
+	{
+		Route::get('{id}', [
+			'as' => 'thread.show', 
+			'uses' => 'ThreadController@show'
+		]);
 
-        Route::group(['before' => 'auth'], function()
-        {
-            Route::post('create', [
-            	'as' => 'thread.store', 
-            	'before' => 'csrf', 
-            	'uses' => 'ThreadController@store'
-            ]);
+		Route::group(['before' => 'auth'], function()
+		{
+			Route::post('create', [
+				'as' => 'thread.store', 
+				'before' => 'csrf', 
+				'uses' => 'ThreadController@store'
+			]);
 
-            Route::delete('{id}/destroy', [
-            	'as' => 'thread.destroy', 
-            	'before' => 'csrf', 
-            	'uses' => 'ThreadController@destroy'
-            ]);
-        });
-    });
+			Route::delete('{id}/destroy', [
+				'as' => 'thread.destroy', 
+				'before' => 'csrf', 
+				'uses' => 'ThreadController@destroy'
+			]);
+		});
+	});
 
-    # Posts
-    Route::group(['prefix' => 'post', 'before' => 'auth|csrf'], function()
-    {
-        Route::post('store', [
-        	'as' => 'post.store', 
-        	'uses' => 'PostController@store'
-        ]);
-        Route::delete('{id}/destroy', [
-        	'as' => 'post.destroy',
-        	'before' => 'admin',
-        	'uses' => 'PostController@destroy'
-        ]);
-    });
+# Posts
+	Route::group(['prefix' => 'post', 'before' => 'auth|csrf'], function()
+	{
+		Route::post('store', [
+			'as' => 'post.store', 
+			'uses' => 'PostController@store'
+		]);
+		Route::delete('{id}/destroy', [
+			'as' => 'post.destroy',
+			'before' => 'admin',
+			'uses' => 'PostController@destroy'
+		]);
+	});
 });
 
 # LAN Party / Attendee
@@ -182,25 +182,83 @@ Route::group(['prefix' => 'lanparty'], function()
 		'uses' => 'LanAttendeeController@store'
 	]);
 
+# Competition routes
+	Route::group(['prefix' => 'competitions', 'before' => 'lanattendee'], function()
+	{
+		Route::get('/', [
+			'as' => 'competitions.index',
+			'uses' => 'CompetitionController@index'
+		]);
+
+		Route::post('/', [
+			'as' => 'competitions.store',
+			'before' => 'admin|csrf',
+			'uses' => 'CompetitionController@store'
+		]);
+
+		Route::delete('{id}/delete', [
+			'as' => 'competitions.destroy',
+			'before' => 'admin|csrf',
+			'uses' => 'CompetitionController@destroy'
+		]);
+
+		Route::get('{id}', [
+			'as' => 'competitions.show',
+			'uses' => 'CompetitionController@show'
+		]);
+	});
+
+# Team
+	Route::group(['prefix' => 'teams', 'before' => 'lanattendee'], function()
+	{
+		Route::post('{competitionId}', [
+			'as' => 'teams.store',
+			'before' => 'csrf|auth',
+			'uses' => 'CompetitorController@storeTeam'
+		]);
+
+		Route::delete('{id}', [
+			'as' => 'teams.destroy',
+			'before' => 'csrf|auth',
+			'uses' => 'CompetitorController@deleteTeam'
+		]);
+	});
+
+# Competitor
+	Route::group(['prefix' => 'competitors', 'before' => 'lanattendee'], function()
+	{
+		Route::post('{competitionId}', [
+			'as' => 'competitors.store',
+			'before' => 'csrf|auth',
+			'uses' => 'CompetitorController@storeCompetitor'
+		]);
+
+		Route::delete('{teamId}', [
+			'as' => 'competitors.destroy',
+			'before' => 'csrf|auth',
+			'uses' => 'CompetitorController@deleteCompetitor'
+		]);
+	});
+
 });
 
 # Interest Group
 Route::get('special-interest-groups', [
-    'as' => 'sig.index',
-    'uses' => 'InterestGroupController@index'
+	'as' => 'sig.index',
+	'uses' => 'InterestGroupController@index'
 ]);
 
 Route::get('special-interest-groups/{url}', [
-    'as' => 'sig.show',
-    'uses' => 'InterestGroupController@show'
+	'as' => 'sig.show',
+	'uses' => 'InterestGroupController@show'
 ]);
 
 # Admin
 Route::group(['prefix' => 'admin', 'before' => 'admin'], function() 
 {
-    Route::get('/', [
-    	'as' => 'admin.index',
-    	'before' => 'admin',
-    	'uses' => 'AdminController@getIndex'
-    ]);
+	Route::get('/', [
+		'as' => 'admin.index',
+		'before' => 'admin',
+		'uses' => 'AdminController@getIndex'
+	]);
 });

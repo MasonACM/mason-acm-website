@@ -35,5 +35,45 @@ class LanPartySeeder extends Seeder {
 				'lanparty_id' => 1
 			]);
 		}
+
+		foreach (range(1, 4) as $competitionId)
+		{
+			Competition::create([
+				'lanparty_id' => 1,
+				'max_players' => 4,
+				'game_title' => $faker->text(20),
+			]);
+		}
+
+		foreach (range(1, 4) as $teamId)
+		{
+			Team::create([
+				'name' => $faker->text(10),
+				'competition_id' => $teamId
+			]);
+
+			foreach (range(1, 4) as $competitorId)
+			{
+				Competitor::create([
+					'user_id' => $teamId * $competitorId,
+					'team_id' => $teamId
+				]);
+			}
+		}
+
+		Competition::create([
+			'lanparty_id' => 1,
+			'max_players' => 1,
+			'game_title' => 'Super Smash Brothers'
+		]);
+
+		foreach (range(1, 4) as $index)
+		{
+			$team = Team::create(['competition_id' => 5]);
+			Competitor::create([
+				'team_id' => $team->id,
+				'user_id' => $index + 20
+			]);
+		}
 	}
 }

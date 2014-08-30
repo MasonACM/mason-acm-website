@@ -40,13 +40,18 @@
 				@if (Auth::check())
 					@if ($isAttendee)
 						<button class="btn btn-lg btn-primary" disabled>
-							<i class="fa fa-check"></i> You are now pre-registered!
+							<i class="fa fa-check"></i> you are now pre-registered!
 						</button>
+						<div class="pull-right">
+							<a href="{{ URL::route('competitions.index') }}" class="btn btn-lg btn-info">
+								<i class="fa fa-arrow-right"></i> Sign up for gaming tournaments! 
+							</a>
+						</div>
 						<div>
 							<button type="submit" class="btn-link">
 								(un-pre-register)
 							</button>
-						</div>
+						</div>	
 					@else
 						<button type="submit" class="btn btn-primary btn-lg">
 							<i class="fa fa-plus"></i> Click here to pre-register!

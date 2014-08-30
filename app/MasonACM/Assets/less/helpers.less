@@ -25,9 +25,15 @@
 }
 
 .well {
-	padding: 40px;
+	padding: 20px 40px;
 	background: @color-fg;
-	border: solid 1px darken(@color-fg, 1%)
+	border: none;
+	box-shadow: none;
+}
+
+.card {
+	// &:extend(.well);
+	border-top: 3px solid @brand-primary;
 }
 
 .modal-header {
