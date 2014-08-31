@@ -1,22 +1,21 @@
 <?php
 
-use MasonACM\Repositories\Competition\CompetitionRepositoryInterface;
+use MasonACM\Repositories\CompetitionRepository;
 
 class CompetitionController extends \BaseController {
 
 	/**
-	 * @var CompetitionRepositoryInterface
+	 * @var CompetitionRepository
 	 */
 	private $compRepo;
 
 	/**
-	 * @param CompetitionRepositoryInterface $compRepo
+	 * @param CompetitionRepository $compRepo
 	 */
-	function __construct(CompetitionRepositoryInterface $compRepo)
+	function __construct(CompetitionRepository $compRepo)
 	{
 		$this->compRepo = $compRepo;
 	}
-
 
 	/**
 	 * @return Response
