@@ -2,19 +2,19 @@
 
 use Carbon\Carbon;
 use MasonACM\Exceptions\ModelNotValidException;
-use MasonACM\Repositories\LanParty\LanPartyRepositoryInterface;
+use MasonACM\Repositories\LanPartyRepository;
 
 class LanPartyController extends BaseController {
 
     /**
-     * @var LanPartyRepositoryInterface
+     * @var LanPartyRepository
      */
     private $lanPartyRepo;
 
 	/**
-	 * @param LanPartyRepositoryInterface $lanPartyRepo
+	 * @param LanPartyRepository $lanPartyRepo
 	 */
-	public function __construct(LanPartyRepositoryInterface $lanPartyRepo)
+	public function __construct(LanPartyRepository $lanPartyRepo)
 	{
 		$this->lanPartyRepo = $lanPartyRepo;
 	}

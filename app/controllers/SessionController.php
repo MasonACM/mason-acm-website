@@ -2,7 +2,7 @@
 
 use MasonACM\Repositories\User\UserRepositoryInterface;
 
-class SessionController extends BaseController {
+class SessionController extends \BaseController {
 
     /**
 	 * Displays the login page

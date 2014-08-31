@@ -1,24 +1,22 @@
 <?php
 
-use MasonACM\Models\LanAttendee;
 use MasonACM\Models\LanParty;
-use MasonACM\Repositories\LanAttendee\LanAttendeeRepository;
-use MasonACM\Repositories\LanAttendee\LanAttendeeRepositoryInterface;
+use MasonACM\Models\LanAttendee;
 
-class LanAttendeeController extends BaseController {
-
-	/**
-	 * @var LanAttendeeRepositoryInterface
-	 */
-	private $lanAttendeeRepo;
-
+class LanAttendeeController extends \BaseController {
 
 	/**
-	 * @param LanAttendeeRepositoryInterface $lanAttendeeRepo
+	 * @var LanAttendee
 	 */
-	function __construct(LanAttendeeRepositoryInterface $lanAttendeeRepo)
+	private $lanAttendee;
+
+
+	/**
+	 * @param LanAttendee $lanAttendee
+	 */
+	function __construct(LanAttendee $lanAttendee)
 	{
-		$this->lanAttendeeRepo = $lanAttendeeRepo;
+		$this->lanAttendee = $lanAttendee;
 	}
 
 	/**
@@ -28,7 +26,7 @@ class LanAttendeeController extends BaseController {
 	{
 		$party = LanParty::getActiveParty();
 
-		$isAttendee = LanAttendee::checkByUserId(Auth::id());
+		$isAttendee = $this->lanAttendee->checkByUserId(Auth::id());
 
 		return View::make('lanparty.register', compact('party', 'isAttendee'));
 	}
@@ -40,15 +38,12 @@ class LanAttendeeController extends BaseController {
 	{
 		$input = Input::all();
 	
-		$attendee = $this->lanAttendeeRepo->create($input);
+		$attendee = $this->lanAttendee->createAndValidate($input);
 
 		// If the LanAttendee is being created with, 
 		// JSON we will return the LanAttendee as 
 		// JSON instead of redirecting the user.
-		if (Request::wantsJson()) 
-		{
-			return $attendee;
-		} 
+		if (Request::wantsJson()) return $attendee;
 
 		return Redirect::back();
 	}
@@ -62,15 +57,14 @@ class LanAttendeeController extends BaseController {
 	{
 		$user = Auth::user();
 
-		// If the user is already registered,
-		// delete their LanAttendee entry
-		if (LanAttendee::checkByUserId($user->id))
+		// If the user is already registered, delete their LanAttendee entry
+		if ($this->lanAttendee->checkByUserId($user->id))
 		{
-			LanAttendee::where('user_id', $user->id)->delete();
+			$this->lanAttendee->where('user_id', $user->id)->delete();
 		}
 		else
 		{
-			LanAttendee::createFromUser($user);
+			$this->lanAttendee->createFromUser($user);
 		}
 
 		return Redirect::back();

@@ -1,22 +1,28 @@
 <?php
 
-use MasonACM\Repositories\User\UserRepositoryInterface;
-use MasonACM\Exceptions\ModelNotValidException;
 use MasonACM\Models\User;
+use MasonACM\Repositories\UserRepository;
+use MasonACM\Exceptions\ModelNotValidException;
 
-class UserController extends BaseController {
+class UserController extends \BaseController {
     
     /**
-     * @var UserRepositoryInterface
+     * @var User
+     */
+    private $user;
+
+    /**
+     * @var UserRepository
      */
     private $userRepo;
 
     /**
-     * @param UserRepositoryInterface $userRepo
+     * @param UserRepository $userRepo
      */
-    public function __construct(UserRepositoryInterface $userRepo)
+    public function __construct(UserRepository $userRepo, User $user)
     {
         $this->userRepo = $userRepo;
+        $this->user = $user;
     }
 
     /**
@@ -56,7 +62,7 @@ class UserController extends BaseController {
 
         try
         {
-            $user = $this->userRepo->create($input);
+            $user = $this->user->createAndValidate($input);
 
             Auth::login($user);
 
@@ -88,7 +94,7 @@ class UserController extends BaseController {
 		{
         	$id = Auth::id();
 
-        	$this->userRepo->update($id, Input::all());
+        	$this->user->find($id)->fill(Input::all())->save();
 
         	return Redirect::back()->withFlashMessage('Profile updated!');
 		}
