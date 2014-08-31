@@ -8,7 +8,7 @@
 					{{ $thread->title }}
 				</span>
 				<span class="pull-right">	
-					<i class="fa fa-share"></i> {{ $thread->replies() }}
+					<i class="fa fa-share"></i> {{ $thread->replies }}
 				</span>
 			</h2>
 		</div>	

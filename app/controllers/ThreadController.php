@@ -85,6 +85,8 @@ class ThreadController extends BaseController {
 
 		$posts = $this->threadRepo->getPostsPaginated($thread, 5);
 
+		$thread->replies = $posts->getTotal();
+
 		return View::make('forum.thread')->withPosts($posts)->withThread($thread);
 	}
 
