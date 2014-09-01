@@ -1,19 +1,18 @@
 <?php namespace MasonACM\Composers;
 
-use MasonACM\Models\LanParty;
-use MasonACM\Repositories\InterestGroup\InterestGroupRepositoryInterface;
+use MasonACM\Repositories\InterestGroupRepository;
 
 class NavbarComposer extends BaseComposer {
 
 	/**
-	 * @var InterestGroupRepositoryInterface
+	 * @var InterestGroupRepository
 	 */
 	private $groupRepo;
 
 	/**
-	 * @param InterestGroupRepositoryInterface $groupRepo
+	 * @param InterestGroupRepository $groupRepo
 	 */
-	public function __construct(InterestGroupRepositoryInterface $groupRepo)
+	public function __construct(InterestGroupRepository $groupRepo)
 	{
 		$this->groupRepo = $groupRepo;
 	}

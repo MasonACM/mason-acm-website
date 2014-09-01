@@ -1,19 +1,27 @@
-<?php namespace MasonACM\Repositories\Competition;
+<?php namespace MasonACM\Repositories;
 
-use MasonACM\Models\Competition;
 use MasonACM\Models\LanParty;
-use MasonACM\Repositories\Eloquent\EloquentRepository;
+use MasonACM\Models\Competition;
 
-class CompetitionRepository extends EloquentRepository implements CompetitionRepositoryInterface {
+class CompetitionRepository {
 
 	/**
 	 * @var LanParty
 	 */
 	private $lanParty;
 
+	/**
+	 * @var Competition
+	 */ 
+	private $competition;
+
+	/**
+	 * @param Competition $competition
+	 * @param LanParty    $lanParty
+	 */
 	public function __construct(Competition $competition, LanParty $lanParty)
 	{
-		$this->model = $competition;
+		$this->competition = $competition;
 		$this->lanParty = $lanParty;
 	}
 
@@ -25,9 +33,8 @@ class CompetitionRepository extends EloquentRepository implements CompetitionRep
 	 */
 	public function getByIdWithTeams($id)
 	{
-		return $this->model->where('id', $id)->with('teams.competitors.user')->first();
+		return $this->competition->where('id', $id)->with('teams.competitors.user')->first();
 	}
-
 
 	/**
 	 * Get all the competitions for the active LAN Party
@@ -36,7 +43,7 @@ class CompetitionRepository extends EloquentRepository implements CompetitionRep
 	 */
 	public function getAllActive()
 	{
-		return $this->model->where('lanparty_id', $this->lanParty->getActiveParty()->id)->get();
+		return $this->competition->where('lanparty_id', $this->lanParty->getActiveParty()->id)->get();
 	}
 	
 }

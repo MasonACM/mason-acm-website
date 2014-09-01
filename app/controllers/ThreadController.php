@@ -1,13 +1,13 @@
 <?php
 
 use MasonACM\Models\Thread;
+use MasonACM\Repositories\ThreadRepository;
 use MasonACM\Exceptions\ModelNotValidException;
-use MasonACM\Repositories\Forum\ThreadRepositoryInterface;
 
 class ThreadController extends BaseController {
 
 	/**
-	 * @var ThreadRepositoryInterface
+	 * @var ThreadRepository
 	 */
 	private $threadRepo;
 
@@ -17,9 +17,9 @@ class ThreadController extends BaseController {
 	private $thread;
 
 	/**
-	 * @param ThreadRepositoryInterface $threadRepo
+	 * @param ThreadRepository $threadRepo
 	 */
-	public function __construct(ThreadRepositoryInterface $threadRepo, Thread $thread)
+	public function __construct(ThreadRepository $threadRepo, Thread $thread)
 	{
 		$this->threadRepo = $threadRepo;
 		$this->thread = $thread;
@@ -78,7 +78,7 @@ class ThreadController extends BaseController {
 	 */
 	public function show($id)
 	{
-		if ( ! $thread = $this->threadRepo->getById($id))
+		if ( ! $thread = $this->thread->find($id))
 		{
 			return Redirect::route('forum.index');
 		}
@@ -87,7 +87,7 @@ class ThreadController extends BaseController {
 
 		$thread->replies = $posts->getTotal();
 
-		return View::make('forum.thread')->withPosts($posts)->withThread($thread);
+		return View::make('forum.thread', compact('thread', 'posts'));
 	}
 
 	/**
