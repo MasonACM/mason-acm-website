@@ -9,16 +9,18 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="interest-group-html">
-			<h3>Install instructions:</h1>
+		<div class="text-section">
+			<h1>Install instructions:</h1>
 			<ol>
-				<li><a href="https://docs.google.com/uc?export=download&confirm=SDDd&id=0B6J2gN36UgP2ZDhuLTRXQmlRMmM">Download</a> the VB6 file</li>
+				<li><a href="{{ Config::get('masonacm.vb6-download-url') }}">Download</a> the VB6 file</li>
 				<li>Extract the zip file</li>
 				<li>Run ALL msi files in the extracted folder</li>
-				<li>To launch vb6 go to C:\Program Files (x86)\Microsoft Visual Studio\VB98\VB6.EXE</li>
+				<li>To launch vb6 go to <i>C:\Program Files (x86)\Microsoft Visual Studio\VB98\VB6.EXE</i></li>
 			</ol>
 		</div>
 
-		{{ HTML::linkWithIcon('https://docs.google.com/uc?export=download&confirm=SDDd&id=0B6J2gN36UgP2ZDhuLTRXQmlRMmM', 'Download', 'cloud-download', ['class' => 'btn btn-lg btn-primary spacing-top-sm']) }}	
+		<a href="{{ Config::get('masonacm.vb6-download-url') }}" class="btn btn-primary btn-lg spacing-top-sm">
+			<i class="fa fa-cloud-download"></i> Download
+		</a>
 	</div>
 @stop
