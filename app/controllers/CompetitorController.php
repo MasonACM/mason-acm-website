@@ -38,9 +38,16 @@ class CompetitorController extends \BaseController {
 		{
 			$input['competition_id'] = $competitionId;
 
-			$team = $this->team->createAndValidate($input);
+			if ( ! array_key_exists('team_id', $input))
+			{
+				$team = $this->team->createAndValidate($input);
 
-			$input['team_id'] = $team->id;
+				$input['team_id'] = $team->id;
+			}
+			else
+			{
+				$team = $this->team->find($input['team_id']);
+			}
 
 			$input['user_id'] = Auth::id();
 
