@@ -46,4 +46,19 @@ class Competition extends EloquentModel {
 		return $this->max_players > 1;
 	}
 
+	/**
+	 * Determine if the logged in user is signed up for a competition
+	 * 
+	 * @return bool
+	 */ 
+	public function check()
+	{
+		foreach ($this->teams as $team)
+		{
+			if ($team->competitor->user_id == \Auth::id()) return true;
+		}
+
+		return false;
+	}
+
 }
