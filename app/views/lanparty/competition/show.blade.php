@@ -21,30 +21,30 @@
 				@endif
 			</div>
 		</div>
-		<div class="row spacing-top">
+		<div class="row spacing-top-sm">
 			@if ($competition->isTeamBased())
 				@foreach ($competition->teams as $team)
 					@include('lanparty.competition._team', ['team' => $team])
 				@endforeach
 			@else
 				<div class="card">
-					@foreach ($competition->teams as $team)
-						<h4>{{ $team->playerName() }}</h4>
-					@endforeach
-					@if ($team->check())
+					<ul class="player-list">
+						@foreach ($competition->teams as $team)
+							<li>{{ $team->playerName() }}</li>
+						@endforeach
+					</ul>
+					@if ($competition->check())
 						{{ Form::open(['route' => ['competitors.destroy', $team->id], 'method' => 'DELETE']) }}
-							<button class="btn btn-danger" type="submit">Drop out</button>
+							<button class="btn btn-lg btn-danger" type="submit">
+								<i class="fa fa-reply"></i> Drop out 
+							</button>
 						{{ Form::close() }}
 					@else
-						@if ($team->isFull())
-							<button class="btn btn-primary disabled">
-								<i class="fa fa-check"></i> Team full
+						{{ Form::open(['route' => ['competitors.store', $competition->id]]) }}
+							<button class="btn btn-lg btn-primary" type="submit">
+								<i class="fa fa-plus"></i> Sign up
 							</button>
-						@else
-							{{ Form::open(['route' => ['competitors.store', $competition->id]]) }}
-								<button class="btn btn-primary" type="submit">Sign up</button>
-							{{ Form::close() }}
-						@endif
+						{{ Form::close() }}
 					@endif
 				</div>
 			@endif

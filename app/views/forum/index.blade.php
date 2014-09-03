@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('icon')
-    <i class="fa fa-comments-o"></i>
-@stop
-
 @section('title', 'Forum')
 
 @section('content')	
@@ -13,7 +9,7 @@
 		</div>
 	</div>
 	<div class="container spacing-top">
-		<div class="thread-container">
+		<div class="thread-list">
 			@foreach($threads as $thread)
 				@include('forum._thread', compact($thread))
 			@endforeach

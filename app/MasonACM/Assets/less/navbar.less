@@ -1,12 +1,44 @@
+
+/****************************************************************
+ * The styles and variables for the navigation bar 			    *
+ ****************************************************************/
+
+/**
+ * Boostrap navbar variables
+ */
+@navbar-default-color:               #777;
+@navbar-default-bg:                  @color-fg;
+@navbar-default-border:              @navbar-default-bg;
+@navbar-default-link-color:          #777;
+@navbar-default-link-hover-color:    white;
+@navbar-default-link-hover-bg:       transparent;
+@navbar-default-link-active-color:   white;
+@navbar-default-link-active-bg:      @color-fg-darker;
+@navbar-default-link-disabled-color: #ccc;
+@navbar-default-link-disabled-bg:    transparent;
+@navbar-default-brand-color:         @navbar-default-link-color;
+@navbar-default-brand-hover-color:   @navbar-default-link-hover-color;
+
+/**
+ * The width of the green top-border on the active tab
+ */
+@active-tab-border-width: 6px;
+
+/**
+ * Style for regular & the brand
+ */
 .navbar-nav > li > a, .navbar-brand {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	font-size: 16px;
+	padding-top: @padding-base;
+	padding-bottom: @padding-base;
+	font-size: @font-size-base;
 }
 
+/**
+ * Style for active tab
+ */
 .navbar-nav > li.active {
-	border-top: solid 6px @brand-primary;	
+	border-top: solid @active-tab-border-width @brand-primary;
 	a {
-		padding-top: 14px;
+		padding-top: @padding-base - @active-tab-border-width;
 	}
 }

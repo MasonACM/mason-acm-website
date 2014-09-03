@@ -1,0 +1,53 @@
+
+/********************************************************
+ * Mixins that can be used globally throughout the site *
+ ********************************************************/
+
+/**
+ * Applies a top border with the primrary color
+ */
+.primary-top-border(@padding: @padding-base, @width: 3px) {
+	border-top: @width solid @brand-primary;
+	padding-top: @padding + @width;
+}
+
+/**
+ * A container whose overflown text turns into an ellipsis
+ */
+.ellipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;	
+}
+
+/**
+ * Bold and italic text
+ */
+.bold-italic {
+	font-weight: @font-weight-bold;
+	font-style: italic;
+}
+
+/**
+ * A container for actions in the top right of another container  
+ */
+.actions-container {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+/**
+ * An action that is within the action container
+ */
+.action(@hover-color: @brand-primary) {
+	border: none;
+	cursor: pointer;
+	font-size: @font-size-base;
+	padding: @padding-smallest @padding-small;
+	background: transparent;
+	&:hover {
+		color: @hover-color;
+	}
+}

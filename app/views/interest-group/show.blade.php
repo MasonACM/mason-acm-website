@@ -7,7 +7,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="interest-group-html">
+		<div class="text-section">
 			{{ $interestGroup->html }}
 		</div>
 	</div>
