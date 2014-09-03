@@ -1,25 +1,39 @@
+
+/*********************************************
+ * Styles that are applied to whole elements * 
+ ********************************************/
+
 body {
 	padding-top: 50px;
 }
 
 textarea {
 	resize: none;
+	border: none;
 }
 
 .table {
-	font-size: 20px;
 	tbody {
-		color: @gray-light;
+		tr {
+			margin-bottom: @margin-micro;
+		}
 	}
-	tbody tr td {
-		padding-left: 16px;
-		padding-right: 16px;
-	}
-	thead tr td {
-		font-weight: bold;
-		padding-top: 16px;
-		padding-left: 16px;
-		padding-right: 16px;
-	}	
 }
+
+// .table {
+// 	font-size: @font-size-large;
+// 	tbody {
+// 		color: @gray-light;
+// 	}
+// 	tbody tr td {
+// 		padding-left: @padding-larger;
+// 		padding-right: @padding-larger;
+// 	}
+// 	thead tr td {
+// 		font-weight: bold;
+// 		padding-top: @padding-larger;
+// 		padding-left: @padding-base;
+// 		padding-right: @padding-base;
+// 	}	
+// }
 

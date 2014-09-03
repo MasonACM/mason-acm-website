@@ -1,12 +1,14 @@
 <div class="col-md-3">
-	<div class="well well-small">
-		<h2>{{ $team->name }}</h2>
-		<p class="help-block">
+	<div class="game-card">
+		<h1>{{ $team->name }}</h1>
+		<div class="label label-primary">
 			{{ $team->memberCount() }} / {{ $competition->max_players }}
-		</p>
-		@foreach ($team->competitors as $competitor)
-			{{ $competitor->user->present()->fullName() }} <br />
-		@endforeach
+		</div> 
+		<ul class="player-list">
+			@foreach ($team->competitors as $competitor)
+				<li>{{ $competitor->user->present()->fullName() }}</li>
+			@endforeach
+		</ul>
 		@if ($team->check())
 			{{ Form::open(['route' => ['competitors.destroy', $team->id], 'method' => 'DELETE']) }}
 				<button class="btn btn-danger" type="submit">Leave team</button>

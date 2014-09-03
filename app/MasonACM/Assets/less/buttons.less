@@ -1,0 +1,38 @@
+.background-transition() {
+	transition: background 200ms ease, color 200ms;
+}
+
+.btn-transparent {
+	color: @brand-primary;
+	background: transparent;
+	border: 3px solid @brand-primary;
+	font-weight: bold;
+	.background-transition();
+	&:hover {
+		color: white;
+		background: @brand-primary;
+		border: 3px solid @brand-primary;
+	}
+}
+.btn-huge {
+	padding: @padding-jumbo;
+	background: @color-fg;
+	font-size: @font-size-larger;
+	font-weight: bold;
+	border: none;
+	text-align: center;
+	margin-bottom: 30px;
+	.background-transition();
+	&:hover {
+		color: white;
+		background: @brand-primary;
+	}
+}
+
+.btn-huge-block {
+	&:extend(.btn-huge);
+	&:hover {
+		&:extend(.btn-huge:hover);
+	}
+	width: 100%;
+}

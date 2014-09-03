@@ -1,0 +1,58 @@
+/****************************************************************
+ * Basic helper styles that can be applied anywhere on the site *
+ ****************************************************************/
+
+/**
+ * Styles to quickly add a top margin
+ */
+.spacing-top {
+	margin-top: @margin-jumbo;
+}
+
+.spacing-top-sm {
+	margin-top: @margin-base;
+}
+
+/**
+ * Basic error style under form inputs
+ */
+.error {
+	color: @brand-danger;
+	text-style: italic;
+}
+
+/**
+ * Wrapper for large amounts of text
+ */
+.text-section {
+ 	font-size: @font-size-large;
+ 	background: @color-fg;
+ 	padding: @padding-large @padding-jumbo;
+
+	h1, h2, h3 {
+		color: @brand-primary;
+		font-weight: bold;
+	}
+ }
+
+/**
+ * General style for cards
+ */
+.card {
+	padding: @padding-small @padding-large;
+	margin-bottom: @margin-large;
+	background: @color-fg;
+	.primary-top-border();
+	h1, h2, h3, h4, h5,
+	.h1, .h2, .h3, .h4, .h5 {
+		margin-top: @margin-micro;
+	}
+}
+
+/**
+ * Override of the Boostrap well class
+ */
+ .well {
+ 	background: @color-fg;
+ 	padding: @padding-largest;
+ }

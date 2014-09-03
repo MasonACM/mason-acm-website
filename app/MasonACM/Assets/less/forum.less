@@ -1,64 +1,72 @@
 
+/***********************************
+ * Forum-specific mixins *
+ ***********************************/
+.post-detail {
+	color: @gray-light;
+	.bold-italic();
+}
+
+/***********************************
+ * Styles for a single thread view *
+ ***********************************/
 .thread {
 	background: @color-fg;
-	padding: 28px 25px 25px 25px;
-	border-top: 2px solid @gray-dark;
-
+	padding: @padding-larger;
+	margin-bottom: @margin-micro;
 	&:first-child {
-		border-top: 3px solid @brand-primary;
+		.primary-top-border(@padding-larger);
 	}
 }
 
-.thread-title {
-	font-size: 18px;
+.thread-title, .thread-replies {
+	font-size: @font-size-largest;
 	display: inline-block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: 100%;
 }
 
-.label-user, .label-time, .label-replies {
-	color: @gray-light;
-	font-size: 16px;
-	font-style: italic;
-	font-weight: bold;
+/***********************************
+ * Styles for the thread list view *
+ ***********************************/
+.thread-list-item {
+	.thread();
 }
 
-.thread-replies {
-	font-style: normal;
+.thread-list-title {
+	font-size: @font-size-large;
+	.ellipsis();
 }
 
+.thread-list-user, thread-list-replies, .thread-list-time {
+	.post-detail();
+}
+
+/***********************************
+ * Styles for a post               *
+ ***********************************/
 .post {
-	background: @color-fg;
-	padding: @post-padding; 
-	font-size: 16px;
-	margin-top: 2px;
+	padding: @padding-larger;
 	position: relative;
-}
-
-.post-body {
 	background: @color-fg;
-	border: none;
-	font-size: 18px;
-	resize: none;
+	margin-top: @margin-micro;
 }
 
-.post-thread-title {
-	font-style: italic;
-	display: inline;
+.post-user, .post-time {
+	.post-detail();
 }
 
 .post-actions {
-	position: absolute;
-	top: 0;
-	right: 0;
+	.actions-container();
 }
 
-.btn-delete-post {
-	color: white;
-	background: transparent;
-	&:hover {
-		color: @brand-danger;
-	}
+.action-delete-post {
+	.action(@brand-danger);
+}
+
+.post-body {
+	font-size: @font-size-large;
+}
+
+.input-post-body {
+	.post-body();
+	background: @color-fg;
 }

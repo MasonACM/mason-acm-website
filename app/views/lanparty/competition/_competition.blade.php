@@ -2,8 +2,8 @@
 	<div class="game-card">
 		@if (Auth::admin())
 			<div class="game-card-actions">
-				{{ Form::open(['route' => ['competitions.destroy', $competition->id], 'method' => 'DELETE', 'confirm']) }}
-					<button type="submit" class="btn btn-danger">
+				{{ Form::open(['route' => ['competitions.destroy', $competition->id], 'method' => 'DELETE', 'confirm' => 'Are you sure you want to delete this game?']) }}
+					<button type="submit" class="action-delete-game">
 						<i class="fa fa-times"></i>
 					</button>
 				{{ Form::close() }}

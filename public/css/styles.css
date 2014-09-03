@@ -1,4 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,700);
+/**
+ * Font imports
+ */
+/**
+ * Library imports
+ */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -2415,7 +2421,7 @@ input[type="date"].input-lg,
 input[type="time"].input-lg,
 input[type="datetime-local"].input-lg,
 input[type="month"].input-lg {
-  line-height: 49px;
+  line-height: 46px;
 }
 .form-group {
   margin-bottom: 15px;
@@ -2510,16 +2516,16 @@ select[multiple].input-sm {
 }
 .input-lg,
 .form-horizontal .form-group-lg .form-control {
-  height: 49px;
+  height: 46px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.33;
   -webkit-border-radius: 0px;
           border-radius: 0px;
 }
 select.input-lg {
-  height: 49px;
-  line-height: 49px;
+  height: 46px;
+  line-height: 46px;
 }
 textarea.input-lg,
 select[multiple].input-lg {
@@ -2543,9 +2549,9 @@ select[multiple].input-lg {
   text-align: center;
 }
 .input-lg + .form-control-feedback {
-  width: 49px;
-  height: 49px;
-  line-height: 49px;
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
 }
 .input-sm + .form-control-feedback {
   width: 33px;
@@ -3055,7 +3061,7 @@ fieldset[disabled] .btn-link:focus {
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.33;
   -webkit-border-radius: 0px;
           border-radius: 0px;
@@ -3470,9 +3476,9 @@ tbody.collapse.in {
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
-  height: 49px;
+  height: 46px;
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.33;
   -webkit-border-radius: 0px;
           border-radius: 0px;
@@ -3480,8 +3486,8 @@ tbody.collapse.in {
 select.input-group-lg > .form-control,
 select.input-group-lg > .input-group-addon,
 select.input-group-lg > .input-group-btn > .btn {
-  height: 49px;
-  line-height: 49px;
+  height: 46px;
+  line-height: 46px;
 }
 textarea.input-group-lg > .form-control,
 textarea.input-group-lg > .input-group-addon,
@@ -3552,7 +3558,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon.input-lg {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
   -webkit-border-radius: 0px;
           border-radius: 0px;
 }
@@ -3930,7 +3936,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 14px 15px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 22px;
   height: 50px;
 }
@@ -4435,7 +4441,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination-lg > li > a,
 .pagination-lg > li > span {
   padding: 10px 16px;
-  font-size: 20px;
+  font-size: 18px;
 }
 .pagination-lg > li:first-child > a,
 .pagination-lg > li:first-child > span {
@@ -5425,8 +5431,7 @@ a.list-group-item-danger.active:focus {
 .embed-responsive.embed-responsive-4by3 {
   padding-bottom: 75%;
 }
-.well,
-.game-card {
+.well {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -6312,42 +6317,231 @@ button.close {
     display: none !important;
   }
 }
+/**
+ * Partial imports
+ */
+/********************************************************
+ * Mixins that can be used globally throughout the site *
+ ********************************************************/
+/**
+ * Applies a top border with the primrary color
+ */
+/**
+ * A container whose overflown text turns into an ellipsis
+ */
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+/**
+ * Bold and italic text
+ */
+.bold-italic {
+  font-weight: 600;
+  font-style: italic;
+}
+/**
+ * A container for actions in the top right of another container  
+ */
+.actions-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/**
+ * An action that is within the action container
+ */
+/*********************************************
+ * Styles that are applied to whole elements * 
+ ********************************************/
 body {
   padding-top: 50px;
 }
 textarea {
   resize: none;
+  border: none;
 }
-.table {
-  font-size: 20px;
+.table tbody tr {
+  margin-bottom: 2px;
 }
-.table tbody {
-  color: #777777;
-}
-.table tbody tr td {
-  padding-left: 16px;
-  padding-right: 16px;
-}
-.table thead tr td {
-  font-weight: bold;
-  padding-top: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-.ai-logo {
-  float: left;
-  font-size: 18px;
-  line-height: 20px;
-}
+/****************************************************************
+ * Basic helper styles that can be applied anywhere on the site *
+ ****************************************************************/
+/**
+ * Styles to quickly add a top margin
+ */
 .spacing-top {
   margin-top: 60px;
 }
 .spacing-top-sm {
   margin-top: 15px;
 }
+/**
+ * Basic error style under form inputs
+ */
 .error {
   color: #962624;
   text-style: italic;
+}
+/**
+ * Wrapper for large amounts of text
+ */
+.text-section {
+  font-size: 18px;
+  background: #222222;
+  padding: 25px 60px;
+}
+.text-section h1,
+.text-section h2,
+.text-section h3 {
+  color: #1d7341;
+  font-weight: bold;
+}
+/**
+ * General style for cards
+ */
+.card {
+  padding: 12px 25px;
+  margin-bottom: 20px;
+  background: #222222;
+  border-top: 3px solid #1d7341;
+  padding-top: 23px;
+}
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card .h1,
+.card .h2,
+.card .h3,
+.card .h4,
+.card .h5 {
+  margin-top: 2px;
+}
+/**
+ * Override of the Boostrap well class
+ */
+.well {
+  background: #222222;
+  padding: 40px;
+}
+/****************************************************************
+ * The styles and variables for the navigation bar 			    *
+ ****************************************************************/
+/**
+ * Boostrap navbar variables
+ */
+/**
+ * The width of the green top-border on the active tab
+ */
+/**
+ * Style for regular & the brand
+ */
+.navbar-nav > li > a,
+.navbar-brand {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 16px;
+}
+/**
+ * Style for active tab
+ */
+.navbar-nav > li.active {
+  border-top: solid 6px #1d7341;
+}
+.navbar-nav > li.active a {
+  padding-top: 14px;
+}
+/***********************************
+ * Forum-specific mixins *
+ ***********************************/
+.post-detail {
+  color: #777777;
+  font-weight: 600;
+  font-style: italic;
+}
+/***********************************
+ * Styles for a single thread view *
+ ***********************************/
+.thread {
+  background: #222222;
+  padding: 30px;
+  margin-bottom: 2px;
+}
+.thread:first-child {
+  border-top: 3px solid #1d7341;
+  padding-top: 33px;
+}
+.thread-title,
+.thread-replies {
+  font-size: 28px;
+  display: inline-block;
+}
+/***********************************
+ * Styles for the thread list view *
+ ***********************************/
+.thread-list-item {
+  background: #222222;
+  padding: 30px;
+  margin-bottom: 2px;
+}
+.thread-list-item:first-child {
+  border-top: 3px solid #1d7341;
+  padding-top: 33px;
+}
+.thread-list-title {
+  font-size: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+.thread-list-user,
+thread-list-replies,
+.thread-list-time {
+  color: #777777;
+  font-weight: 600;
+  font-style: italic;
+}
+/***********************************
+ * Styles for a post               *
+ ***********************************/
+.post {
+  padding: 30px;
+  position: relative;
+  background: #222222;
+  margin-top: 2px;
+}
+.post-user,
+.post-time {
+  color: #777777;
+  font-weight: 600;
+  font-style: italic;
+}
+.post-actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.action-delete-post {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 12px;
+  background: transparent;
+}
+.action-delete-post:hover {
+  color: #962624;
+}
+.post-body {
+  font-size: 18px;
+}
+.input-post-body {
+  font-size: 18px;
+  background: #222222;
 }
 .btn-transparent {
   color: #1d7341;
@@ -6363,23 +6557,9 @@ textarea {
   background: #1d7341;
   border: 3px solid #1d7341;
 }
-.well,
-.game-card {
-  padding: 20px 40px;
-  background: #222222;
-  border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.card {
-  border-top: 3px solid #1d7341;
-}
-.modal-header {
-  color: white;
-}
 .btn-huge,
 .btn-huge-block {
-  padding: 50px;
+  padding: 60px;
   background: #222222;
   font-size: 24px;
   font-weight: bold;
@@ -6397,85 +6577,6 @@ textarea {
 }
 .btn-huge-block {
   width: 100%;
-}
-.navbar-nav > li > a,
-.navbar-brand {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 16px;
-}
-.navbar-nav > li.active {
-  border-top: solid 6px #1d7341;
-}
-.navbar-nav > li.active a {
-  padding-top: 14px;
-}
-.thread {
-  background: #222222;
-  padding: 28px 25px 25px 25px;
-  border-top: 2px solid #333333;
-}
-.thread:first-child {
-  border-top: 3px solid #1d7341;
-}
-.thread-title {
-  font-size: 18px;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-}
-.label-user,
-.label-time,
-.label-replies {
-  color: #777777;
-  font-size: 16px;
-  font-style: italic;
-  font-weight: bold;
-}
-.thread-replies {
-  font-style: normal;
-}
-.post {
-  background: #222222;
-  padding: 30px;
-  font-size: 16px;
-  margin-top: 2px;
-  position: relative;
-}
-.post-body {
-  background: #222222;
-  border: none;
-  font-size: 18px;
-  resize: none;
-}
-.post-thread-title {
-  font-style: italic;
-  display: inline;
-}
-.post-actions {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.btn-delete-post {
-  color: white;
-  background: transparent;
-}
-.btn-delete-post:hover {
-  color: #962624;
-}
-.interest-group-html {
-  font-size: 18px;
-  background: #222222;
-  padding: 25px 50px;
-}
-.interest-group-html h1,
-.interest-group-html h2,
-.interest-group-html h3 {
-  color: #1d7341;
-  font-weight: bold;
 }
 .lan-info-container {
   margin-bottom: 20px;
@@ -6500,11 +6601,49 @@ textarea {
 .lan-info-money .fa {
   color: #1d7341;
 }
+/************************************
+ * Styles for the competition views *
+ ************************************/
 .game-card {
+  padding: 12px 25px;
+  margin-bottom: 20px;
+  background: #222222;
+  border-top: 3px solid #1d7341;
+  padding-top: 23px;
   position: relative;
+}
+.game-card h1,
+.game-card h2,
+.game-card h3,
+.game-card h4,
+.game-card h5,
+.game-card .h1,
+.game-card .h2,
+.game-card .h3,
+.game-card .h4,
+.game-card .h5 {
+  margin-top: 2px;
 }
 .game-card-actions {
   position: absolute;
-  top: 0;
   right: 0;
+  top: 0;
+}
+.action-delete-game {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 12px;
+  background: transparent;
+}
+.action-delete-game:hover {
+  color: #962624;
+}
+.player-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 15px;
+}
+.player-list li {
+  font-size: 24px;
 }
