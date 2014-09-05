@@ -1,16 +1,37 @@
 <?php namespace MasonACM\Repositories;
 
 use MasonACM\Models\LanParty;
-use MasonACM\Repositories\Eloquent\EloquentRepository;
 
-class LanPartyRepository extends EloquentRepository {
+class LanPartyRepository {
+
+    /**
+     * @var LanParty 
+     */
+    private $lanParty;
 
     /**
      * @param LanParty $lanParty
      */
     function __construct(LanParty $lanParty)
     {
-        $this->model = $lanParty;
+        $this->lanParty = $lanParty;
+    }
+
+    /**
+     * @return LanParty 
+     */ 
+    public function getAll()
+    {
+        return $this->lanParty->all();
+    }
+
+    /**
+     * @param  int $id
+     * @return LanParty
+     */ 
+    public function getById($id)
+    {
+        return $this->lanParty->find($id);
     }
 
     /**
@@ -19,7 +40,7 @@ class LanPartyRepository extends EloquentRepository {
      */
     public function getPartyWithAttendees($id)
     {
-        return $this->getById($id)->with('attendees');
+        return $this->lanParty->find($id)->with('attendees');
     }
 
     /**
@@ -30,7 +51,7 @@ class LanPartyRepository extends EloquentRepository {
     {
         $this->deactivateActiveParty();
 
-        $party = $this->getById($id);
+        $party = $this->lanParty->find($id);
 
         $party->fill(['active' => true])->save();
 
@@ -42,7 +63,7 @@ class LanPartyRepository extends EloquentRepository {
 	 */
 	public function deactivateActiveParty()
 	{
-		if ($party = $this->model->getActiveParty())
+		if ($party = $this->lanParty->getActiveParty())
         {
             $party->active = false;
 
