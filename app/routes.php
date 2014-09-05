@@ -261,4 +261,11 @@ Route::group(['prefix' => 'admin', 'before' => 'admin'], function()
 		'before' => 'admin',
 		'uses' => 'AdminController@getIndex'
 	]);
+
+	Route::get('members', [
+		'as' => 'admin.members',
+		'before' => 'admin',
+		'uses' => 'AdminController@getMembers'
+	]);
+
 });

@@ -1,5 +1,6 @@
 <?php namespace MasonACM\Repositories;
 
+use Carbon\Carbon;
 use MasonACM\Models\User;
 
 class UserRepository {
@@ -25,7 +26,32 @@ class UserRepository {
 	 */
 	public function getAllSorted($count = 8, $sortBy = 'id', $sortOrder = 'asc')
 	{
-		return $this->model->orderBy($sortBy, $sortOrder)->paginate($count);
+		return $this->user->orderBy($sortBy, $sortOrder)->paginate($count);
+	}
+
+	/**
+	 * Get a list of users between certain year 
+	 */ 
+	public function getAllMembers()
+	{
+		$now = Carbon::now();
+
+		// 
+		if ($now->month <= 6)
+		{
+			$minYear = $now->year;
+
+			$maxYear = $now->year + 5;
+		}
+		else
+		{
+			$minYear = $now->year + 1;
+			$maxYear = $minYear + 4;
+		}
+
+		return $this->user->whereBetween('grad_year', [
+			$minYear, $maxYear
+		])->get();
 	}
 
 }
