@@ -8,10 +8,10 @@ class AdminController extends \BaseController  {
      * @var UserRepository
      */
     private $userRepo;
-
-    /**
-     * @param UserRepository
-     */
+	
+	/**
+	 * @param UserRepository $userRepo
+	 */
     public function __construct(UserRepository $userRepo)
     {
         $this->userRepo = $userRepo;

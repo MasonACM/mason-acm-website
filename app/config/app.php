@@ -110,6 +110,7 @@ return array(
         'Way\Generators\GeneratorsServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Msurguy\Honeypot\HoneypotServiceProvider',
 	),
 
 	/*
