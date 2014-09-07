@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var path = require('path');
 var less = require('gulp-less');
 var notify = require('gulp-notify');
+var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
 
 var lessDir = './app/MasonACM/Assets/less/';
@@ -16,6 +17,7 @@ gulp.task('less', function() {
 			message: 'An error occured while compiling LESS'
 		}))
 		.pipe(autoprefixer('last 10 versions'))
+		.pipe(minifyCSS())
 		.pipe(gulp.dest(cssDir))
 		.pipe(notify({
 			title: 'Success',
