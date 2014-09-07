@@ -35,8 +35,7 @@ class UserRepository {
 	public function getAllMembers()
 	{
 		$now = Carbon::now();
-
-		// 
+	
 		if ($now->month <= 6)
 		{
 			$minYear = $now->year;
