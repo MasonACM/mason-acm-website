@@ -269,3 +269,31 @@ Route::group(['prefix' => 'admin', 'before' => 'admin'], function()
 	]);
 
 });
+
+Route::group(['prefix' => 'password'], function()
+{
+	Route::get('remind', [
+		'as' => 'password.remind',
+		'before' => 'guest',
+		'uses' => 'PasswordController@getRemind'
+	]);
+
+	Route::post('remind', [
+		'as' => 'password.remind',
+		'before' => 'guest',
+		'uses' => 'PasswordController@postRemind'
+	]);
+
+	Route::get('reset/{token}', [
+		'as' => 'password.reset',
+		'before' => 'guest',
+		'uses' => 'PasswordController@getReset'
+	]);
+
+	Route::post('reset', [
+		'as' => 'password.reset',
+		'before' => 'guest',
+		'uses' => 'PasswordController@postReset'
+	]);
+
+});
