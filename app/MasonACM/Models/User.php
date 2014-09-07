@@ -40,7 +40,9 @@ class User extends EloquentModel implements UserInterface, RemindableInterface {
 		'password'  => 'required|min:6|confirmed',
 		'firstname' => 'required|max:50|alpha_dash',
 		'lastname'  => 'required|max:50|alpha_dash',
-		'grad_year' => 'required|digits:4|numeric'
+		'grad_year' => 'required|digits:4|numeric',
+	    'my_name'   => 'honeypot',
+    	'my_time'   => 'required|honeytime:5'
     ];
 
     /**

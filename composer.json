@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"doctrine/dbal": "*",
-		"graham-campbell/markdown": "~2.0"
+		"graham-campbell/markdown": "~2.0",
+		"msurguy/honeypot": "dev-master"
 	},
 	"require-dev": {
 		"way/generators": "*",

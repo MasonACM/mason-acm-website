@@ -8,6 +8,7 @@
 	<div class="container">	
 		<div class="col-sm-offset-3 col-sm-6 spacing-top well">
 			{{ Form::open(['route' => 'register']) }}
+				{{ Form::honeypot('my_name', 'my_time') }}
 				<div class="form-group">
 					{{ Form::text('firstname', null, ['class' => 'form-control input-lg', 'placeholder' => 'Firstname', 'required']) }}
 					<span class="error">{{ $errors->first('firstname') }}</span>
