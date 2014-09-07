@@ -49,6 +49,14 @@ class User extends EloquentModel implements UserInterface, RemindableInterface {
     protected $presenter = 'MasonACM\Presenters\UserPresenter';
 
     /**
+     * Hash a password whenever it's being set
+     */ 
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+    /**
      * @param  array  $attributes
      * @return User
      */
@@ -56,9 +64,9 @@ class User extends EloquentModel implements UserInterface, RemindableInterface {
     {
         static::validate($attributes);
 
-        $attributes['password'] = Hash::make($attributes['password']);
-
         $user = new User($attributes);
+        
+        $user->password = $attributes['password'];
 
         $user->role = 0;
 
