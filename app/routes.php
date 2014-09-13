@@ -20,19 +20,19 @@ Route::get('vb', [
 Route::get('logout', [
 	'as' => 'logout', 
 	'before' => 'auth', 
-	'uses' => 'SessionController@destroy'
+	'uses' => 'AuthController@logout'
 ]);
 
 Route::get('login', [
 	'as' => 'login', 
 	'before' => 'guest', 
-	'uses' => 'SessionController@create'
+	'uses' => 'AuthController@getLogin'
 ]);
 
 Route::post('login', [
 	'as' => 'login.post', 
 	'before' => 'guest|csrf', 
-	'uses' => 'SessionController@store'
+	'uses' => 'AuthController@postLogin'
 ]);
 
 # User

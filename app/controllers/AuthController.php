@@ -1,15 +1,13 @@
 <?php
 
-use MasonACM\Repositories\User\UserRepositoryInterface;
-
-class SessionController extends \BaseController {
+class AuthController extends \BaseController {
 
     /**
 	 * Displays the login page
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getLogin()
 	{
 		return View::make('users.login');
 	}
@@ -19,7 +17,7 @@ class SessionController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function postLogin()
 	{
 		$input = Input::all();
 
@@ -38,7 +36,7 @@ class SessionController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function destroy()
+	public function logout()
 	{
 		Auth::logout();
 
