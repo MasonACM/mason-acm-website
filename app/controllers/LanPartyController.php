@@ -1,22 +1,29 @@
 <?php
 
 use Carbon\Carbon;
+use MasonACM\Models\LanParty;
 use MasonACM\Exceptions\ModelNotValidException;
 use MasonACM\Repositories\LanPartyRepository;
 
 class LanPartyController extends BaseController {
 
-    /**
-     * @var LanPartyRepository
-     */
-    private $lanPartyRepo;
+  /**
+   * @var LanPartyRepository
+   */
+  private $lanPartyRepo;
+
+  /**
+   * @var LanParty
+   */
+  private $lanParty;
 
 	/**
 	 * @param LanPartyRepository $lanPartyRepo
 	 */
-	public function __construct(LanPartyRepository $lanPartyRepo)
+	public function __construct(LanPartyRepository $lanPartyRepo, LanParty $lanParty)
 	{
 		$this->lanPartyRepo = $lanPartyRepo;
+    $this->lanParty = $lanParty;
 	}
 
 	/**
@@ -48,61 +55,61 @@ class LanPartyController extends BaseController {
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function store()
-    {
+  {
 		$input = Input::all();
 
 		$input['date'] = new Carbon($input['date']);
 
-		$this->lanPartyRepo->create($input);
+		$this->lanParty->create($input);
 
 		return Redirect::back();
-    }
+  }
 
 	/**
 	 * @param  int $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function update($id)
-    {
-    	$this->lanPartyRepo->update($id, Input::all());
+  {
+    $this->lanParty->find($id)->fill(Input::all());
 
-    	return Redirect::back();
-    }
+    return Redirect::back();
+  }
 
 	/**
 	 * @param  int $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function destroy($id)
-    {
-    	$this->lanPartyRepo->delete($id);
+  {
+    $this->lanParty->delete($id);
 
-    	return Redirect::back();
-    }
+    return Redirect::back();
+  }
 
 	/**
 	 * @param  int $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function activate($id)
-    {
+  {
 		$this->lanPartyRepo->setActiveParty($id);
 
 		Cache::forget('active_lan_party');
 
-    	return Redirect::back();
-    }
+    return Redirect::back();
+  }
 
 	/**
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function deactivate()
-    {
+  {
 		$this->lanPartyRepo->deactivateActiveParty();
 
 		Cache::forget('active_lan_party');
 
-    	return Redirect::back();
-    }
+    return Redirect::back();
+  }
 
 }
