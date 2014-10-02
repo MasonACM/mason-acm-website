@@ -20,19 +20,19 @@ Route::get('vb', [
 Route::get('logout', [
 	'as' => 'logout', 
 	'before' => 'auth', 
-	'uses' => 'SessionController@destroy'
+	'uses' => 'AuthController@logout'
 ]);
 
 Route::get('login', [
 	'as' => 'login', 
 	'before' => 'guest', 
-	'uses' => 'SessionController@create'
+	'uses' => 'AuthController@getLogin'
 ]);
 
 Route::post('login', [
 	'as' => 'login.post', 
 	'before' => 'guest|csrf', 
-	'uses' => 'SessionController@store'
+	'uses' => 'AuthController@postLogin'
 ]);
 
 # User
@@ -266,6 +266,34 @@ Route::group(['prefix' => 'admin', 'before' => 'admin'], function()
 		'as' => 'admin.members',
 		'before' => 'admin',
 		'uses' => 'AdminController@getMembers'
+	]);
+
+});
+
+Route::group(['prefix' => 'password'], function()
+{
+	Route::get('remind', [
+		'as' => 'password.remind',
+		'before' => 'guest',
+		'uses' => 'PasswordController@getRemind'
+	]);
+
+	Route::post('remind', [
+		'as' => 'password.remind',
+		'before' => 'guest',
+		'uses' => 'PasswordController@postRemind'
+	]);
+
+	Route::get('reset/{token}', [
+		'as' => 'password.reset',
+		'before' => 'guest',
+		'uses' => 'PasswordController@getReset'
+	]);
+
+	Route::post('reset', [
+		'as' => 'password.reset',
+		'before' => 'guest',
+		'uses' => 'PasswordController@postReset'
 	]);
 
 });

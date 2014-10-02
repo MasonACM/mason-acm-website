@@ -5,6 +5,11 @@
 	<div class="form-group">
 		{{ Form::input('password', 'password', null, ['class' => 'form-control input-lg', 'placeholder' => 'Password']) }}
 	</div>
+	<div class="form-group">
+		<a href="{{ URL::route('password.remind') }}">
+			Reset password
+		</a>
+	</div>
 	<button class="btn btn-transparent btn-lg btn-block">Login</button>
 	@if (Session::has('auth_message'))
 		<div class="error">
