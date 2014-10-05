@@ -8,7 +8,7 @@ class AdminController extends \BaseController  {
      * @var UserRepository
      */
     private $userRepo;
-
+	
 	/**
 	 * @param UserRepository $userRepo
 	 */
