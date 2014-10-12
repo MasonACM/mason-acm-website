@@ -1,5 +1,7 @@
 <?php
 
+use MasonACM\Models\LanParty;
+use MasonACM\Models\Competition;
 use MasonACM\Repositories\CompetitionRepository;
 
 class CompetitionController extends \BaseController {
@@ -15,6 +17,20 @@ class CompetitionController extends \BaseController {
 	function __construct(CompetitionRepository $compRepo)
 	{
 		$this->compRepo = $compRepo;
+	}
+
+	/**
+	 * @return Response
+	 */
+	public function store()
+	{
+		$input = Input::all();
+
+		$input['lanparty_id'] = LanParty::getActiveParty()->id;
+
+		$competition = Competition::create($input);
+
+		return Redirect::back();
 	}
 
 	/**

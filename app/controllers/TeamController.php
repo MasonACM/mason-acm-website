@@ -38,10 +38,11 @@ class TeamController extends \BaseController {
 
 		// If the user is signing up for a non-team based
 		// competition, then create a new "Team"
-		// where they are the only member
+		// where he/she is the only member.
 		if ( ! array_key_exists('team_id', $input))
 		{
 			$team = $this->team->createAndValidate([
+				'name' 			 => $input['name'],
 				'competition_id' => $competitionId
 			]);
 
