@@ -16,11 +16,15 @@ class LanPartySeeder extends Seeder {
 		$parties = array(
 			array(
 				'date' => Carbon::today(),
-				'active' => true
+				'active' => true,
+				'created_at' => time(),
+                'updated_at' => time()
 			),
 			array (
 				'date' => Carbon::today(),
-				'active' => false
+				'active' => false,
+				'created_at' => time(),
+                'updated_at' => time()
 			)
 		);
 

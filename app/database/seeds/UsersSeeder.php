@@ -10,10 +10,12 @@ class UsersSeeder extends Seeder {
 
         $users = [];
 
+        $password = Hash::make('busta33');
+
         User::create([
             'firstname' => 'admin',
             'lastname'  => 'admin',
-            'password'  => Hash::make('busta33'),
+            'password'  => 'busta33',
             'email'     => 'admin@masonacm.org',                
             'grad_year' => 2015,
             "role"      => 2
@@ -25,7 +27,10 @@ class UsersSeeder extends Seeder {
                 'firstname' => $faker->firstName(),
                 'lastname'  => $faker->lastName(),
                 'email'     => $faker->email(),
+                'password'  => $password,
                 'grad_year' => $faker->numberBetween(2014, 2019),
+                'created_at' => time(),
+                'updated_at' => time(),
                 'role'      => 0,
             ]);
         }
