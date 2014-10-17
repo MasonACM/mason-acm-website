@@ -77,4 +77,35 @@ class PasswordController extends Controller {
 		}
 	}
 
+	/**
+	 * Change a user's password from profile page
+	 *
+	 * @return Response
+	 */
+	public function postChange()
+	{
+		$user = Auth::user();
+
+		$input = Input::only('current-password', 'new-password', 'password-confirmation');
+
+		if ( ! Hash::check($input['current-password'], $user->password))
+		{
+			return Redirect::back()
+				->withFlashMessage('You incorrectly provided your current password.');		
+		}
+
+		if ($input['new-password'] != $input['password-confirmation'])
+		{
+			return Redirect::back()
+				->withFlashMessage('Password confirmation does not match.');					
+		}
+
+		$user->password = $input['new-password'];
+
+		$user->save();
+
+		return Redirect::back()
+			->withFlashMessage('Password successfully reset!');
+	}
+
 }

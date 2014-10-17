@@ -12,25 +12,21 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<a href="{{ URL::route('lanparty.index') }}" class="btn btn-huge">
 					<i class="fa fa-gamepad"></i> LAN Party
 				</a>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<a href="{{ URL::route('users.index') }}" class="btn btn-huge">
 					<i class="fa fa-users"></i> Manage Users
 				</a>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<a href="{{ URL::route('admin.members') }}" class="btn btn-huge">
 					<i class="fa fa-file-o"></i> ACM Members
 				</a>
 			</div>
-		</div>
-    </div>
+	    </div>
+	</div>
 @stop

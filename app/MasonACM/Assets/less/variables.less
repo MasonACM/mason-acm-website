@@ -9,8 +9,8 @@
 @color-green:    @brand-primary;
 @color-yellow:   #CCA62D;
 
-@color-bg: 	      rgba(27, 27, 27, 0.9);
-@color-fg:        #222;
+@color-bg: 	      #212121;
+@color-fg:        darken(@color-bg, 2.8%);
 @color-fg-darker: #1D1D1D;
 
 // Global
@@ -45,9 +45,9 @@
 @font-weight-bold:   600;
 
 // Input
-@input-bg:           @color-fg-darker;
+@input-bg:           @color-fg;
 @input-color:        @text-color;
-@input-border:       @input-bg;
+@input-border:       lighten(@color-fg, 5%);
 @input-border-focus: @brand-primary;
 
 // Jumbotron
@@ -61,13 +61,35 @@
 @pagination-disabled-bg: @color-fg;
 @pagination-disabled-border: @pagination-disabled-bg;
 
+/**
+ * Boostrap navbar variables
+ */
+@navbar-default-color:               #777;
+@navbar-default-bg:                  @brand-primary;//#424B4B;
+@navbar-default-border:              darken(@navbar-default-bg, 10%);
+@navbar-default-link-color:          #F1F1F1;
+@navbar-default-link-hover-color:    white;
+@navbar-default-link-hover-bg:       transparent;
+@navbar-default-link-active-color:   white;
+@navbar-default-link-active-bg:      darken(@navbar-default-bg, 2%);
+@navbar-default-link-disabled-color: #ccc;
+@navbar-default-link-disabled-bg:    transparent;
+@navbar-default-brand-color:         @navbar-default-link-color;
+@navbar-default-brand-hover-color:   @navbar-default-link-hover-color;
+@grid-float-breakpoint: 			 @screen-md-max;
+
+// Navbar toggle
+@navbar-default-toggle-hover-bg:           darken(@brand-primary, 2%);
+@navbar-default-toggle-icon-bar-bg:        white;
+@navbar-default-toggle-border-color:       darken(@brand-primary, 2%);
+
 // Dropdown
-@dropdown-bg:                    @color-fg-darker;
-@dropdown-border:                @color-fg-darker;
-@dropdown-fallback-border:       @color-fg-darker;
-@dropdown-link-color:            @gray-light;
+@dropdown-bg:                    @navbar-default-link-active-bg;
+@dropdown-border:                @dropdown-bg;
+@dropdown-fallback-border:       @dropdown-border;
+@dropdown-link-color:            white;
 @dropdown-link-hover-color:      @text-color;
-@dropdown-link-hover-bg:         @color-fg-darker;
+@dropdown-link-hover-bg:         darken(@dropdown-bg, 2%);
 
 // Forum
 @post-padding: 30px;

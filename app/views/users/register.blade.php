@@ -32,7 +32,7 @@
 				<div class="form-group">
 					{{ Form::password('password_confirmation', ['class' => 'form-control input-lg', 'placeholder' => 'Password Confirmation'], 'required') }}
 				</div>
-				<button class="btn btn-transparent btn-lg btn-block" type="submit">Register</button>
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
 			{{ Form::close() }}
 		</div>
 	</div>

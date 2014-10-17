@@ -17,10 +17,13 @@
 			</div>
 		@endif
 		<div class="row">
-			@foreach ($competitions as $competition)
-				@include ('lanparty.competition._competition', ['competition' => $competition])
-			@endforeach
+			@if ($competitions->isEmpty())
+				<h1>No competitions have been created - check again later</h1>				
+			@else
+				@foreach ($competitions as $competition)
+					@include ('lanparty.competition._competition', ['competition' => $competition])
+				@endforeach
+			@endif
 		</div>	
 	</div>
-
 @stop

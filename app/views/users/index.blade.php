@@ -1,27 +1,14 @@
-	@extends('layouts.master')
+@extends('layouts.master')
 
 @section('content')
-	<div class="jumbotron">
-		<div class="container">
-			<h1><i class="fa fa-users"></i> Users</h1>	
-		</div>
-	</div>
 	<div class="container" ng-app="UserList" ng-controller="ListCtrl">
-		<div class="row form-group">
+		<div class="row spacing-top">
 			<div class="col-md-1">
 				<label for="count"># Per page</label>
-				<input type="text" name="count" class="form-control" ng-model="count" ng-change="getUsers()">
+				<input type="text" name="count" class="form-control" ng-model="perPage" ng-change="getUsers()">
 			</div>
-			<div class="col-md-11">
-				<p>Page @{{ page }} of @{{ lastPage }}</p>
-				<ul class="pagination">
-					<li ng-class="{ disabled: page == 1 }">
-						<a href="" ng-click="prevPage()">&laquo;</a>
-					</li>
-					<li ng-class="{ disabled: page == lastPage }">
-						<a href="" ng-click="nextPage()">&raquo;</a>
-					</li>
-				</ul>
+			<div class="col-md-11"> 
+			    <pagination total-items="items" ng-model="page" max-size="maxSize" items-per-page="perPage" class="pagination-md" boundary-links="true" ng-change="pageChanged()"></pagination>
 			</div>
 		</div>
 		<table class="table">
@@ -33,10 +20,10 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in users">
-					<td>@{{ user.email }}</td>
-					<td>@{{ user.firstname }}</td>
-					<td>@{{ user.lastname }}</td>
-					<td>@{{ user.grad_year }}</td>
+					<td>@{{user.email}}</td>
+					<td>@{{user.firstname}}</td>
+					<td>@{{user.lastname}}</td>
+					<td>@{{user.grad_year}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -49,5 +36,6 @@
     </script>
     {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js')  }}
     {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-sanitize.min.js')  }}
+    {{ HTML::script('js/ui-bootstrap-tpls-0.11.2.min.js') }}
 	{{ HTML::script('js/user-list.js') }}
 @stop

@@ -296,4 +296,9 @@ Route::group(['prefix' => 'password'], function()
 		'uses' => 'PasswordController@postReset'
 	]);
 
+	Route::post('change', [
+		'as' => 'password.change',
+		'before' => 'auth',
+		'uses' => 'PasswordController@postChange'
+	]);
 });

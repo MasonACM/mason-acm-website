@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group row">	
 			<span>{{ $threads->links() }}</span>			
-			<a href="{{ URL::route('thread.create') }}" class="btn btn-primary pull-right spacing-top-sm">
+			<a href="{{ URL::route('thread.create') }}" class="btn btn-primary btn-lg pull-right spacing-top-sm">
 				<i class="fa fa-plus"></i> Create Thread
 			</a>
 		</div>

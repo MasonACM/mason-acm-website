@@ -54,4 +54,17 @@ class CompetitionController extends \BaseController {
 		return View::make('lanparty.competition.show', compact('competition'));
 	}
 
+	public function destroy($id)
+	{
+		$competition = Competition::find($id);
+
+		foreach ($competition->teams() as $team) $team->competitors->delete();
+
+		$competition->teams()->delete();
+
+		$competition->delete();
+
+		return Redirect::back();
+	}
+
 }

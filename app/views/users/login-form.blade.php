@@ -10,7 +10,7 @@
 			Reset password
 		</a>
 	</div>
-	<button class="btn btn-transparent btn-lg btn-block">Login</button>
+	<button class="btn btn-primary btn-lg btn-block">Login</button>
 	@if (Session::has('auth_message'))
 		<div class="error">
 			{{ Session::get('auth_message') }}

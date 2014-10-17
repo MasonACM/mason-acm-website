@@ -50,24 +50,22 @@ Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 App::error(function(Exception $exception, $code)
 {
-     /*switch ($code)
-     {
-        case 403:
-            return Response::view('errors.403', array(), 403)->with('code', $code);
+    Log::error($exception);
 
-        case 404:
-            return Response::view('errors.404', array(), 404)->with('code', $code);
+    $code = strval($code);
 
-        case 500:
-            return Response::view('errors.500', array(), 500)->with('code', $code);
+    $messages = [
+        '404' => 'Page not found',
+        '500' => 'Internal server error',
+        '403' => 'Access denied'
+    ];
 
-        case 500:
-            return Response::view('errors.418', array(), 418)->with('code', $code);
+    $message = array_key_exists($code, $messages)
+        ? $code.' - '.$messages[$code]
+        : $code.' - an error has occured';
 
-        default:
-            return Response::view('errors.default', array(), $code);
-    }
-*/    Log::error($exception);
+
+    return Response::view('errors.error', ['message' => $message]);
 });
 
 /*

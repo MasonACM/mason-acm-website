@@ -7,8 +7,7 @@
 	<h2>MasonACM Password Reset</h2>
 
 	<div>
-		To reset your password, complete this form: {{ URL::route('password.reset', array($token)) }}.<br/>
-		This link will expire in {{ Config::get('auth.reminder.expire', 60) }} minutes.
+		To reset your password for your MasonACM account, continue to this link: {{ URL::route('password.reset', ['token' => $token]) }}.
 	</div>
 </body>
 </html>
