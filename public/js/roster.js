@@ -1,35 +1,36 @@
 var app = angular.module('Roster', []);
 
 app.controller('RosterCtrl', function ($scope, $http, $filter) {
-    var orderBy = $filter('orderBy');
+	var orderBy = $filter('orderBy');
 
-    $scope.attendees = [];
+	$scope.attendees = [];
 	$scope.attendeeQuery = null;
-    $scope.reverse = true;
-    $scope.partyId = $('#party-id').val();
-    $scope.baseUrl = '/lanparty/' + $scope.partyId + '/roster';
-    $scope.attendeeData = {};
+	$scope.reverse = true;
+	$scope.partyId = $('#party-id').val();
+	$scope.baseUrl = '/lanparty/' + $scope.partyId + '/roster';
+	$scope.attendeeData = {};
 
-    $http.get($scope.baseUrl).success(function (response) {
-        $scope.attendees = response;
-    });
+	$http.get($scope.baseUrl).success(function (response) {
+		$scope.attendees = response;
+	});
 
-    $scope.addAttendee = function() {
+	$scope.addAttendee = function() {
 		$scope.attendeeData._token = csrf_token;
 		$scope.attendeeData.lanparty_id = $scope.partyId;
-        $http.post($scope.baseUrl + '/add', $scope.attendeeData)
-            .success(function() {
-                $scope.attendees.push($scope.attendeeData);
-                $scope.attendeeData.firstname = '';
-                $scope.attendeeData.lastname = '';
-                $scope.attendeeData.grad_year = '';
-            });
-    };
 
-    $scope.order = function(predicate) {
-        $scope.reverse = !$scope.reverse;
-        $scope.attendees = orderBy($scope.attendees, predicate, $scope.reverse);
-    };
+		$http.post('/lanparty/' + $scope.partyId + '/admin/roster/add', $scope.attendeeData)
+			.success(function() {
+				$scope.attendees.push(angular.copy($scope.attendeeData));
+				$scope.attendeeData.firstname = '';
+				$scope.attendeeData.lastname = '';
+				$scope.attendeeData.grad_year = '';
+			});
+	};
+
+	$scope.order = function(predicate) {
+		$scope.reverse = !$scope.reverse;
+		$scope.attendees = orderBy($scope.attendees, predicate, $scope.reverse);
+	};
 
 	$scope.filterAttendees = function(attendee) {
 		if (!$scope.attendeeQuery) return true;
