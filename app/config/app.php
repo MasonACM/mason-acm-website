@@ -109,8 +109,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
-		'Barryvdh\Debugbar\ServiceProvider',
-		'Msurguy\Honeypot\HoneypotServiceProvider',
+		'Msurguy\Honeypot\HoneypotServiceProvider'
 	),
 
 	/*

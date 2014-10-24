@@ -10,6 +10,12 @@
 	{{ HTML::style('css/styles.css') }}
 	@yield('css')
 
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="MasonACM" />
+	<meta property="og:url" content="{{ URL::to('/') }}" />
+	<meta property="og:title" content="LAN Party sign up" />
+	<meta property="og:image" content="{{ URL::asset('img/lan-wp.png') }}" />
+
 </head>
 
 <body>

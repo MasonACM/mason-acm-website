@@ -51,7 +51,9 @@ class CompetitionController extends \BaseController {
 	{
 		$competition = $this->compRepo->getByIdWithTeams($id);
 
-		return View::make('lanparty.competition.show', compact('competition'));
+		$isPlayingGame = $competition->check();
+
+		return View::make('lanparty.competition.show', compact('competition', 'isPlayingGame'));
 	}
 
 	public function destroy($id)

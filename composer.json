@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"doctrine/dbal": "*",
 		"graham-campbell/markdown": "~2.0",
 		"msurguy/honeypot": "dev-master"
 	},
@@ -35,8 +34,7 @@
 			"php artisan optimize"
 		],
 		"pre-update-cmd": [
-			"php artisan clear-compiled",
-            "php artisan debugbar:publish"
+			"php artisan clear-compiled"
 		],
 		"post-update-cmd": [
 			"php artisan optimize"

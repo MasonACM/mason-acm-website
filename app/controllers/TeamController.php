@@ -84,4 +84,16 @@ class TeamController extends \BaseController {
 		App::abort(403);
 	}
 
+	/**
+	 * @param  int $teamId
+	 * @param  int $competitorId
+	 * @return Response
+	 */
+	public function kickCompetitor($teamId, $competitorId)
+	{
+		$this->team->find($teamId)->kick($competitorId);
+
+		return Redirect::back();
+	}
+
 }

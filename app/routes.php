@@ -222,6 +222,12 @@ Route::group(['prefix' => 'lanparty'], function()
 			'before' => 'csrf|auth',
 			'uses' => 'TeamController@destroy'
 		]);
+
+		Route::get('{teamId}/kick/{competitionId}', [
+			'as' => 'teams.kick',
+			'before' => 'auth',
+			'uses' => 'TeamController@kickCompetitor'
+		]);
 	});
 
 	# Competitor

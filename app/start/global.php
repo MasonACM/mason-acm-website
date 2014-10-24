@@ -52,20 +52,20 @@ App::error(function(Exception $exception, $code)
 {
     Log::error($exception);
 
-    $code = strval($code);
+    // $code = strval($code);
 
-    $messages = [
-        '404' => 'Page not found',
-        '500' => 'Internal server error',
-        '403' => 'Access denied'
-    ];
+    // $messages = [
+    //     '404' => 'Page not found',
+    //     '500' => 'Internal server error',
+    //     '403' => 'Access denied'
+    // ];
 
-    $message = array_key_exists($code, $messages)
-        ? $code.' - '.$messages[$code]
-        : $code.' - an error has occured';
+    // $message = array_key_exists($code, $messages)
+    //     ? $code.' - '.$messages[$code]
+    //     : $code.' - an error has occured';
 
 
-    return Response::view('errors.error', ['message' => $message]);
+    // return Response::view('errors.error', ['message' => $message]);
 });
 
 /*

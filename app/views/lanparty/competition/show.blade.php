@@ -9,6 +9,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				<p>*These teams are not final.  Make sure you verify it with the tournament director.</p>
 				<a href="{{ URL::route('competitions.index') }}" class="btn btn-lg btn-primary">
 					<i class="fa fa-arrow-left"></i> Competitions
 				</a>
@@ -16,7 +17,7 @@
 		</div>
 		<div class="row spacing-top-sm">	
 			<div class="col-md-4">
-				@if ($competition->isTeamBased() && !$competition->check())
+				@if ($competition->isTeamBased() && !$isPlayingGame)
 		            {{ Form::open(['route' => ['teams.store', $competition->id]]) }}
 		            	<div class="input-group">
 							<input type="text" name="name" class="form-control input-lg" placeholder="Team name" required/>

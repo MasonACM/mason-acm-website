@@ -52,7 +52,7 @@ class ThreadRepository {
 		{
 			$query->with('user');
 
-		}])->paginate(8);
+		}])->orderBy('created_at', 'desc')->paginate(8);
 	}
 
 	/**
