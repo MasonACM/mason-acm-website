@@ -7,9 +7,9 @@ app.controller('ListCtrl', function($scope, $http) {
 	$scope.sortBy = 'id';
 	$scope.sortOrder = 'asc';
 
-  $scope.page = 0;
+	$scope.page = 0;
 	$scope.maxSize = 6;
-  $scope.items = null;
+	$scope.items = null;
 	$scope.perPage = null;
 
 	$scope.getUsers = function() {
