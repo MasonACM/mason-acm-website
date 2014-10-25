@@ -70,4 +70,19 @@ class LanAttendeeController extends \BaseController {
 		return Redirect::back();
 	}
 
+	/**
+	 * Toggle the an Attendee's attendance
+	 *
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function toggleAttendance($id)
+	{
+		$attendee = $this->lanAttendee->find($id)->toggleAttendance();
+
+		if (Request::wantsJson()) return Response::json($attendee);
+
+		return Redirect::back();
+	}
+
 }

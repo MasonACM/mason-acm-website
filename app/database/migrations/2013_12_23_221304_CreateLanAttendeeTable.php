@@ -19,9 +19,10 @@ class CreateLanAttendeeTable extends Migration {
 				$table->increments('id');
 				$table->unsignedInteger('lanparty_id');
 				$table->unsignedInteger('user_id')->nullable();
-				$table->string('firstname', 50);
-				$table->string('lastname', 50);
-				$table->unsignedInteger('grad_year');
+				$table->string('firstname', 50)->nullable();
+				$table->string('lastname', 50)->nullable();
+				$table->unsignedInteger('year')->nullable();
+				$table->boolean('has_attended')->default(false);
 				$table->timestamps();
 			});
 		}

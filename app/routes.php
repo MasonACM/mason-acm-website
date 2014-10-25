@@ -182,6 +182,12 @@ Route::group(['prefix' => 'lanparty'], function()
 		'uses' => 'LanAttendeeController@store'
 	]);
 
+	Route::get('roster/attendee/{id}/toggle', [
+		'as' => 'attendee.toggle',
+		'before' => 'admin',
+		'uses' => 'LanAttendeeController@toggleAttendance'
+	]);
+
 	# Competition routes
 	Route::group(['prefix' => 'competitions', 'before' => 'lanattendee'], function()
 	{

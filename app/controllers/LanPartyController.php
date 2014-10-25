@@ -42,7 +42,7 @@ class LanPartyController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$party = $this->lanPartyRepo->getById($id);
+		$party = $this->lanParty->find($id);
 
 		$attendees = $party->attendees;
 

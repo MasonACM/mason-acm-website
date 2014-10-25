@@ -38,15 +38,6 @@ class LanPartyRepository {
      * @param  int $id
      * @return mixed
      */
-    public function getPartyWithAttendees($id)
-    {
-        return $this->lanParty->find($id)->with('attendees');
-    }
-
-    /**
-     * @param  int $id
-     * @return mixed
-     */
     public function setActiveParty($id)
     {
         $this->deactivateActiveParty();

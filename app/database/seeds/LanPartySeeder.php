@@ -35,7 +35,7 @@ class LanPartySeeder extends Seeder {
 			LanAttendee::create([
 				'firstname'   => $faker->firstName(),
 				'lastname'    => $faker->lastName(),
-				'grad_year'   => $faker->year(),
+				'year'   	  => $faker->year(),
 				'lanparty_id' => 1
 			]);
 		}
