@@ -25,7 +25,7 @@ var jsFiles = [
 var jsAdminFiles = [
 	'./bower_components/angular/angular.js',
 	'./bower_components/angular-sanitize/angular-sanitize.js',
-	'./bower_components/angular-bootstrap/ui-bootstrap.js',
+	'./bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
 	'./resources/js/user-list.js',
 	'./resources/js/roster.js',
 ];
