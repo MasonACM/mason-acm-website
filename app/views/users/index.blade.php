@@ -11,7 +11,7 @@
 			    <pagination total-items="items" ng-model="page" max-size="maxSize" items-per-page="perPage" class="pagination-md" boundary-links="true" ng-change="pageChanged()"></pagination>
 			</div>
 		</div>
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<td><a href="" ng-click="order('email')">Email</a></td>
 				<td><a href="" ng-click="order('firstname')">Firstname</a></td>
