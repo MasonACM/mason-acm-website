@@ -53,19 +53,20 @@
 @stop
 
 @section('javascript')
+	{{ HTML::script('js/admin.js') }}
 	<script type="text/javascript">
     	var csrf_token = '{{ csrf_token() }}';
 
-     	$('#roster-sidebar').affix({
-       		offset: {
-        		top: 100,
-        		bottom: function () {
-        			return (this.bottom = $('#bottom').outerHeight(true))
-       			}
-      		}
-     	});
+    	$(function() {
+	     	$('#roster-sidebar').affix({
+	       		offset: {
+	        		top: 100,
+	        		bottom: function () {
+	        			return (this.bottom = $('#bottom').outerHeight(true))
+	       			}
+	      		}
+	     	});
+	    });
     </script>
-    {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js')  }}
-	{{ HTML::script('js/roster.js') }}
 @stop
 

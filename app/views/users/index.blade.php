@@ -34,8 +34,5 @@
 	<script type="text/javascript">
     	var csrf_token = '{{ csrf_token() }}';
     </script>
-    {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js')  }}
-    {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-sanitize.min.js')  }}
-    {{ HTML::script('js/ui-bootstrap-tpls-0.11.2.min.js') }}
-	{{ HTML::script('js/user-list.js') }}
+    {{ HTML::script('js/admin.js') }}
 @stop

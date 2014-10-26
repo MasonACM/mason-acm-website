@@ -1,6 +1,6 @@
-var app = angular.module('Roster', []);
+var rosterApp = angular.module('Roster', []);
 
-app.controller('RosterCtrl', function ($scope, $http, $filter) {
+rosterApp.controller('RosterCtrl', ['$scope', '$http', '$filter', function ($scope, $http, $filter) {
 	var orderBy = $filter('orderBy');
 
 	$scope.attendees = [];
@@ -58,4 +58,4 @@ app.controller('RosterCtrl', function ($scope, $http, $filter) {
 		}
 		return matches;
 	};
-});
+}]);

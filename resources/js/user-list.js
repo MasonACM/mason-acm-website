@@ -1,8 +1,8 @@
-var app = angular.module('UserList', ['ui.bootstrap']).config(function($sceProvider) {
+var userListApp = angular.module('UserList', ['ui.bootstrap']).config(['$sceProvider', function($sceProvider) {
 	$sceProvider.enabled(false);
-});
+}]);
 
-app.controller('ListCtrl', function($scope, $http) {
+userListApp.controller('ListCtrl', ['$scope', '$http', function($scope, $http) {
 	$scope.users = [];
 	$scope.sortBy = 'id';
 	$scope.sortOrder = 'asc';
@@ -39,4 +39,4 @@ app.controller('ListCtrl', function($scope, $http) {
 
 	$scope.getUsers();
 
-});
+}]);
