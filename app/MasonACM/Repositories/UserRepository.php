@@ -24,7 +24,7 @@ class UserRepository {
 	 * @param  string $sortOrder
 	 * @return User
 	 */
-	public function getAllSorted($count = 8, $sortBy = 'id', $sortOrder = 'asc')
+	public function getAllSorted($count = 3, $sortBy = 'id', $sortOrder = 'asc')
 	{
 		return $this->user->orderBy($sortBy, $sortOrder)->paginate($count);
 	}
@@ -39,7 +39,6 @@ class UserRepository {
 		if ($now->month <= 6)
 		{
 			$minYear = $now->year;
-
 			$maxYear = $now->year + 5;
 		}
 		else

@@ -32,7 +32,7 @@ class ThreadController extends BaseController {
 	 */
 	public function index()
 	{
-		$threads = $this->threadRepo->getAllPaginated(8);
+		$threads = $this->threadRepo->getAllPaginated(10);
 
 		return View::make('forum.index')->withThreads($threads);
 	}
@@ -83,7 +83,7 @@ class ThreadController extends BaseController {
 			return Redirect::route('forum.index');
 		}
 
-		$posts = $this->threadRepo->getPostsPaginated($thread, 5);
+		$posts = $this->threadRepo->getPostsPaginated($thread, 10);
 
 		$thread->replies = $posts->getTotal();
 

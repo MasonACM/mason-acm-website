@@ -1,8 +1,11 @@
 .idea/
+npm-debug.log
+bower_components/
 app/storage/sessions/
 vendor/
 _ide_helper.php
 node_modules/
 .env.*.php
-public/css/
+public/css/*
+public/js/*
 *.sqlite

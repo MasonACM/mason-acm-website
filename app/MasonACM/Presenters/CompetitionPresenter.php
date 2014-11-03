@@ -11,7 +11,7 @@ class CompetitionPresenter extends Presenter {
 
 		$output .= $this->model->isTeamBased() ? ' team' : ' player';
 
-		$output .= $count <= 1 ? '' : 's';
+		$output .= $count == 1 ? '' : 's';
 
 		return $output;
 	}

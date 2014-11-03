@@ -1,12 +1,6 @@
-@extends('layouts.masterWithTitleAndIcon')
+@extends('layouts.master')
 
-@section('icon')
-    <i class="fa fa-info-circle"></i>
-@stop
-
-@section('title')
-	About
-@stop
+@section('title', 'About')
 
 @section('content')
 	<div class="jumbotron">

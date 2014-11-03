@@ -11,7 +11,7 @@
 			    <pagination total-items="items" ng-model="page" max-size="maxSize" items-per-page="perPage" class="pagination-md" boundary-links="true" ng-change="pageChanged()"></pagination>
 			</div>
 		</div>
-		<table class="table">
+		<table class="table table-striped">
 			<thead>
 				<td><a href="" ng-click="order('email')">Email</a></td>
 				<td><a href="" ng-click="order('firstname')">Firstname</a></td>
@@ -34,8 +34,5 @@
 	<script type="text/javascript">
     	var csrf_token = '{{ csrf_token() }}';
     </script>
-    {{ HTML::script('//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js')  }}
-    {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-sanitize.min.js')  }}
-    {{ HTML::script('js/ui-bootstrap-tpls-0.11.2.min.js') }}
-	{{ HTML::script('js/user-list.js') }}
+    {{ HTML::script('js/admin.js') }}
 @stop

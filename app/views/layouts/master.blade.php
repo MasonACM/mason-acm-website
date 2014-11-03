@@ -10,6 +10,12 @@
 	{{ HTML::style('css/styles.css') }}
 	@yield('css')
 
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="MasonACM" />
+	<meta property="og:url" content="{{ URL::to('/') }}" />
+	<meta property="og:title" content="LAN Party sign up" />
+	<meta property="og:image" content="{{ URL::asset('img/lan-wp.png') }}" />
+
 </head>
 
 <body>
@@ -20,9 +26,7 @@
 	@yield('content')
 
 	{{-- Javascript --}}
-	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
-	{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
-	{{ HTML::script('js/global.js') }}
+	{{ HTML::script('js/app.js') }}
 	@yield('javascript')
 
 	{{-- Flash Message modal --}}

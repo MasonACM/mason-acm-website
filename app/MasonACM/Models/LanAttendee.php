@@ -1,12 +1,5 @@
 <?php namespace MasonACM\Models;
 
-/**
- * Class LanAttendee
- * @property string $firstname
- * @property string $lastname
- * @property int    $grad_year
- * @property int    $lanparty_id
- */
 class LanAttendee extends EloquentModel {
 
     /**
@@ -17,15 +10,15 @@ class LanAttendee extends EloquentModel {
     /**
      * @var array
      */
-    protected $fillable = ['firstname', 'lastname', 'grad_year', 'lanparty_id', 'user_id'];
+    protected $fillable = ['firstname', 'lastname', 'year', 'lanparty_id', 'user_id', 'has_attended'];
 
     /**
      * @var array
      */
     protected static $rules = [
-    		'firstname'   => 'required|max:50|alpha_dash',
-    		'lastname'    => 'required|max:50|alpha_dash',
-    		'grad_year'   => 'required|digits:4|numeric',
+        'firstname'   => 'sometimes|max:50|alpha_dash',
+        'lastname'    => 'sometimes|max:50|alpha_dash',
+        'year'        => 'sometimes|digits:4|numeric',
         'lanparty_id' => 'required|numeric'
     ];
 
@@ -51,13 +44,10 @@ class LanAttendee extends EloquentModel {
 	 */
 	public static function createFromUser(User $user)
     {
-       return self::createAndValidate([
-           'firstname'   => $user->firstname,
-           'lastname'    => $user->lastname,
-           'grad_year'   => $user->grad_year,
+        return self::createAndValidate([
 		   'user_id'     => $user->id,
            'lanparty_id' => LanParty::getActiveParty()->id
-       ]);
+        ]);
     }
 
 	/**
@@ -68,5 +58,72 @@ class LanAttendee extends EloquentModel {
 	{
 		return static::where('user_id', $id)->exists();
 	}
+
+    /**
+     * @return this 
+     */
+    public function toggleAttendance()
+    {
+        $this->hasAttended = !$this->hasAttended;
+
+        $this->save();
+
+        return $this;
+    }
+
+    /**
+     * Get the firstname if it exists, otherwise
+     * get it from the corresponding user
+     *
+     * @return string
+     */
+    public function getFirstnameAttribute()
+    {
+        if ($this->attributes['user_id'] != null) return $this->user->firstname;
+
+        return $this->attributes['firstname'];
+    }
+
+    /**
+     * Get the lastname if it exists, otherwise
+     * get it from the corresponding user
+     *
+     * @return string
+     */
+    public function getLastnameAttribute()
+    {
+        if ($this->attributes['user_id'] != null) return $this->user->lastname;
+
+        return $this->attributes['lastname'];
+    }
+
+    /**
+     * Get the lastname if it exists, otherwise
+     * get it from the corresponding user
+     *
+     * @return string
+     */
+    public function getYearAttribute()
+    {
+        if ($this->attributes['user_id'] != null) return $this->user->grad_year;
+
+        return $this->attributes['year'];
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHasAttendedAttribute()
+    {
+        return $this->attributes['has_attended'];
+    }
+
+    /**
+     * @return void
+     */
+    public function setHasAttendedAttribute($value)
+    {
+        $this->attributes['has_attended'] = $value;
+    }
 
 }

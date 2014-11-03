@@ -182,6 +182,12 @@ Route::group(['prefix' => 'lanparty'], function()
 		'uses' => 'LanAttendeeController@store'
 	]);
 
+	Route::get('roster/attendee/{id}/toggle', [
+		'as' => 'attendee.toggle',
+		'before' => 'admin',
+		'uses' => 'LanAttendeeController@toggleAttendance'
+	]);
+
 	# Competition routes
 	Route::group(['prefix' => 'competitions', 'before' => 'lanattendee'], function()
 	{
@@ -221,6 +227,12 @@ Route::group(['prefix' => 'lanparty'], function()
 			'as' => 'teams.destroy',
 			'before' => 'csrf|auth',
 			'uses' => 'TeamController@destroy'
+		]);
+
+		Route::get('{teamId}/kick/{competitionId}', [
+			'as' => 'teams.kick',
+			'before' => 'auth',
+			'uses' => 'TeamController@kickCompetitor'
 		]);
 	});
 

@@ -53,9 +53,22 @@ class Competition extends EloquentModel {
 	 */ 
 	public function check()
 	{
-		foreach ($this->teams as $team)
+		if ($this->isTeamBased())
 		{
-			if ($team->competitor->user_id == \Auth::id()) return true;
+			foreach ($this->teams as $team)
+			{
+				foreach ($team->competitors as $competitor)
+				{
+					if ($competitor->user_id == \Auth::id()) return true;
+				}
+			}
+		}
+		else
+		{
+			foreach ($this->teams as $team)
+			{
+				if ($team->competitor->user_id == \Auth::id()) return true;
+			}
 		}
 
 		return false;

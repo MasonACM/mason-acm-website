@@ -62,16 +62,3 @@
 		@endforeach
 	</div>
 @stop
-
-@section('css')
-	{{ HTML::style('css/datepicker.css') }}
-@stop
-
-@section('javascript')
-	{{ HTML::script('js/datepicker.min.js') }}
-	<script type="application/javascript">
-		$(function() {
-			$('#date').datepicker();
-		});
-	</script>
-@stop

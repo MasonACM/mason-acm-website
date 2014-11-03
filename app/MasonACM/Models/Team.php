@@ -64,7 +64,7 @@ class Team extends EloquentModel {
 
 	/**
 	 * Check if the logged in user is either an
-	 * admin or the first member of the team
+	 * admin or the captain of the team
 	 *
 	 * @return bool
 	 */
@@ -72,7 +72,36 @@ class Team extends EloquentModel {
 	{
 		if (Auth::admin()) return true;
 
-		return $this->competitors()->first()->id == Auth::id();
+		return checkCaptain();
+	}
+
+	/**
+	 * Check if the logged in user is the "captain",
+	 * or the first member of the team
+	 *
+	 * @return bool
+	 */
+	public function checkCaptain()
+	{
+		return $this->competitors()->first()->user_id == Auth::id();
+	}
+
+	/**
+	 * Remove the specified competitor from the team
+	 */
+	public function kick($competitorId)
+	{
+		if ($this->checkCaptain())
+		{
+			$competitor = Competitor::find($competitorId);
+
+			// Delete the team if the last member kicks themselve
+			if ($competitor->team->competitors()->count() <= 1) $competitor->team->delete();
+
+			return $competitor->delete();
+		}
+
+		return false;
 	}
 
 	/**
