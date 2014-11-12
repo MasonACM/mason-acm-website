@@ -25,7 +25,9 @@ class PasswordController extends Controller {
 				return Redirect::back()->withErrors(Lang::get($response));
 
 			case Password::REMINDER_SENT:
-				return Redirect::back()->withFlashMessage('Password reset email sent!');
+				return Redirect::back()->withFlashMessage(
+					'Password reset email sent.  Check your spam if you don\'t see it in your inbox.'
+				);
 		}
 	}
 
