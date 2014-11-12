@@ -196,6 +196,18 @@ Route::group(['prefix' => 'lanparty'], function()
 			'uses' => 'CompetitionController@index'
 		]);
 
+		Route::get('{id}/edit', [
+			'as' => 'competitions.edit',
+			'before' => 'admin',
+			'uses' => 'CompetitionController@edit'
+		]);
+
+		Route::post('{id}/update', [
+			'as' => 'competitions.update',
+			'before' => 'admin|csrf',
+			'uses' => 'CompetitionController@update'
+		]);
+
 		Route::post('/', [
 			'as' => 'competitions.store',
 			'before' => 'admin|csrf',

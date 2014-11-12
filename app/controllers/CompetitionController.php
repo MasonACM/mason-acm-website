@@ -36,6 +36,29 @@ class CompetitionController extends \BaseController {
 	/**
 	 * @return Response
 	 */
+	public function edit($id)
+	{
+		$competition = Competition::find($id);
+
+		return View::make('lanparty.competition.edit', compact('competition'));
+	}
+
+	/**
+	 * @param  int $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$competition = Competition::find($id);
+
+		$competition->fill(Input::all())->save();
+
+		return Redirect::route('competitions.index');
+	}
+
+	/**
+	 * @return Response
+	 */
 	public function index()
 	{
 		$competitions = $this->compRepo->getAllActive();
