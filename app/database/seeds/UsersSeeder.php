@@ -1,6 +1,7 @@
 <?php
 
 use MasonACM\Models\User;
+use MasonACM\Models\LanAttendee;
 
 class UsersSeeder extends Seeder {
 
@@ -9,6 +10,10 @@ class UsersSeeder extends Seeder {
         $faker = Faker\Factory::create();
 
         $users = [];
+
+        $attendees = [];
+
+        $count = 1;
 
         $password = Hash::make('busta33');
 
@@ -33,9 +38,19 @@ class UsersSeeder extends Seeder {
                 'updated_at' => time(),
                 'role'      => 0,
             ]);
+
+            array_push($attendees, [
+                'lanparty_id' => 2,
+                'created_at' => time(),
+                'updated_at' => time(),
+                'user_id' => ++$count
+            ]);
+
         }
 
         User::insert($users);
+
+        LanAttendee::insert($attendees);
 
     }
 }
