@@ -38,7 +38,7 @@
 					<th><a href="" ng-click="order('has_attended')">Attendance</a></th>
 				</tr>
 				<tbody>
-					<tr ng-repeat="attendee in attendees | filter: filterAttendees" ng-class="{strike: attendee.has_attended == true}">
+					<tr ng-repeat="attendee in attendees | filter: filterAttendees" ng-class="{strike: attendee.has_attended == 1}">
 						<td>@{{ $index }}</td>
 						<td>@{{ attendee.firstname }}</td>
 						<td>@{{ attendee.lastname }}</td>
