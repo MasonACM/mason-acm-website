@@ -42,13 +42,18 @@ class LanPartyController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$party = $this->lanParty->find($id);
+		$party = $this->lanParty->with('attendees.user')->find($id);
 
 		$attendees = $party->attendees;
 
-		if (Request::wantsJson()) return Response::json($attendees);
-
-		return View::make('lanparty.roster.index')->withParty($party);
+		if (Request::wantsJson())
+		{
+			return Response::json($attendees);
+		}
+		else
+		{
+			return View::make('lanparty.roster.index')->withParty($party);
+		}
 	}
 
 	/**
