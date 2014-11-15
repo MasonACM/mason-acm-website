@@ -36,6 +36,14 @@
 	position: absolute;
 	right: 0;
 	top: 0;
+
+	form {
+		display: inline-block;
+	}
+
+	a {
+		color: white;
+	}
 }
 
 /**
@@ -44,6 +52,7 @@
 .action(@hover-color: @brand-primary) {
 	border: none;
 	cursor: pointer;
+	display: inline-block;
 	font-size: @font-size-base;
 	padding: @padding-smallest @padding-small;
 	background: transparent;
