@@ -16,9 +16,6 @@ class LanAttendee extends EloquentModel {
      * @var array
      */
     protected static $rules = [
-        'firstname'   => 'sometimes|max:50|alpha_dash',
-        'lastname'    => 'sometimes|max:50|alpha_dash',
-        'year'        => 'sometimes|digits:4|numeric',
         'lanparty_id' => 'required|numeric'
     ];
 
