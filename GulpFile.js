@@ -18,6 +18,7 @@ var jsFiles = [
 	'./bower_components/bootstrap/js/modal.js',
 	'./bower_components/bootstrap/js/dropdown.js',
 	'./bower_components/bootstrap/js/affix.js',
+	'./bower_components/bootstrap/js/collapse.js',
 	'./resources/js/global.js',
 ];
 
