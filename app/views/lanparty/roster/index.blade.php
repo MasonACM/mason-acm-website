@@ -34,7 +34,6 @@
 					<th>#</th>
 					<th><a href="" ng-click="order('firstname')">Firstname</a></th>
 					<th><a href="" ng-click="order('lastname')">Lastname</a></th>
-					<th><a href="" ng-click="order('year')">Graduation Year</a></th>
 					<th><a href="" ng-click="order('has_attended')">Attendance</a></th>
 				</tr>
 				<tbody>
@@ -42,7 +41,6 @@
 						<td>@{{ $index }}</td>
 						<td>@{{ attendee.firstname }}</td>
 						<td>@{{ attendee.lastname }}</td>
-						<td>@{{ attendee.year }}</td>
 						<td><a href="" ng-click="toggleAttendance(attendee.id)">Toggle attendance</a></td>
 					</tr>
 				</tbody>
