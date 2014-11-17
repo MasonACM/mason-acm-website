@@ -76,7 +76,7 @@ class LanAttendee extends EloquentModel {
      */
     public function getFirstnameAttribute()
     {
-        if ($this->attributes['user_id'] != null) return $this->user->firstname;
+        if ($this->attributes['user_id'] !== null) return $this->user->firstname;
 
         return $this->attributes['firstname'];
     }
@@ -89,7 +89,7 @@ class LanAttendee extends EloquentModel {
      */
     public function getLastnameAttribute()
     {
-        if ($this->attributes['user_id'] != null) return $this->user->lastname;
+        if ($this->attributes['user_id'] !== null) return $this->user->lastname;
 
         return $this->attributes['lastname'];
     }
@@ -102,7 +102,7 @@ class LanAttendee extends EloquentModel {
      */
     public function getYearAttribute()
     {
-        if ($this->attributes['user_id'] != null) return $this->user->grad_year;
+        if ($this->attributes['user_id'] !== null) return $this->user->grad_year;
 
         return $this->attributes['year'];
     }
